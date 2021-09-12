@@ -1,0 +1,273 @@
+if(fireBoolRangeTrue) {
+
+            if(runningRight) {
+                if (enemyKnightBladeBashBulletsRight.size > 0) {
+                    enemyKnightBladeBashBulletsRight.clear();
+                } else {
+                    enemyKnightBladeBashBulletsRight.add(new EnemyKnightBladeBashBullet(screen, b2body.getPosition().x, b2body.getPosition().y, runningRight ? true : false, this.b2body.getPosition().x));
+
+                }
+            }else{
+                if (enemyKnightBladeBashBulletsLeft.size > 0) {
+                    enemyKnightBladeBashBulletsLeft.clear();
+                } else {
+                    enemyKnightBladeBashBulletsLeft.add(new EnemyKnightBladeBashBullet(screen, b2body.getPosition().x, b2body.getPosition().y, runningRight ? true : false, this.b2body.getPosition().x));
+
+                }
+            }
+        }else{
+
+            fireBoolRangeTrue = false;
+            for (EnemyKnightBladeBashBullet ball : enemyKnightBladeBashBulletsLeft) {
+                ((EnemyKnightBladeBashBullet) ball).destroyBody(); // .setToDestroy();
+                enemyKnightBladeBashBulletsLeft.removeValue(ball, true);
+            }
+        }
+
+
+
+raycasting
+
+// TODO check more if this should be refactored and the algorithm
+    RayCastCallback rayCallback = new RayCastCallback() {
+
+        @Override
+        public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
+
+            //collision.set(point);
+            //PlayScreen.this.normal.set(normal).add(point);
+
+ //Show contact info
+ //System.out.println("Contact Info : " + fixture.getBody().getUserData() + " at [" + point.x + ";" + point.y + "]" );
+
+            if( fixture.getBody().getType() == BodyType.DynamicBody  ) {
+                EnemyKnightDevil.this.dist = 1*fraction; // dont know ????
+                EnemyKnightDevil.this.collision.set(point);
+                //PlayScreen.this.normal.set(normal).add(point);
+                EnemyKnightDevil.this.normal.set(normal).add(point);
+
+                //EnemyKnightDevil.this.enemySePlayer = false;
+                //enemySePlayerTimerGoneBy = 0f;
+            }
+
+            if(fixture.getFilterData().categoryBits == 4 ) {
+//System.out.println("EnemyKnight Class : RayCast test: I see you !!! "); //+  fixture.getBody().getLevel(). );
+               EnemyKnightDevil.this.enemySePlayer = true;
+//System.out.println("EnemyKnightDevil Class Test LOS dist to player : " + EnemyKnightDevil.this.dist);
+
+
+//System.out.println("Distance : " + dist + " smallEnemyDef id : " + getEnemyIDCreatingEnemy() + " Bit : " + fixture.getFilterData().categoryBits);
+            }
+
+            //TODO - we now don't collide with sensors - but need now to make player a target and smallEnemyDef an action to fallow !!
+            // TODO enemySePlayer = false and distance need to fix this with then Steering AI
+            // TODO distance works for now - for testing on distance
+//System.out.println("EnemyKnightDevil Class -Testing Distance/Timer rayCallback dist: " + dist + " time: " + enemySePlayerTimerGoneBy);
+            if(dist > 0.8f && enemySePlayer ) {//&& enemySePlayerTimerGoneBy > 5f) {
+//System.out.println("EnemyKnightDevil Class Test: Distance/SePlayer/EnemySePlayerTimer : Over 0.8 float " );
+
+                EnemyKnightDevil.this.enemySePlayer = false;
+                enemySePlayerTimerGoneBy = 0f;
+
+
+                //EnemyKnightDevil.this.b2body.getPosition().x
+
+                // Walk the smallEnemyDef over to EnemyMapStartPosition !!!???
+
+            }
+
+
+            //else{
+             //  EnemyKnightDevil.this.enemySePlayer = false;
+//System.out.println("EnemyKnightDevil Class : test on fixture rayCallback");
+            //}
+
+            // Print contact info
+            //System.out.println(" Contact!! " + " dis : " + dist + " CatBit : " + fixture.getFilterData().categoryBits );//+ " at [" + point.x + ";" + point.y + "]");
+//TODO when i changed this from -1 to 0 the if testing works false/true !! in GameManagerAI LOS
+            return -1; //-1; // Continue with the rest of the fixtures
+        }
+    };
+
+
+
+//working on !! ToDo : FIGTIHG STATE
+    public EnemyBossState getState() {
+
+        if(enemyIsDead){
+            setEnemyState(EnemyBossState.DEAD);
+            return getEnemyState();
+        }else {
+            if (!currentEnemyState.equals(EnemyBossState.FIGHTING)) {
+
+                if (enemyIsHit) {
+                    //System.out.println("EnemyKnight Class getState: Hit ");
+                    setEnemyState(EnemyBossState.HIT);
+                    return getEnemyState();
+
+                } else {
+                    // Must have a variable Target is set = True = FOLLOWING !!
+                    if (b2body.getLinearVelocity().x != 0 && !(b2body.getLinearVelocity().y > 0) && !(b2body.getLinearVelocity().y < 0)) {
+
+
+                        setEnemyState(EnemyBossState.FOLLOWING);
+                        return getEnemyState();
+                    } else {
+
+                        if (b2body.getLinearVelocity().y < 0) {
+
+                            setEnemyState(EnemyBossState.FALLING);
+                            return getEnemyState();
+                        } else {
+                            if (b2body.getLinearVelocity().y > 0) {
+
+                                setEnemyState(EnemyBossState.JUMPING);
+                                return getEnemyState();
+                            } else {
+
+                                setEnemyState(EnemyBossState.GUARDING);
+                                return getEnemyState();
+                            }
+                        }
+                    }
+                }
+            }
+            setEnemyState(EnemyBossState.FIGHTING);
+            return getEnemyState();
+        }
+    }
+
+
+
+in update(float dt) {
+
+if(timeTo_DefineEnemyTo_Fight_Range){
+                //animationTimer += dt;
+                //System.out.println("Fighting Animation is finished -Timer Start " + animationTimer);
+
+                //if(fightAnimation.isAnimationFinished(stateTimer))
+
+                //if(animationTimer > 0.4f) { // duration of attack animation is 1.25f
+                    defineEnemyFightingRange(); // test works on bullet at at time and get's fired right after club hits sort of!!
+                 //}
+                //animationTimer = 0;
+            }
+
+            if(timeTo_DefineEnemyTo_Fight_Frenzy){
+                animationTimer += dt;
+                //System.out.println("Fighting Animation is finished -Timer Start " + animationTimer);
+
+                if(animationTimer > 0.4f) { // duration of attack animation is 1.25f
+                    //defineEnemyFrenzyFighting(); // test works on bullet at at time and get's fired right after club hits sort of!!
+                }
+
+            }
+
+            if(timeTo_DefineEnemyTo_Fight_RangeRight){
+                animationTimer += dt;
+                //System.out.println("Fighting Animation is finished -Timer Start " + animationTimer);
+                if(animationTimer > 0.4f) { // duration of attack animation is 1.25f
+
+                    //defineEnemyFightingRangeRight();
+                }
+
+            }
+            if(timeTo_DefineEnemyTo_Fight_RangeLeft){
+                animationTimer += dt;
+                //System.out.println("Fighting Animation is finished -Timer Start " + animationTimer);
+                if(animationTimer > 0.4f) { // duration of attack animation is 1.25f
+
+                    //defineEnemyFightingRangeLeft();
+                }
+
+            }
+
+
+            //raycast in update
+
+            // High Corner
+            xProduct = 0;
+            yProduct = 0;
+            if( !runningRight ) {
+                xProduct = getX() - 1.4f;//rayBeamONEx2;
+                yProduct = getY() - (-2.5f);//rayBeamONEy2;
+            }else {
+                xProduct = getX() + 4.29f;
+                yProduct = getY() + 2.4f;
+            }
+            enemyLosRayONE.set( xProduct, yProduct );
+            world.rayCast(rayCallback, this.b2body.getPosition(), enemyLosRayONE);
+
+            // Down Corner
+            xProduct = 0;
+            yProduct = 0;
+            if( !runningRight ) {
+                xProduct = getX() - 1.24f; // rayBeamTWOx2;
+                yProduct = getY() - (-1f); //rayBeamTWOy2;
+            }else {
+                xProduct = getX() + 4.29f;
+                yProduct = getY() + 1f;
+            }
+            enemyLosRayTWO.set(xProduct, yProduct);
+            world.rayCast(rayCallback, this.b2body.getPosition(), enemyLosRayTWO );
+
+            // Strait in front
+            xProduct = 0;
+            yProduct = 0;
+            if( !runningRight ) {
+                xProduct = getX() - 1.29f; //rayBeamTHREEx2;
+                yProduct = getY() - (-1.5f); //rayBeamTHREEy2;
+            }else {
+                xProduct = getX() + 4.29f;
+                yProduct = getY() + 1.5f;
+            }
+            enemyLosRayTHREE.set(xProduct, yProduct);
+            world.rayCast(rayCallback, this.b2body.getPosition(), enemyLosRayTHREE ); //.setAngle(25)
+
+
+
+
+
+
+            // Working on !!
+
+
+
+                //private boolean ai_Move_To_Patroll_Marker_Start;
+                public boolean getPatroll_Marker_Start_True(){
+                    return this.ai_Move_To_Patroll_Marker_Start;
+                }
+
+                public void setPatroll_Marker_Start_True(){
+                    this.ai_Move_To_Patroll_Marker_Start = true;
+                }
+
+                public void setPatroll_Marker_Start_False(){
+                    this.ai_Move_To_Patroll_Marker_Start = false;
+                }
+
+                //private boolean ai_Move_To_Patroll_Marker_Left;
+                public boolean getPatroll_Marker_Left_True(){
+                    return this.ai_Move_To_Patroll_Marker_Left;
+                }
+
+                public void setPatroll_Marker_Left_True(){
+                    this.ai_Move_To_Patroll_Marker_Left = true;
+                }
+
+                public void setPatroll_Marker_Left_False(){
+                    this.ai_Move_To_Patroll_Marker_Left = false;
+                }
+
+                //private boolean ai_Move_To_Patroll_Marker_Right;
+                public boolean getPatroll_Marker_Right_True(){
+                    return this.ai_Move_To_Patroll_Marker_Right;
+                }
+
+                public void setPatroll_Marker_Right_True(){
+                    this.ai_Move_To_Patroll_Marker_Right = true;
+                }
+
+                public void setPatroll_Marker_Right_False(){
+                    this.ai_Move_To_Patroll_Marker_Right = false;
+                }

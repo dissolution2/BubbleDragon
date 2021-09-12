@@ -1,0 +1,271 @@
+GameMapScreenAssets.png
+size: 817, 125
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+addButton60_Disabled
+  rotate: false
+  xy: 792, 1
+  size: 24, 32
+  orig: 31, 34
+  offset: 4, 1
+  index: -1
+addButton60_Down
+  rotate: false
+  xy: 792, 35
+  size: 24, 32
+  orig: 31, 34
+  offset: 4, 1
+  index: -1
+addButton60_Up
+  rotate: false
+  xy: 758, 73
+  size: 24, 32
+  orig: 31, 34
+  offset: 4, 1
+  index: -1
+buttonBlue65_Down
+  rotate: false
+  xy: 787, 69
+  size: 27, 29
+  orig: 27, 29
+  offset: 0, 0
+  index: -1
+buttonBlue65_Up
+  rotate: false
+  xy: 41, 83
+  size: 34, 36
+  orig: 34, 36
+  offset: 0, 0
+  index: -1
+buttonShild65
+  rotate: false
+  xy: 650, 48
+  size: 34, 36
+  orig: 34, 36
+  offset: 0, 0
+  index: -1
+buttonSword65
+  rotate: false
+  xy: 650, 86
+  size: 34, 36
+  orig: 34, 36
+  offset: 0, 0
+  index: -1
+heartPuzzleEmpty
+  rotate: false
+  xy: 191, 1
+  size: 62, 57
+  orig: 62, 57
+  offset: 0, 0
+  index: -1
+heartPuzzleFive
+  rotate: false
+  xy: 191, 60
+  size: 62, 57
+  orig: 62, 57
+  offset: 0, 0
+  index: -1
+heartPuzzleFour
+  rotate: false
+  xy: 255, 1
+  size: 62, 57
+  orig: 62, 57
+  offset: 0, 0
+  index: -1
+heartPuzzleOne
+  rotate: false
+  xy: 255, 60
+  size: 62, 57
+  orig: 62, 57
+  offset: 0, 0
+  index: -1
+heartPuzzleThree
+  rotate: false
+  xy: 319, 1
+  size: 62, 57
+  orig: 62, 57
+  offset: 0, 0
+  index: -1
+heartPuzzleTwo
+  rotate: false
+  xy: 319, 60
+  size: 62, 57
+  orig: 62, 57
+  offset: 0, 0
+  index: -1
+mainButtonCharacter_Down
+  rotate: false
+  xy: 598, 1
+  size: 47, 48
+  orig: 48, 48
+  offset: 1, 0
+  index: -1
+mainButtonCharacter_Down2
+  rotate: false
+  xy: 132, 1
+  size: 57, 58
+  orig: 60, 60
+  offset: 2, 1
+  index: -1
+mainButtonCharacter_Up
+  rotate: false
+  xy: 132, 61
+  size: 57, 58
+  orig: 60, 60
+  offset: 2, 1
+  index: -1
+mainButtonSkills_Down
+  rotate: false
+  xy: 647, 1
+  size: 44, 45
+  orig: 48, 48
+  offset: 3, 1
+  index: -1
+mainButtonSkills_Down2
+  rotate: false
+  xy: 495, 59
+  size: 53, 55
+  orig: 60, 60
+  offset: 5, 2
+  index: -1
+mainButtonSkills_Up
+  rotate: false
+  xy: 550, 59
+  size: 53, 55
+  orig: 60, 60
+  offset: 5, 2
+  index: -1
+mainButtonWeapons_Down
+  rotate: false
+  xy: 605, 51
+  size: 43, 48
+  orig: 48, 48
+  offset: 2, 0
+  index: -1
+mainButtonWeapons_Down2
+  rotate: false
+  xy: 77, 1
+  size: 53, 59
+  orig: 60, 60
+  offset: 3, 1
+  index: -1
+mainButtonWeapons_Up
+  rotate: false
+  xy: 77, 62
+  size: 53, 59
+  orig: 60, 60
+  offset: 3, 1
+  index: -1
+powerImgBlue60
+  rotate: false
+  xy: 693, 1
+  size: 31, 34
+  orig: 31, 34
+  offset: 0, 0
+  index: -1
+powerImgBluePowerN70_Down
+  rotate: false
+  xy: 383, 1
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+powerImgBluePowerN70_Up
+  rotate: false
+  xy: 383, 59
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+powerImgEmptyPowerLocked60
+  rotate: false
+  xy: 721, 37
+  size: 31, 34
+  orig: 31, 34
+  offset: 0, 0
+  index: -1
+powerImgEmptyPowerLocked65
+  rotate: false
+  xy: 686, 48
+  size: 33, 36
+  orig: 33, 36
+  offset: 0, 0
+  index: -1
+powerImgEmptyPowerLockedN50
+  rotate: false
+  xy: 1, 83
+  size: 38, 41
+  orig: 38, 41
+  offset: 0, 0
+  index: -1
+powerImgEmptyPowerLockedN60
+  rotate: false
+  xy: 551, 1
+  size: 45, 50
+  orig: 45, 50
+  offset: 0, 0
+  index: -1
+powerImgEmptyPowerLockedN70
+  rotate: false
+  xy: 439, 1
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+powerImgEmptyPowerLockedNOrgSize
+  rotate: false
+  xy: 1, 1
+  size: 74, 80
+  orig: 74, 80
+  offset: 0, 0
+  index: -1
+powerImgEmptyPowerUnlocked60
+  rotate: false
+  xy: 726, 1
+  size: 31, 34
+  orig: 31, 34
+  offset: 0, 0
+  index: -1
+powerImgGreen60
+  rotate: false
+  xy: 725, 73
+  size: 31, 34
+  orig: 31, 34
+  offset: 0, 0
+  index: -1
+powerImgGreenPowerN70_Down
+  rotate: false
+  xy: 439, 59
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+powerImgGreenPowerN70_Up
+  rotate: false
+  xy: 495, 1
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+powerImgShild60
+  rotate: false
+  xy: 754, 37
+  size: 31, 34
+  orig: 31, 34
+  offset: 0, 0
+  index: -1
+powerImgSword60
+  rotate: false
+  xy: 759, 1
+  size: 31, 34
+  orig: 31, 34
+  offset: 0, 0
+  index: -1
+windowCloseButton
+  rotate: false
+  xy: 686, 86
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1

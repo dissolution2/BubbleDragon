@@ -1,0 +1,672 @@
+package com.mygdx.game.framework.debug.world;
+
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.PolylineMapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.ChainShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.framework.debug.managers.GameManagerAssets;
+import com.mygdx.game.framework.debug.screens.PlayScreen;
+import com.mygdx.game.framework.debug.sprites.enemies.SmallEnemyDef;
+import com.mygdx.game.framework.debug.sprites.enemies.EnemyA;
+import EnemyKnightDevil;
+import com.mygdx.game.framework.debug.sprites.items.PortalMapTransitionHidden;
+import com.mygdx.game.framework.debug.sprites.items.SpawnPoint;
+import com.mygdx.game.framework.debug.sprites.items.TreasureChestGameItem;
+import com.mygdx.game.framework.debug.sprites.items.DragonEggGameItem;
+import com.mygdx.game.framework.debug.sprites.items.ExtraLifeGameItem;
+import com.mygdx.game.framework.debug.sprites.items.Portal;
+import com.mygdx.game.framework.debug.world.gameAiObjects.GameAIObject;
+import com.mygdx.game.framework.debug.sprites.items.SavePoint;
+import com.mygdx.game.framework.debug.util.GameUtility;
+import com.mygdx.game.framework.debug.world.gameObjects.GameObjectSwitchHidden;
+import com.mygdx.game.framework.debug.world.gameObjects.ItemObjectDef;
+import com.mygdx.game.framework.debug.world.gameObstacles.Obstacle;
+import com.mygdx.game.framework.debug.world.gameObstacles.ObstacleDoor;
+import com.mygdx.game.framework.debug.world.gameObjects.GameObjectSwitchDoor;
+//import com.mygdx.game.framework.debug.world.gameObstacles.Obstacle;
+
+//import com.mygdx.game.objects.InvisibleMarkerBoss;
+//import com.mygdx.game.objects.Portal;
+//import com.mygdx.game.objects.PortalMapTransition;
+//import com.mygdx.game.objects.PortalSpaneEnd;
+//import com.mygdx.game.objects.PortalSpaneStart;
+//import com.mygdx.game.framework.enemies.EnemyKnightDevilDropFront;
+//import com.mygdx.game.framework.enemies.EnemySpringRobot;
+
+
+/*
+ * This is a map Creator / builder us this to make a Map base and a MapMaker / level etc.
+ *
+ *
+ * PolylineMapObject
+ * Se MapBodyBuilder
+ *
+ */
+
+
+public class B2WorldCreator {
+
+    private MapObjects objects, objItems;
+    public Array<Obstacle> obstacles, obstaclesWithNinePatch;
+    public Array<Obstacle> activableObstacles;
+    public Array<ObstacleDoor> obstacleDoors;
+
+    //private Array<MapObject> pistons;
+
+
+
+    private Array<EnemyA> enemyA; //Enemy nr.1 Goomba
+    private Array<EnemyKnightDevil> enemyKnight;
+    //private Array<EnemyKnightDevilDropFront> enemyKnightFront;
+    //private Array<EnemySpringRobot> enemySpringRobot;
+
+    private Array<MapInfo> gameMapInfoObject;
+    private Array<GameAIObject> gameAISteeringObjects;
+    private Array<GameAIObject> gameAIBossSpawnObjects;
+    private Array<GameAIObject> gameAIEnemyReversObjects;
+    private Array<GameAIObject> gameAIPortalActivity;
+
+    private Array<ExtraLifeGameItem> extraLife; /** All ItemGameObjectDef extended from */
+    private Array<ExtraLifeGameItem> spawnPoolWhenEnemyIsDead;
+
+    private Array<DragonEggGameItem> extraDragonEgg;
+    private Array<TreasureChestGameItem> extraTreasureChest;
+
+    private Array<Portal> portals;
+    private Array<PortalMapTransitionHidden> portalsHiddenMapTransition;
+    private Array<SavePoint> savePoints;
+    private Array<SpawnPoint> spawnPointsRight;
+    private Array<SpawnPoint> spawnPointsLeft;
+    private Array<GameObjectSwitchDoor> gameObjectSwitches;
+    private Array<GameObjectSwitchHidden> gameObjectSwitchesBossDead;
+    private Array<GameObjectSwitchHidden> gameObjectSwitchesHidden;
+
+    //private Array<Turtle> turtles; //Enemy nr.2
+	/*
+	private Array<PortalSpaneStart> portalStart;
+	private Array<PortalSpaneEnd> portalEnd;
+	private Array<PortalMapTransition> portalMap;
+
+	private Array<InvisibleMarkerBoss> bossMarkerPortal;
+	*/
+
+    private int id = 0;
+    private String idName;
+
+   public B2WorldCreator(PlayScreen screen) { // }, NameGame game, OrthographicCamera camera) {
+
+        World world = screen.getWorld();
+        TiledMap map = screen.getMap();
+
+
+        if(GameManagerAssets.gameManagerSaveFileWorldExists() ) { // && GameManagerAssets.gameManagerSaveFilePlayerExists()){
+
+            /** if exists Check if we should create | on the map we load */
+            System.out.println("******* B2World Creator Begin *******");
+            System.out.println("Current World: " + GameManagerAssets.instance.getCurrentWorld() );
+            System.out.println("Current Level: " + GameManagerAssets.instance.getCurrentLevel() );
+
+            System.out.println("New World: " + GameManagerAssets.instance.getNewCurrentWorld() );
+            System.out.println("New Level: " + GameManagerAssets.instance.getNewCurrentLevel() );
+
+            System.out.println("Old World: " + GameManagerAssets.instance.getOldCurrentWorld() );
+            System.out.println("Old Level: " + GameManagerAssets.instance.getOldCurrentLevel() );
+
+
+            System.out.println("B2WorldCreator Class Call to readWriteWorldData");
+
+            if(!GameManagerAssets.instance.getNewCurrentWorld().equals("0")){
+
+                GameManagerAssets.instance.getSaveGameWorldDataHolderClass().addWorldAndLevels(
+                        GameManagerAssets.instance.getNewCurrentWorld(),
+                        GameManagerAssets.instance.getNewCurrentLevel(),"false","null");
+
+                // remove file
+                GameManagerAssets.instance.removeSaveGameFileWorld();
+                // try to write data to file
+                GameManagerAssets.instance.setDataToSaveGameWorld();
+                // read out
+                GameManagerAssets.instance.readFromSaveGameWorld();
+
+            }else {
+                // try to write data to file
+                GameManagerAssets.instance.setDataToSaveGameWorld();
+                // read out
+                GameManagerAssets.instance.readFromSaveGameWorld();
+            }
+            System.out.println("******* End *******" );
+        }
+
+        if(GameManagerAssets.instance.getNewCurrentWorld().equals("0") && !GameManagerAssets.instance.getCurrentWorld().equals("0")){
+
+            GameManagerAssets.instance.setDataToSaveGameWorld();
+            GameManagerAssets.instance.getSaveGameWorldDataHolderClass().addWorldAndLevels(
+                    GameManagerAssets.instance.getCurrentWorld(),
+                    GameManagerAssets.instance.getCurrentLevel(),"false","null");
+
+            // remove file
+            GameManagerAssets.instance.removeSaveGameFileWorld();
+            // try to write data to file
+            GameManagerAssets.instance.setDataToSaveGameWorld();
+            // read out
+            GameManagerAssets.instance.readFromSaveGameWorld();
+
+        }
+
+
+        objects = map.getLayers().get("Objects").getObjects();
+        //objItems = map.getLayers().get("Spawn").getObjects();
+
+        obstacles = new Array<Obstacle>(); // when we us the layer for more then one type off obstacles
+        activableObstacles = new Array<Obstacle>();
+        obstacleDoors = new Array<ObstacleDoor>();
+
+
+
+        //id = object.getProperties().get("id", int.class);
+
+        /**
+         * this is for testing purpose :- Obstacle and ObstacleDoor with ItemSwitch
+         */
+        for (RectangleMapObject rectangleObject : objects.getByType(RectangleMapObject.class)) {
+
+
+            for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
+
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+                if (object.getProperties().get("Type").equals("Door")) {
+                    //System.out.println("WorldCreator Class: Objects Door made!!");
+                    ObstacleDoor obstacle = new ObstacleDoor(screen, rect.getX(), rect.getY(), rectangleObject); //world, rectangleObject);
+                    obstacles.add(obstacle);
+                    activableObstacles.add(obstacle);
+                }
+            }
+        }
+/*
+        //Spawned items
+        for(int i = 0; i < map.getLayers().get("Spawn").getObjects().getCount(); i++) {
+            if (map.getLayers().get("Spawn").getObjects().get(i).getProperties().get("Type") != null) {
+                //Switches
+                if (map.getLayers().get("Spawn").getObjects().get(i).getProperties().get("Type").equals("Switch")) {
+                    //System.out.println("WorldCreator Class: Objects Switch made!!");
+
+                    itemSwitches.add(new ItemSwitch(screen, map.getLayers().get("Spawn").getObjects().get(i)));
+                }
+            }
+        }
+*/
+
+
+
+
+        //create body and fixture variables
+        BodyDef bdef = new BodyDef();
+        PolygonShape shape = new PolygonShape();
+        FixtureDef fdef = new FixtureDef();
+        Body body;
+
+        Shape shapePolyLine;
+        Body polyBody;
+        BodyDef polyBodydef = new BodyDef();
+
+        /* Layers Inn TiledMap
+         *
+         * Enemy1 L.nr 2
+         * Ground L.nr 1
+         * Ground Graphic L.nr 0
+         *
+         */
+
+        //System.out.println("Portal index : " + map.getLayers().getIndex("Portal"));
+
+
+        /** floor's */
+        for(MapObject object : map.getLayers().get(1).getObjects().getByType(RectangleMapObject.class)){ // map1 = 1
+           Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+           bdef.type = BodyDef.BodyType.StaticBody;
+           bdef.position.set((rect.getX() + rect.getWidth() / 2) / GameUtility.PPM, (rect.getY() + rect.getHeight() / 2) / GameUtility.PPM);
+
+           body = world.createBody(bdef);
+
+           shape.setAsBox(rect.getWidth() / 2 / GameUtility.PPM, rect.getHeight() / 2 / GameUtility.PPM);
+           fdef.shape = shape;
+           //fdef.friction = 0.45f;
+           fdef.filter.categoryBits = GameUtility.GROUND_BIT;
+           fdef.filter.groupIndex = GameUtility.GROUND_BIT;
+
+
+           body.createFixture(fdef);
+       }
+        /** Wall's */
+       for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){ // map1 = 1
+           Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+           bdef.type = BodyDef.BodyType.StaticBody;
+           bdef.position.set((rect.getX() + rect.getWidth() / 2) / GameUtility.PPM, (rect.getY() + rect.getHeight() / 2) / GameUtility.PPM);
+
+           body = world.createBody(bdef);
+
+           shape.setAsBox(rect.getWidth() / 2 / GameUtility.PPM, rect.getHeight() / 2 / GameUtility.PPM);
+           fdef.shape = shape;
+           //fdef.friction = 0.45f;
+           fdef.filter.categoryBits = GameUtility.WALL_BIT;
+           fdef.filter.groupIndex = GameUtility.GROUND_BIT;
+
+           body.createFixture(fdef);
+       }
+
+        /** Ground PoloLine bodies/fixtures */
+        for(MapObject object : map.getLayers().get(7).getObjects().getByType(PolylineMapObject.class)){ // map0 = 7 , map2 = 1, map1 = 2
+            //Polyline polyline = ((PolylineMapObject) object).getPolyline();
+
+
+
+
+            // this works : BUT if to many Vertices and it goes wrong with -: ??!!
+            // Only one have problems and its not always the same !!
+            // Jump / landing from jump - change direction etc. bad.
+
+
+            //TODO // We use this only now for Collision under floor / (floor - Sealing) - See Map!!
+            if(object instanceof PolylineMapObject) {
+                shapePolyLine = createPolyLine((PolylineMapObject) object);
+            }else{
+                continue;
+            }
+
+            Body bodyPoly;
+            BodyDef bdefPoly = new BodyDef();
+            bdefPoly.type = BodyDef.BodyType.StaticBody;
+            bodyPoly = world.createBody(bdefPoly);
+            bodyPoly.createFixture(shapePolyLine,0f);
+            shapePolyLine.dispose();
+
+            }
+
+
+
+
+
+        //create Game Markers bodies/fixtures // works on savepoint class !! testing again
+        //ToDo : If we use a AI Marker Class how to use it with GameManagerAI ? like the othere one ???
+
+        gameMapInfoObject = new Array<MapInfo>();
+        gameAISteeringObjects = new Array<GameAIObject>();
+        gameAIBossSpawnObjects = new Array<GameAIObject>();
+        gameAIEnemyReversObjects = new Array<GameAIObject>();
+        gameAIPortalActivity = new Array<GameAIObject>();
+
+
+        portals = new Array<Portal>();
+        portalsHiddenMapTransition = new Array<PortalMapTransitionHidden>();
+        savePoints = new Array<SavePoint>();
+        spawnPointsRight = new Array<SpawnPoint>();
+        spawnPointsLeft = new Array<SpawnPoint>();
+        gameObjectSwitches = new Array<GameObjectSwitchDoor>();
+       /** One for every Boss, A big boss World might have sever all that we get keys to  |||| for doors and can open in eny order !!??*/
+        gameObjectSwitchesBossDead = new Array<GameObjectSwitchHidden>();
+        gameObjectSwitchesHidden = new Array<GameObjectSwitchHidden>();
+        for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
+
+           Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            //System.out.println("B2WorldCreator Class : getProperties : Name: " + object.getName() +
+            //        " Property level key: " +
+            //        object.getProperties().get("WORLD") +
+            //        " SavePoint: " + object.getProperties().get("SAVEPOINT") );
+
+
+            if(object.getName().equals("GAME_PORTAL")) {
+                // GameObjectDef extended
+                portals.addAll(new Portal(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object));
+                //savePoints.addAll( new SavePoint(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object) );
+                //System.out.println("B2WorldCreator Class : GAME_PORTAL_BIT MADE: posX " + rect.getX() / GameUtility.PPM + " posY: " + rect.getY() / GameUtility.PPM );
+            }
+
+            if(object.getName().equals("GAME_PORTAL_HIDDEN_TRANSITION")) {
+                // GameObjectDef extended
+                portalsHiddenMapTransition.addAll(new PortalMapTransitionHidden(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object));
+                //savePoints.addAll( new SavePoint(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object) );
+                //System.out.println("B2WorldCreator Class : GAME_PORTAL_BIT MADE: posX " + rect.getX() / GameUtility.PPM + " posY: " + rect.getY() / GameUtility.PPM );
+            }
+
+            // need to identify the object like with type and numbers like switch and Obstacles !!??
+            if(object.getName().equals("GAME_SAVE_POINT")) {
+                // GameObjectDef extended
+                savePoints.addAll( new SavePoint(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object) );
+              //System.out.println("B2WorldCreator Class : GAME_SAVE_POINT_BIT MADE: posX " + rect.getX() / GameUtility.PPM + " posY: " + rect.getY() / GameUtility.PPM );
+            }
+
+            if(object.getName().equals("GAME_SPAWN_POINT_RIGHT")){
+                spawnPointsRight.addAll(new SpawnPoint(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object) );
+            }
+
+            if(object.getName().equals("GAME_SPAWN_POINT_LEFT")){
+                spawnPointsLeft.addAll(new SpawnPoint(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object) );
+            }
+
+            if(object.getName().equals("GAME_SWITCH_OPEN")) {
+
+                //if( object.getProperties().get("BossSwitchDead") != null ) {
+                //    gameObjectSwitchesBossDead.addAll( new GameObjectSwitchDoor(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object));
+                //}else {
+                    gameObjectSwitches.addAll( new GameObjectSwitchDoor(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object));
+                //}
+
+
+
+                //System.out.println("B2WorldCreator Class : GAME_SWITCH_OPEN MADE: posX " + rect.getX() / GameUtility.PPM + " posY: " + rect.getY() / GameUtility.PPM );
+            }
+
+
+            if(object.getName().equals("HIDDEN_SWITCH_OPEN")) {
+                if( object.getProperties().get("BossSwitchDead") != null ) {
+                    gameObjectSwitchesBossDead.addAll( new GameObjectSwitchHidden(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object));
+                }
+            }
+
+
+            if(object.getName().equals("GAME_SWITCH_CLOSE_HIDDEN")) {
+
+                //if(!GameManagerAssets.instance.getSaveGameWorldDataHolderClass().getLevelObjectBossDead().equals("true") ) {
+
+                    gameObjectSwitchesHidden.addAll(new GameObjectSwitchHidden(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object));
+                    //System.out.println("B2WorldCreator Class : GAME_SWITCH_CLOSE MADE: posX " + rect.getX() / GameUtility.PPM + " posY: " + rect.getY() / GameUtility.PPM );
+
+                //}
+            }
+        }
+
+        /*
+        for(MapObject object : map.getLayers().get("GameMarker").getObjects().getByType(RectangleMapObject.class)){ // .get(10).getObjects().getByType(RectangleMapObject.class)){
+
+           System.out.println( "test " + object.getName() );
+       }
+
+         */
+
+        // change to layer 7 or -> so we don't have all game object on map layer 7 to much
+        for(MapObject object : map.getLayers().get("GAME_AI_LAYER").getObjects().getByType(RectangleMapObject.class)) {
+
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            //if(object.getName().equals("AI_BODY_CHANGE"))
+            //if(object.getName().equals("AI_STEERING")) - Need a ArrayList
+            //if(object.getName().equals("AI_JUMP")) - Don't need a ArrayList !!??
+
+            // Don't know if we gone us it !!!!
+            //if(object.getName().equals("MAP_INFO")) {
+            //    gameMapInfoObject.add( new MapInfo(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object));
+            //}
+
+            if(object.getName().equals("MAP_INFO")) { // GAME_AI_MARKER
+                if(object.getProperties().containsKey("KEY")){
+                    System.out.println("Map key is: " + object.getProperties().get("KEY").toString() );
+                    GameManagerAssets.instance.setCurrentWorld(object.getProperties().get("MAP INFO WORLD").toString());
+                    GameManagerAssets.instance.setCurrentLevel(object.getProperties().get("MAP INFO LEVEL").toString());
+
+
+                    System.out.println("After set from Map Info:");
+                    System.out.println("Current W: " + GameManagerAssets.instance.getCurrentWorld() );
+                    System.out.println("Current L: " + GameManagerAssets.instance.getCurrentLevel() );
+
+                }
+            }
+
+
+            if(object.getName().equals("AI_STEERING")) { // GAME_AI_MARKER
+                gameAISteeringObjects.add( new GameAIObject(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object));
+                //System.out.println("B2WorldCreator Class : GAME_AI_MARKER MADE" );
+            }
+
+            if(object.getName().equals("AI_JUMP")) { // GAME_AI_MARKER
+                new GameAIObject(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object );
+
+            }
+
+            if(object.getName().equals("GAME_BOSS_SPAWN_MARKER")) {
+                gameAIBossSpawnObjects.add(new GameAIObject(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object ));
+                //System.out.println("B2WorldCreator Class : MARKER_BOSS MADE" );
+            }
+
+            if(object.getName().equals("GAME_PORTAL_SET_ACTIVITY")){
+                gameAIPortalActivity.add(new GameAIObject(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object ));
+            }
+
+
+            //if(object.getName().equals("GAME_ENEMY_A_REVERS_V")) {
+            if(object.getName().equals("AI_BODY_CHANGE")) {
+                //gameAIEnemyReversObjects.add(new GameAIObject(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object ));
+                new GameAIObject(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object );
+                //System.out.println("B2WorldCreator Class : MARKER_BOSS MADE" );
+            }
+
+        }
+       /** All ItemGameObjectDef extended from */
+       extraLife = new Array<ExtraLifeGameItem>();
+       extraDragonEgg = new Array<DragonEggGameItem>();
+       extraTreasureChest = new Array<TreasureChestGameItem>();
+        for(MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)){
+
+           Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+           //System.out.println("B2WorldCreator Class : getProperties : Name: " + object.getName() );
+           if(object.getName().equals("EX_LIFE")) {
+               // ItemObjectDef extended
+               id = object.getProperties().get("id", int.class);
+               extraLife.add(new ExtraLifeGameItem(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object, id));
+               //System.out.println("B2WorldCreator Class : GAME_EXTRA_LIFE MADE: posX " + rect.getX() / GameUtility.PPM + " posY: " + rect.getY() / GameUtility.PPM );
+           }
+
+           if(object.getName().equals("EX_MONEY")){
+               id = object.getProperties().get("id", int.class);
+               extraDragonEgg.add(new DragonEggGameItem(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object, id));
+           }
+
+
+           if(object.getName().equals("TREASURE_CHEST")){
+               id = object.getProperties().get("id", int.class);
+               extraTreasureChest.add(new TreasureChestGameItem(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object, id));
+           }
+
+
+
+       }
+
+        //create all enemyA
+        enemyA = new Array<EnemyA>();
+        spawnPoolWhenEnemyIsDead = new Array<ExtraLifeGameItem>();
+        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            id = object.getProperties().get("id", int.class);
+            //            //System.out.println("Id object : " + id);
+            enemyA.add(new EnemyA(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object) );
+        }
+
+        /** Boss knight Devil */
+       //if(!GameManagerAssets.instance.getSaveGameWorldDataHolderClass().getLevelObjectBossDead().equals("true") ) {
+           enemyKnight = new Array<EnemyKnightDevil>();
+           for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+               Rectangle rect = ((RectangleMapObject) object).getRectangle();
+               id = object.getProperties().get("id", int.class);
+               enemyKnight.add(new EnemyKnightDevil(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, id));
+           }
+       //}
+
+
+
+
+    }
+    private ChainShape createPolyLine(PolylineMapObject polyline) {
+
+        float[] vertices = polyline.getPolyline().getTransformedVertices();
+        Vector2[] worldVertices = new Vector2[vertices.length / 2];
+
+        for(int i = 0; i < worldVertices.length; i++) {
+            worldVertices[i] = new Vector2(vertices[i * 2] / GameUtility.PPM, vertices[i * 2 + 1] / GameUtility.PPM);
+        }
+
+        ChainShape chainShape = new ChainShape();
+        chainShape.createChain(worldVertices);
+        return chainShape;
+
+    }
+
+
+
+
+    public Array<Enemy> getEnemies(){
+        Array<Enemy> enemies = new Array<Enemy>();
+        enemies.addAll(enemyA);
+
+        //if(!GameManagerAssets.instance.getSaveGameWorldDataHolderClass().getLevelObjectBossDead().equals("true") ) {
+            enemies.addAll(enemyKnight);
+        //}
+
+        //enemies.addAll(enemyKnightFront);
+        //enemies.addAll(enemySpringRobot);
+        return enemies;
+    }
+
+    public Array<Obstacle> getObstacles() {
+        Array<Obstacle> obstacles = new Array<Obstacle>();
+
+        obstacles.addAll(obstacleDoors);
+
+        return obstacles;
+    }
+
+    //public Array<ExtraLifeGameItem> getExtraLife() { return extraLife; }
+
+    public Array<ItemObjectDef> getItemGameObjects(){
+       Array<ItemObjectDef> itemObjectDefs = new Array<ItemObjectDef>();
+
+       itemObjectDefs.addAll(extraLife);
+       itemObjectDefs.addAll(extraDragonEgg);
+       itemObjectDefs.addAll(extraTreasureChest);
+
+
+       return itemObjectDefs;
+    }
+
+    public Array<ItemObjectDef> getItemGameToSpawnFromDeadEnemy(){
+        Array<ItemObjectDef> itemToSpawn = new Array<ItemObjectDef>();
+
+        //itemToSpawn.addAll(spawnPoolWhenEnemyIsDead);
+
+        return itemToSpawn;
+    }
+
+
+
+    public Array<Obstacle> getActivableObstacles() {
+        Array<Obstacle> obst = new Array<Obstacle>();
+
+       obst.addAll(activableObstacles);
+
+       return obst;
+
+    }
+
+
+    /** GameManagerAI */
+    public Array<GameAIObject> getGameAISteeringObjects() {
+        return gameAISteeringObjects;
+    }
+
+    /** GameManagerAI */
+    public Array<GameAIObject> getGameAIBossSpawnObjects() {
+        return gameAIBossSpawnObjects;
+    }
+
+    public Array<MapInfo> getCurrentMapInfoObject() { return gameMapInfoObject; }
+
+
+/*
+    public Array<GameAIObject> getGameAIEnemyAReversObjects() {
+        return gameAIEnemyReversObjects;
+    }
+*/
+
+
+    public  Array<SavePoint> getSavePoints(){
+        return savePoints;
+    }
+    public  Array<SpawnPoint> getSpawnPointsRight(){ return spawnPointsRight; }
+    public  Array<SpawnPoint> getSpawnPointsLeft(){ return spawnPointsLeft; }
+
+    public Array<Portal> getPortals() { return portals; }
+
+
+
+
+
+    public Array<PortalMapTransitionHidden> getPortalsHiddenMapTransition() {
+        return portalsHiddenMapTransition;
+    }
+
+    /** PlayScreen */
+    public Array<GameObjectSwitchDoor> getGameObjectSwitches() {
+
+        return gameObjectSwitches;
+    }
+
+    /** update and activate with inn GameManagerAI boss is dead!!  Only holds Worlds Boss's Switch's */
+    public Array<GameObjectSwitchHidden> getGameObjectSwitchesBossDead(){
+        return gameObjectSwitchesBossDead;
+    }
+
+    /** PlayScreen */
+    public Array<GameObjectSwitchHidden> getGameObjectSwitchesHidden() {
+
+        return gameObjectSwitchesHidden;
+    }
+
+
+
+    /**
+     *  after all we need to putt every object in there respective ArrayList
+     */
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,117 @@
+BubbleGameUI2.png
+size: 962, 86
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+attack_one_down
+  rotate: false
+  xy: 1, 1
+  size: 78, 84
+  orig: 78, 84
+  offset: 0, 0
+  index: -1
+attack_one_up
+  rotate: false
+  xy: 81, 1
+  size: 78, 84
+  orig: 78, 84
+  offset: 0, 0
+  index: -1
+attack_two_down
+  rotate: false
+  xy: 161, 1
+  size: 78, 84
+  orig: 78, 84
+  offset: 0, 0
+  index: -1
+attack_two_up
+  rotate: false
+  xy: 241, 1
+  size: 78, 84
+  orig: 78, 84
+  offset: 0, 0
+  index: -1
+jump_down
+  rotate: false
+  xy: 321, 1
+  size: 78, 84
+  orig: 78, 84
+  offset: 0, 0
+  index: -1
+jump_up
+  rotate: false
+  xy: 401, 1
+  size: 78, 84
+  orig: 78, 84
+  offset: 0, 0
+  index: -1
+meny_power_up
+  rotate: false
+  xy: 801, 1
+  size: 52, 56
+  orig: 52, 56
+  offset: 0, 0
+  index: -1
+meny_power_down
+  rotate: false
+  xy: 801, 1
+  size: 52, 56
+  orig: 52, 56
+  offset: 0, 0
+  index: -1
+power_chblue_up
+  rotate: false
+  xy: 855, 1
+  size: 52, 56
+  orig: 52, 56
+  offset: 0, 0
+  index: -1
+power_chblue_down
+  rotate: false
+  xy: 855, 1
+  size: 52, 56
+  orig: 52, 56
+  offset: 0, 0
+  index: -1
+power_chgreen_up
+  rotate: false
+  xy: 909, 1
+  size: 52, 56
+  orig: 52, 56
+  offset: 0, 0
+  index: -1
+power_chgreen_down
+  rotate: false
+  xy: 909, 1
+  size: 52, 56
+  orig: 52, 56
+  offset: 0, 0
+  index: -1
+power_one_down
+  rotate: false
+  xy: 481, 1
+  size: 78, 84
+  orig: 78, 84
+  offset: 0, 0
+  index: -1
+power_one_up
+  rotate: false
+  xy: 561, 1
+  size: 78, 84
+  orig: 78, 84
+  offset: 0, 0
+  index: -1
+power_two_down
+  rotate: false
+  xy: 641, 1
+  size: 78, 84
+  orig: 78, 84
+  offset: 0, 0
+  index: -1
+power_two_up
+  rotate: false
+  xy: 721, 1
+  size: 78, 84
+  orig: 78, 84
+  offset: 0, 0
+  index: -1

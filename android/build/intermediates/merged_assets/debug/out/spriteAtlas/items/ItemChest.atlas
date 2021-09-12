@@ -1,0 +1,26 @@
+ItemChest.png
+size: 68, 204
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chest01
+  rotate: false
+  xy: 1, 149
+  size: 54, 54
+  orig: 78, 72
+  offset: 7, 1
+  index: -1
+chest02
+  rotate: false
+  xy: 1, 75
+  size: 65, 72
+  orig: 78, 72
+  offset: 8, 0
+  index: -1
+chest03
+  rotate: false
+  xy: 1, 1
+  size: 66, 72
+  orig: 78, 72
+  offset: 8, 0
+  index: -1

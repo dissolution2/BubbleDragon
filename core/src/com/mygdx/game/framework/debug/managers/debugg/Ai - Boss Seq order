@@ -1,0 +1,172 @@
+Array<EnemyA> testArray = new Array<EnemyA>();
+    private void setEnemyAActive(float dt){
+/*
+                        if (((EnemyA) enemyObjectsEnemyA.get(j)).isDead()) {
+
+                            if (!((EnemyA) enemyObjectsEnemyA.get(j)).getIsDestroyed()) {
+
+                                //System.out.println("Body is not destroyed!!!");
+
+                                if (((EnemyA) enemyObjectsEnemyA.get(j)).getSpawnItemType().equals("EX_LIFE")) {
+                                    if (((EnemyA) enemyObjectsEnemyA.get(j)).getSpawnItemTypeActive().equals("true")) {
+
+                                        if (rnRange(1, 4) == 2) {
+                                            extraLifeSpawnfromdead.add(new ExtraLifeGameItem((PlayScreen) g.getScreen(),
+                                                    ((EnemyA) enemyObjectsEnemyA.get(j)).b2body.getPosition().x,
+                                                    ((EnemyA) enemyObjectsEnemyA.get(j)).b2body.getPosition().y + 0.4f,
+                                                    "EX_SPAWN_LIFE",
+                                                    ((EnemyA) enemyObjectsEnemyA.get(j)).getEnemyID()));
+                                        }
+                                        // set's maybe after dead/destroyed
+                                        //((EnemyA) enemyObjectsEnemyA.get(j)).b2body.setActive(false);
+                                        ((EnemyA) enemyObjectsEnemyA.get(j)).setSpawnItemTypeActiveFalse("false");
+
+                                        // Removes it to fast!!!
+                                        //enemyObjectsEnemyA.removeIndex(j);
+                                    }
+                                }
+                            }
+                        }
+*/
+
+
+        //EnemyA updateAllSpawnLifeFromEnemy = null;
+        // Activate All enemy's A
+        for ( int j=0; j < enemyObjectsEnemyA.size; j++ ){
+            enemyObjectsEnemyA.get(j).update(dt);
+
+
+
+            //if( ((EnemyA)enemyObjectsEnemyA.get(j)).getIsDestroyed() );
+
+            //if( ((EnemyA)enemyObjectsEnemyA.get(j)).getIsSetToDestroy() );
+
+            //if( ((EnemyA)enemyObjectsEnemyA.get(j)).isDead() );
+
+
+
+
+            try {
+                if( enemyObjectsEnemyA.get(j).getX() < gamePlayer.getX() + 400 / GameUtility.PPM  &&
+                        enemyObjectsEnemyA.get(j).getY() < gamePlayer.getY() + 205 / GameUtility.PPM ){
+
+                    if( !((EnemyA)enemyObjectsEnemyA.get(j)).isDead() ) {
+
+                        ((EnemyA) enemyObjectsEnemyA.get(j)).b2body.setActive(true);
+
+                    }else if( ((EnemyA)enemyObjectsEnemyA.get(j)).isDead() ) {
+
+                        if (((EnemyA) enemyObjectsEnemyA.get(j)).getSpawnItemType().equals("EX_LIFE")) {
+                                if (((EnemyA) enemyObjectsEnemyA.get(j)).getSpawnItemTypeActive().equals("true")) {
+
+                                    System.out.println("Body is not destroyed!!!");
+
+                                    if (rnRange(1, 4) == 2) {
+                                        extraLifeSpawnfromdead.add(new ExtraLifeGameItem((PlayScreen) g.getScreen(),
+                                                ((EnemyA) enemyObjectsEnemyA.get(j)).b2body.getPosition().x,
+                                                ((EnemyA) enemyObjectsEnemyA.get(j)).b2body.getPosition().y + 0.4f,
+                                                "EX_SPAWN_LIFE",
+                                                ((EnemyA) enemyObjectsEnemyA.get(j)).getEnemyID()));
+                                    }
+                                    if (rnRange(1, 2) == 2) {
+
+                                        int spawnNumber = rnRange(1, 5);
+
+                                        for(int s = 0; s < spawnNumber; s++){
+
+                                            dragonEggGameItemArray.add(new DragonEggGameItem((PlayScreen) g.getScreen(),
+                                                    ((EnemyA) enemyObjectsEnemyA.get(j)).b2body.getPosition().x +s*0.4f/4,
+                                                    ((EnemyA) enemyObjectsEnemyA.get(j)).b2body.getPosition().y + s*0.2f/4,
+                                                    "EX_MONEY",((EnemyA) enemyObjectsEnemyA.get(j)).getEnemyID()));
+                                        }
+
+
+                                    }
+                                    // set's maybe after dead/destroyed
+                                    //((EnemyA) enemyObjectsEnemyA.get(j)).b2body.setActive(false);
+                                    ((EnemyA) enemyObjectsEnemyA.get(j)).setSpawnItemTypeActiveFalse("false");
+
+                                    // Removes it to fast!!!
+                                    //enemyObjectsEnemyA.removeIndex(j);
+                                }
+                            }
+                            // Removes it to fast!!!
+                            enemyObjectsEnemyA.removeIndex(j);
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error on rayCasting EnemyA: " + e + " enemy ID: " + ((EnemyA) enemyObjectsEnemyA.get(j)).getEnemyID() );
+            }
+
+        }
+    }
+works after EnemyBoss life from start to middle - OK.
+
+/** Jump 1 */
+enemyBossJumpSingleRepeat(true, 0, dt);
+
+/** Jump 2 (false) - if we have jumped nr. 1 */
+enemyBossJumpSingleRepeat(false, 1, dt); // 0 or 1
+
+/** Jump 3 (true) - if we have jumped nr. 2 */
+enemyBossJumpSingleRepeat(true, 0, dt);
+
+
+
+/** jump 1 (true) - if first jump nr. 1 */
+enemyBossJumpFollowPlayer(true, 0, dt); // 0 or 1
+
+/** jump 2 (false) - if we use this method to jump nr. 1 -after we jump after player....*/
+enemyBossJumpFollowPlayer(false, 0, dt); // 0 or 1
+
+eks:
+
+if(this.worldBoss.equals("2")) { // World Boss Level 2
+
+            setSteeringStateManagerBoss( getSteeringStateManagerBossBoolean() );
+
+            //setBossKnightActiveDirectionBoolean(false); // check of to make steering after jump but need it for jump ?
+
+            switch (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyLife()) {
+                case 20:
+                    System.out.println("20:15");
+                    /** Jump 1 */
+                    enemyBossJumpFollowPlayer(true, 0, dt);
+
+                    // this is set after jump and timer is > 1.8f
+                    if( getBossKnightActiveDirectionBoolean() ){ // bossKnightActiveDirection
+
+                        //this should stop all jumpActivity for looping
+                        bossJumpFollowPlayerStopAllActivity = true;
+                    }
+                    setSteeringStateManagerBossBoolean(true);
+                    setSteeringStateManagerBoss(getSteeringStateManagerBossBoolean());
+                    startSteeringStateManagerBossKnight(true, 0, 1, 0);
+                    break;
+                case 19:
+                    System.out.println("19:15");
+                    stopSteeringStateManagerBossKnight(true);
+                    setSteeringStateManagerBossBoolean(false);
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+
+                    setSteeringStateManagerBossBoolean(true);
+                    setSteeringStateManagerBoss(getSteeringStateManagerBossBoolean());
+                    startSteeringStateManagerBossKnight(true, 0, 0, 0);
+                    break;
+                case 18:
+                case 17:
+                case 16:
+                case 15:
+                    System.out.println("18:15");
+
+                    /**  *NB*  -if jump two after Steering have been active this must be set- *NB* */
+                    bossJumpFollowPlayerStopAllActivity = false;
+                    stopSteeringStateManagerBossKnight(true);
+                    setSteeringStateManagerBossBoolean(false);
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+
+                    /** Jump 2 */
+                    enemyBossJumpFollowPlayer(false, 1, dt);
+                    break;

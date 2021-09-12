@@ -1,0 +1,227 @@
+//*************************************SAVE GAME********************************************************
+
+    /*
+    public void initGameSave(){
+
+        saveGameDataHolderClass = new SaveGameDataHolderClass(); // makes the class
+    }
+    */
+    public void getPlayerPositionInnGame(Vector2 position){
+
+        saveGameDataHolderClass.setPlayerPosition(position);
+    }
+
+
+
+    public static void gameManagerSaveGameData() {
+
+        //FileHandle handle = Gdx.files.local("gameNameSave.wc");
+
+
+
+/*      // Desktop
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(
+                    new FileOutputStream("gameNameSave.wc")
+            );
+            out.writeObject(saveGameDataHolderClass);
+            out.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            Gdx.app.exit(); // gone have to change this to delete file and try to make a new one if file is corrupt!!
+        }
+*/
+
+    }
+
+    public static void gameManagerLoadGameData() {
+        try {
+
+            //if(!gameManagerSaveFileExists()) {  // if file exists then move on to saveGameDataInit
+            if(!gameManagerSaveFileExistsTest()) {
+
+                /* if Don't exists - it will make the file - gameManagerSaveFileExists() */
+                gameManagerSaveGameData();
+                System.out.println("GameManagerAssets - File don't Exists !! -");
+                return;
+            }
+
+
+
+            // test
+            saveGameDataHolderClass.setHighScores(0f);
+            saveGameDataHolderClass.setPlayerPosition(new Vector2(10,10));
+
+System.out.println("GameManagerAssets Class : After changed locally HighScore: " + saveGameDataHolderClass.getHighScores());
+System.out.println("GameManagerAssets Class : After changed locally Position: " + saveGameDataHolderClass.getPlayerPosition());
+//System.out.println("GameManagerAssets Class : After changed locally Position: " +
+//        saveGameDataHolderClass.getPlayerPositionX() + ":" +
+//        saveGameDataHolderClass.getPlayerPositionY() );
+
+                ObjectInputStream in = new ObjectInputStream(
+                        new FileInputStream("gameNameSave.wc")
+                );
+                saveGameDataHolderClass = (SaveGameDataHolderClass) in.readObject();
+                in.close();
+
+System.out.println("GameManagerAssets Class : After Read from file HighScore: " + saveGameDataHolderClass.getHighScores());
+System.out.println("GameManagerAssets Class : After Read from file: MapLevel: " + saveGameDataHolderClass.readMapLevelinUse());
+System.out.println("GameManagerAssets Class : After Read from file: PlayerPosition: " + saveGameDataHolderClass.getPlayerPosition());
+//System.out.println("GameManagerAssets Class : After Read from file: PlayerPosition: " +
+//        saveGameDataHolderClass.getPlayerPositionX() + ":" +
+//        saveGameDataHolderClass.getPlayerPositionY());
+
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            Gdx.app.exit(); //
+        }
+
+    }
+
+    public static boolean gameManagerSaveFileExistsTest() {
+
+        //return Gdx.files.local("gameNameSave.wc").exists();
+        return Gdx.files.local("player.dat").exists();
+    }
+
+/*
+    public static boolean gameManagerSaveFileExists() {
+        //context.getFilesDir(), filename
+
+
+
+        //com.badlogic.gdx.files.FileHandle file = Gdx.files.local("gameNameSave.wc");
+
+        //FileHandle fi = Gdx.files.local("myfile.txt");
+        //fi.writeString("My god, it's full of stars", false);
+
+System.out.println( "GameManagerAssets Class : Is Local Storage Ok!!" + Gdx.files.isLocalStorageAvailable() );
+
+
+        try {
+            Gdx.files.local("gameNameSave.wc").file().createNewFile();
+            System.out.println("File is created !!");
+            FileHandle handle = Gdx.files.local("gameNameSave.wc");
+            handle.writeString("test", false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        //gameManagerSaveGameData();
+
+        //File f = new File("gameNameSave.wc");
+        //return f.exists();
+        return Gdx.files.local("gameNameSave.wc").exists();
+
+    }
+*/
+
+    public void saveTheGame(){
+        gameManagerGameDataInit();
+    }
+
+
+    public static void gameManagerGameDataInit() {
+        //saveGameDataHolderClass = new SaveGameDataHolderClass(); // makes the class
+//System.out.println("GameManagerAssets - SaveGameDataInit -");
+        saveGameDataHolderClass.init(); // init the class.
+
+
+        if(Gdx.files.local("player.dat").exists()) {
+            try{
+                saveGameDataHolderClass = readSaveGame();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("GameManagerAssets Class :-file Exists, reading !! ");
+
+            System.out.println("GameManagerAssets Class : After Read from file HighScore: " + saveGameDataHolderClass.getHighScores());
+            System.out.println("GameManagerAssets Class : After Read from file: MapLevel: " + saveGameDataHolderClass.readMapLevelinUse());
+            System.out.println("GameManagerAssets Class : After Read from file: PlayerPosition: " + saveGameDataHolderClass.getPlayerPosition());
+        }else{
+            try {
+                savePlayer(saveGameDataHolderClass);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("GameManagerAssets Class :-file dose not Exists, saving !! ");
+
+            // test
+            saveGameDataHolderClass.setHighScores(0f);
+            saveGameDataHolderClass.setPlayerPosition(new Vector2(10,10));
+
+            System.out.println("GameManagerAssets Class : After changed locally HighScore: " + saveGameDataHolderClass.getHighScores());
+            System.out.println("GameManagerAssets Class : After changed locally Position: " + saveGameDataHolderClass.getPlayerPosition());
+        }
+
+    }
+
+
+    public static void savePlayer(SaveGameDataHolderClass saveGame) throws IOException {
+        //FileHandle fileHandle = Gdx.files.local("player.dat");
+        fileHandle = Gdx.files.local("player.dat");
+
+        OutputStream out = null;
+
+        try {
+            fileHandle.writeBytes(serialize(saveGame), false);
+        }catch(Exception ex){
+            System.out.println(ex.toString());
+        }
+        /*
+        finally {
+            if(out != null) try{out.close();} catch (Exception ex){}
+        }
+        */
+    }
+
+
+    public static SaveGameDataHolderClass readSaveGame() throws IOException, ClassNotFoundException {
+        SaveGameDataHolderClass saveGame = null;
+
+        //FileHandle fileHandle = Gdx.files.local("player.dat");
+        fileHandle = Gdx.files.local("player.dat");
+        saveGame = (SaveGameDataHolderClass) deserialize(fileHandle.readBytes());
+
+
+
+        return saveGame;
+    }
+
+    public boolean removeSaveGameFile(){
+
+
+            Gdx.files.local("player.dat").delete();
+
+        return true;
+    }
+
+
+ @SuppressWarnings("unused")
+  private static byte[] serialize(Object obj) throws IOException {
+
+     ByteArrayOutputStream b = new ByteArrayOutputStream();
+     ObjectOutputStream o = new ObjectOutputStream(b);
+     o.writeObject(obj);
+     return b.toByteArray();
+ }
+
+ public static Object deserialize(byte[] bytes) throws IOException, ClassNotFoundException {
+     ByteArrayInputStream b = new ByteArrayInputStream(bytes);
+     ObjectInputStream o = new ObjectInputStream(b);
+     return o.readObject();
+ }
+
+
+//****
+
+Inn maifest
+
+<uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        android:maxSdkVersion="18" />

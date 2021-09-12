@@ -1,0 +1,47 @@
+newPlayerX2Atlas.png
+size: 352, 94
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fallingxhdpi
+  rotate: false
+  xy: 229, 1
+  size: 56, 83
+  orig: 56, 83
+  offset: 0, 0
+  index: -1
+jumpingxhdpi
+  rotate: false
+  xy: 174, 1
+  size: 53, 87
+  orig: 53, 87
+  offset: 0, 0
+  index: -1
+running01xhdpi
+  rotate: false
+  xy: 58, 1
+  size: 56, 91
+  orig: 56, 91
+  offset: 0, 0
+  index: -1
+running02xhdpi
+  rotate: false
+  xy: 116, 1
+  size: 56, 91
+  orig: 56, 91
+  offset: 0, 0
+  index: -1
+running03xhdpi
+  rotate: false
+  xy: 1, 1
+  size: 55, 92
+  orig: 55, 92
+  offset: 0, 0
+  index: -1
+standxhdpi
+  rotate: false
+  xy: 287, 1
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1

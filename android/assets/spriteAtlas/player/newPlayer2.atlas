@@ -1,0 +1,61 @@
+newPlayer2.png
+size: 1508, 744
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+run1
+  rotate: false
+  xy: 1, 1
+  size: 375, 370
+  orig: 375, 370
+  offset: 0, 0
+  index: -1
+run2
+  rotate: false
+  xy: 1, 373
+  size: 375, 370
+  orig: 375, 370
+  offset: 0, 0
+  index: -1
+run3
+  rotate: false
+  xy: 378, 1
+  size: 375, 370
+  orig: 375, 370
+  offset: 0, 0
+  index: -1
+run4
+  rotate: false
+  xy: 378, 373
+  size: 375, 370
+  orig: 375, 370
+  offset: 0, 0
+  index: -1
+run5
+  rotate: false
+  xy: 755, 1
+  size: 375, 370
+  orig: 375, 370
+  offset: 0, 0
+  index: -1
+run6
+  rotate: false
+  xy: 755, 373
+  size: 375, 370
+  orig: 375, 370
+  offset: 0, 0
+  index: -1
+run7
+  rotate: false
+  xy: 1132, 1
+  size: 375, 370
+  orig: 375, 370
+  offset: 0, 0
+  index: -1
+run8
+  rotate: false
+  xy: 1132, 373
+  size: 375, 370
+  orig: 375, 370
+  offset: 0, 0
+  index: -1

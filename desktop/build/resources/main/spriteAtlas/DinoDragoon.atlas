@@ -1,0 +1,33 @@
+DinoDragoon.png
+size: 100, 467
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+DinoDragoon1
+  rotate: false
+  xy: 1, 239
+  size: 98, 115
+  orig: 101, 119
+  offset: 1, 2
+  index: -1
+DinoDragoon2
+  rotate: false
+  xy: 1, 356
+  size: 96, 110
+  orig: 96, 110
+  offset: 0, 0
+  index: -1
+DinoDragoon3
+  rotate: false
+  xy: 1, 121
+  size: 98, 116
+  orig: 101, 120
+  offset: 1, 2
+  index: -1
+DinoDragoon4
+  rotate: false
+  xy: 1, 1
+  size: 98, 118
+  orig: 101, 122
+  offset: 1, 2
+  index: -1

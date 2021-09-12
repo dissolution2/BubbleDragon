@@ -1,0 +1,11 @@
+ToDo : Remove MarkerBase and GameMarker
+
+Desktop -: Bug :
+
+
+
+
+Android -: Bug :
+
+Spawn Point -> First one, smallEnemyDef attack while falling, and after falling very slow !!
+This dose not happen on Desktop !!

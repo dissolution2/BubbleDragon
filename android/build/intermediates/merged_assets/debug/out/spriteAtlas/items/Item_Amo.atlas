@@ -1,0 +1,89 @@
+Item_Amo.png
+size: 123, 594
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+amo_black_z0
+  rotate: false
+  xy: 31, 1
+  size: 29, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
+amo_black_z1
+  rotate: false
+  xy: 59, 32
+  size: 57, 56
+  orig: 60, 58
+  offset: 0, 2
+  index: -1
+amo_black_z2
+  rotate: false
+  xy: 1, 259
+  size: 114, 110
+  orig: 120, 116
+  offset: 0, 6
+  index: -1
+amo_blue_z0
+  rotate: false
+  xy: 62, 1
+  size: 29, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
+amo_blue_z1
+  rotate: false
+  xy: 1, 90
+  size: 57, 56
+  orig: 60, 58
+  offset: 0, 2
+  index: -1
+amo_blue_z2
+  rotate: false
+  xy: 1, 371
+  size: 114, 110
+  orig: 120, 116
+  offset: 0, 6
+  index: -1
+amo_green_z0
+  rotate: false
+  xy: 1, 1
+  size: 28, 27
+  orig: 28, 27
+  offset: 0, 0
+  index: -1
+amo_green_z1
+  rotate: false
+  xy: 1, 32
+  size: 56, 54
+  orig: 56, 54
+  offset: 0, 0
+  index: -1
+amo_green_z2
+  rotate: false
+  xy: 1, 148
+  size: 112, 109
+  orig: 112, 109
+  offset: 0, 0
+  index: -1
+amo_red_z0
+  rotate: false
+  xy: 93, 1
+  size: 29, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
+amo_red_z1
+  rotate: false
+  xy: 60, 90
+  size: 57, 56
+  orig: 60, 58
+  offset: 0, 2
+  index: -1
+amo_red_z2
+  rotate: false
+  xy: 1, 483
+  size: 114, 110
+  orig: 120, 116
+  offset: 0, 6
+  index: -1

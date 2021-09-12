@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="64" tileheight="64" infinite="0" nextlayerid="25" nextobjectid="628">
+ <tileset firstgid="1" name="TiledMap -Game Screen Lev4 BackGround" tilewidth="64" tileheight="64" tilecount="800" columns="40">
+  <image source="TiledMap -Game Screen Lev4 BackGround.png" trans="ff00ff" width="2560" height="1280"/>
+ </tileset>
+ <tileset firstgid="801" name="TiledMap -Game Screen Lev4 Forground" tilewidth="64" tileheight="64" tilecount="800" columns="40">
+  <image source="TiledMap -Game Screen Lev4 Forground.png" trans="ff00ff" width="2560" height="1280"/>
+ </tileset>
+ <layer id="20" name="GroundLowLayerGraphic" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAEV1oMSGAYARMHYtm3bbGzbtm03tm3btm3btt3tzO033AsYIECAQAQmCEEJRnBCEJJQhCYMYQlHeCIQkUhEJgpRiUZ0YhCTWMQmDnGJR3wSkJBEJCYJSUlGclKQklSkJg1pSUd6MpCRTGQmC1nJRnZykJNc5CYPeclHfgpQkH8oRGGKUJRiFKcEJSlFacpQlnKUpwIVqURlqlCValSnBjWpRW3qUJd61KcBDWlEY5rQlGY0pwUtaUVr2tCWdrSnAx3pRGe60JVudKcHPelFb/rQl370ZwADGcRghvAvQxnGcEYwklGMZgxjGcd4JjCRSUxmClOZxnRmMJNZzGYOc5nHfBawkEUsZglLWcZyVrCSVaxmDWtZx3o2sJFNbGYLW9nGdnawk13sZg972cd+DnCQQxzmCEc5xnFOcJJTnOYMZznHeS5wkUtc5gpXucZ1bnCTW9zmDne5x30e8JBHPOYJT3nGc17wkle85g1vecd7PvCRT3zmC1/5xnd+8JNf/OYPfwkQ0AhEYIIQlGAEJwQhCUVowhCWcIQnAhGJRGSiEJVoRCcGMYlFbOIQl3jEJwEJSURikpCUZCQnBSlJRWrSkJZ0pCcDGclEZrKQlWxkJwc5yUVu8pCXfOSnAAX5h0IUpghFKUZxSlCSUpSmDGUpR3kqUJFKVKYKValGdWpQk1rUpg51qUd9GtCQRjSmCU1pRnNa0JJWtKYNbWlHezrQkU50pgtd6UZ3etCTXvSmD33pR38GMJBBDGYI/zKUYQxnBCMZxWjGMJZxjGcCE5nEZKYwlWlMZwYzmcVs5jCXecxnAQtZxGKWsJRlLGcFK1nFatawlnWsZwMb2cRmtrCVbWxnBzvZxW72sJd97OcABznEYY5wlGMc5wQnOcVpznCWc5znAhe5xGWucJVrXOcGN7nFbe5wl3vc5wEPecRjnvCUZzznBS95xWve8JZ3vOcDH/nEZ77wlW985wc/+cVv/vCX/48/IIEITBCCEozghCAkoQhNGMISjvBEICKRiEwUohKN6MQgJrGITRziEo/4JCAhiUhMEpKSjOSkICWpSE0a0pKO9GQgI5nITBayko3s5CAnuchNHvKSj/wUoCD/UIjCFKEoxShOCUpSitKUoSzlKE8FKlKJylShKtWoTg1qUova1KEu9ahPAxrSiMY0oSnNaE4LWtKK1rShLe1oTwc60onOdKEr3ehOD3rSi970oS/96M8ABjKIwQzhX4YyjOGMYCSjGM0YxjKO8UxgIpOYzBSmMo3pzGAms5jNHOYyj/ksYCGLWMwSlrKM5axgJatYzRrWso71bGAjm9jMFrayje3sYCe72M0e9rKP/RzgIIc4zBGOcozjnOAkpzjNGc5yjvNc4CKXuMwVrnKN69zgJre4zR3uco/7POAhj3jME57yjOe84CWveM0b3vKO93zgI5/4zBe+8o3v/OAnv/jNH/7yf/QHJBCBCUJQghGcEIQkFKEJQ1jCEZ4IRCQSkYlCVKIRnRjEJBaxiUNc4hGfBPwHzs6EAw==
+  </data>
+ </layer>
+ <objectgroup id="15" name="GAME_INFO_MAP">
+  <object id="428" name="MAP_SPAWN_POINT" x="149.667" y="976" width="25" height="27">
+   <properties>
+    <property name="ID" value="2"/>
+   </properties>
+  </object>
+  <object id="513" name="MAP_SPAWN_POINT" x="89.667" y="360" width="25" height="27">
+   <properties>
+    <property name="ID" value="1"/>
+   </properties>
+  </object>
+  <object id="575" name="MAP_SPAWN_POINT" x="2506.73" y="294.111" width="34.5423" height="31.7789">
+   <properties>
+    <property name="ID" value="5"/>
+   </properties>
+  </object>
+  <object id="577" name="MAP_SPAWN_POINT" x="2477.73" y="856.111" width="34.5423" height="31.7789">
+   <properties>
+    <property name="ID" value="4"/>
+   </properties>
+  </object>
+  <object id="578" name="MAP_INFO" x="67" y="60.5" width="60" height="51" rotation="180">
+   <properties>
+    <property name="KEY" value="1"/>
+    <property name="MAP INFO BOSS" value="false"/>
+    <property name="MAP INFO IS DEAD" value="false"/>
+    <property name="MAP INFO LEVEL" value="2"/>
+    <property name="MAP INFO WORLD" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="2" name="GAME_MAP_GROUND_LAYER">
+  <object id="434" x="3.75724" y="399.485" width="759.151" height="11.999"/>
+  <object id="450" x="883.333" y="589.666" width="137.333" height="12.666"/>
+  <object id="458" x="84" y="1011.33" width="953.333" height="18.6667"/>
+  <object id="459" x="754.667" y="465" width="137.333" height="17.333"/>
+  <object id="467" x="1835" y="893.663" width="726.667" height="135.999"/>
+  <object id="468" x="1204" y="896" width="460" height="130"/>
+  <object id="469" x="1088" y="831" width="125.333" height="7"/>
+  <object id="470" x="960" y="959" width="140" height="12"/>
+  <object id="471" x="1988" y="334.667" width="572" height="13.3333"/>
+  <object id="472" x="1582.67" y="481.333" width="193.334" height="9.6667"/>
+  <object id="473" x="1338.67" y="381.333" width="248" height="12"/>
+  <object id="475" x="1213.33" y="454.667" width="137.333" height="12"/>
+  <object id="571" x="1032" y="497.333" width="160" height="30.6667"/>
+  <object id="572" x="1801.33" y="422.667" width="217.333" height="61.3333"/>
+  <object id="573" x="1941.33" y="360" width="88" height="24"/>
+ </objectgroup>
+ <objectgroup id="16" name="GAME_MAP_WALL_AND_SEALING_LAYER">
+  <object id="486" x="1338" y="388" width="21" height="71"/>
+  <object id="487" x="1214" y="460" width="26" height="150"/>
+  <object id="488" x="1561" y="385" width="25" height="100"/>
+  <object id="489" x="1087" y="833" width="27" height="129"/>
+  <object id="490" x="1206" y="835" width="10" height="66"/>
+  <object id="491" x="960" y="960" width="24" height="55"/>
+  <object id="492" x="884" y="470" width="10" height="121"/>
+  <object id="493" x="746" y="403" width="18" height="65"/>
+  <object id="494" x="1001" y="596" width="19" height="187"/>
+ </objectgroup>
+ <objectgroup id="3" name="GAME_MAP_WALL_JUMPING_LAYER">
+  <object id="478" x="1212" y="461" width="12" height="151"/>
+  <object id="479" x="1010" y="597" width="13" height="188"/>
+  <object id="527" x="1765" y="487" width="10" height="121"/>
+ </objectgroup>
+ <objectgroup id="8" name="GAME_MAP_POLYLINE_LAYER"/>
+ <objectgroup id="4" name="ENEMY_LAYER">
+  <object id="530" name="EnemySensor" x="1784" y="877" width="44" height="42">
+   <properties>
+    <property name="Direction" value="H"/>
+    <property name="Type" value="Long"/>
+   </properties>
+  </object>
+  <object id="531" name="EnemySensor" x="1706" y="875" width="48" height="44">
+   <properties>
+    <property name="Direction" value="H"/>
+    <property name="Type" value="Long"/>
+   </properties>
+  </object>
+  <object id="584" name="EnemySensor" x="1286" y="400" width="48" height="44">
+   <properties>
+    <property name="Direction" value="H"/>
+    <property name="Type" value="Long"/>
+   </properties>
+  </object>
+  <object id="585" name="EnemySensor" x="1228" y="400" width="44" height="42">
+   <properties>
+    <property name="Direction" value="H"/>
+    <property name="Type" value="Long"/>
+   </properties>
+  </object>
+  <object id="621" name="EnemyB" x="2372" y="166" width="60" height="60">
+   <properties>
+    <property name="Active" value="true"/>
+    <property name="SpawnType" value="EX_LIFE"/>
+   </properties>
+  </object>
+  <object id="622" name="EnemyB" x="2296" y="152" width="60" height="60">
+   <properties>
+    <property name="Active" value="true"/>
+    <property name="SpawnType" value="EX_LIFE"/>
+   </properties>
+  </object>
+  <object id="623" name="EnemyB" x="2312" y="196" width="60" height="60">
+   <properties>
+    <property name="Active" value="true"/>
+    <property name="SpawnType" value="EX_LIFE"/>
+   </properties>
+  </object>
+  <object id="624" name="EnemyB" x="2108" y="184" width="60" height="60">
+   <properties>
+    <property name="Active" value="true"/>
+    <property name="SpawnType" value="EX_LIFE"/>
+   </properties>
+  </object>
+  <object id="625" name="EnemyB" x="2080" y="158" width="60" height="60">
+   <properties>
+    <property name="Active" value="true"/>
+    <property name="SpawnType" value="EX_LIFE"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="ENEMY_BOSS_LAYER"/>
+ <objectgroup id="7" name="GAME_OBJECT_LAYER">
+  <object id="427" name="GAME_PORTAL_HIDDEN_TRANSITION" x="105.333" y="911" width="24" height="41">
+   <properties>
+    <property name="DESTINATION" value="1"/>
+    <property name="DIRECTION" value="V"/>
+    <property name="KEY_ACTIVE" value="true"/>
+    <property name="MAP LEVEL" value="1"/>
+    <property name="MAP WORLD" value="1"/>
+    <property name="PORTAL ID" value="2"/>
+    <property name="TRAVEL DIRECTION" value="LEFT DOWN"/>
+    <property name="TRAVEL LEVEL" value="1"/>
+    <property name="TRAVEL TYPE" value="LEVEL"/>
+    <property name="TRAVEL WORLD" value="1"/>
+   </properties>
+  </object>
+  <object id="518" name="GAME_PORTAL_HIDDEN_TRANSITION" x="27.333" y="286" width="24" height="41">
+   <properties>
+    <property name="DESTINATION" value="1"/>
+    <property name="DIRECTION" value="V"/>
+    <property name="KEY_ACTIVE" value="true"/>
+    <property name="MAP LEVEL" value="1"/>
+    <property name="MAP WORLD" value="1"/>
+    <property name="PORTAL ID" value="1"/>
+    <property name="TRAVEL DIRECTION" value="LEFT UP"/>
+    <property name="TRAVEL LEVEL" value="1"/>
+    <property name="TRAVEL TYPE" value="LEVEL"/>
+    <property name="TRAVEL WORLD" value="1"/>
+   </properties>
+  </object>
+  <object id="574" name="GAME_PORTAL_HIDDEN_TRANSITION" x="2535.35" y="218.675" width="37.3057" height="56.6494">
+   <properties>
+    <property name="DESTINATION" value="1"/>
+    <property name="DIRECTION" value="V"/>
+    <property name="MAP LEVEL" value="2"/>
+    <property name="MAP WORLD" value="1"/>
+    <property name="PORTAL ID" value="0"/>
+    <property name="TRAVEL DIRECTION" value="RIGHT UP"/>
+    <property name="TRAVEL LEVEL" value="1"/>
+    <property name="TRAVEL TYPE" value="LEVEL"/>
+    <property name="TRAVEL WORLD" value="1"/>
+   </properties>
+  </object>
+  <object id="576" name="GAME_PORTAL_HIDDEN_TRANSITION" x="2539.35" y="774.675" width="37.3057" height="56.6494">
+   <properties>
+    <property name="DESTINATION" value="1"/>
+    <property name="DIRECTION" value="V"/>
+    <property name="MAP LEVEL" value="2"/>
+    <property name="MAP WORLD" value="1"/>
+    <property name="PORTAL ID" value="0"/>
+    <property name="TRAVEL DIRECTION" value="RIGHT DOWN"/>
+    <property name="TRAVEL LEVEL" value="1"/>
+    <property name="TRAVEL TYPE" value="LEVEL"/>
+    <property name="TRAVEL WORLD" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="9" name="DOOR_OBJECT_LAYER"/>
+ <objectgroup id="10" name="AI_LAYER">
+  <object id="562" name="AI_BODY_CHANGE" x="2528.66" y="751.667" width="18.6667" height="137.333">
+   <properties>
+    <property name="Association Number" value="1"/>
+    <property name="type" value="Velocity"/>
+   </properties>
+  </object>
+  <object id="598" name="AI_BODY_CHANGE" x="1977" y="131" width="16" height="172">
+   <properties>
+    <property name="Association Number" value="1"/>
+    <property name="type" value="Velocity"/>
+   </properties>
+  </object>
+  <object id="599" name="AI_BODY_CHANGE" x="2468" y="110" width="22" height="176">
+   <properties>
+    <property name="Association Number" value="1"/>
+    <property name="type" value="Velocity"/>
+   </properties>
+  </object>
+  <object id="626" name="AI_BODY_CHANGE" x="1947" y="9" width="16" height="172">
+   <properties>
+    <property name="Association Number" value="1"/>
+    <property name="type" value="Velocity"/>
+   </properties>
+  </object>
+  <object id="627" name="AI_BODY_CHANGE" x="2500" y="-30" width="22" height="176">
+   <properties>
+    <property name="Association Number" value="1"/>
+    <property name="type" value="Velocity"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="19" name="PFX_LAYER"/>
+ <objectgroup id="22" name="LIGHT_LAYER"/>
+ <objectgroup id="11" name="SPAWN_LAYER">
+  <object id="579" name="EX_LIFE" x="2050.67" y="271.667" width="46.6667" height="46.6667"/>
+  <object id="580" name="EX_LIFE" x="2216.67" y="831.667" width="46.6667" height="46.6667"/>
+  <object id="581" name="EX_LIFE" x="1433.67" y="320.667" width="46.6667" height="46.6667"/>
+  <object id="582" name="EX_LIFE" x="266.667" y="338.667" width="46.6667" height="46.6667"/>
+  <object id="583" name="EX_LIFE" x="348.667" y="949.667" width="46.6667" height="46.6667"/>
+ </objectgroup>
+ <layer id="13" name="GraphicBackGroundLayer" width="40" height="20" opacity="0.45">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <layer id="14" name="GraphicForGroundLayer" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <layer id="24" name="PlayerForGroundLayerGraphic" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAE11EO0IAYQBMCftW3btu1N1raVtW3btm3btm3bRuqSQ73Xxzl0T8LAAQGJSEwSkpKM5KQgJalITRrSko70ZCAjmchMFrKSjezkICe5yE0e8pKP/BSgIIUoTBGKUozilKAkpSjN3/xDGcpSjvJUoCKVqEwVqlKN6tSgJrWoTR3qUo/6NKAhjWhME5rSjOa04F9a0orWtKEt7WhPBzrSic50oSvd6E4PetKL3vShL/3ozwAGMojBDGEowxjOCEYyitGMYSzjGM8EJjKJyUxhKtOYzgxmMovZzGEu85jPAhayiMUsYSnLWM4KVrKK1axhLetYzwY2sonNbGEr29jODnayi93sYS/72M8BDnKIwxzhKMc4zglOcorTnOEs5zjPBS5yictc4SrXuM4NbnKL29zhLve4zwMe8ojHPOEpz3jOC17yite84S3veM8HPvKJz3zhK9/4zg9+8ovf/CEgSEDAXwQiMEEISjCCE4KQhCI0YQhLOMITgYhEIjJRiEo0ohODmMQiNnGISzzik4CEJCIxLYLqOcnk5KQgJalITRrSko70ZCAjmchMFrKSjezkICe5yE0e8pKP/BSgIIUoTBGKUozilKAkpSjNeLdNoIxclnKUpwIVqURlqlCValSnBjWpRW3qUJd61KcBDWlEY5rQlGY0pwX/0pJWtKYNbWlHezrQkU50pgtd6UZ3etCTXvSmD33pR38GMJBBDGYIQxnGcEYwklGMZgxjGcd4JjCRSUxmClOZxnRmMJNZzGYOc5nHfBawkEUsZglLWcZyVrCSVaxmDWtZx3o2sJFNbGYLW9nGdnawk13sZg972cd+DnCQQxzmCEc5xnFOcJJTnOYMZznHeS5wkUtc5gpXucZ1bnCTW9zmDne5x30e8JBHPOYJT3nGc17wkle85g1vecd7PvCRT3zmC1/5xnd+8JNf/OYPAbr8F4EITBCCEozghCAkoQhNGMISjvBEICKRiEwUohKN6MQgJrGITRziEo/4JCAhiUhMEpKSjOSkICWpSE0a0pKO9GQgI5nITBayko3s5CAnuchNHvKSj/wUoCCFKEwRilKM4pSgJKUozd/8QxnKUo7yVKAilahMFapSjerUoCa1qE0d6lKP+jSgIY1oTBOa0ozm/P8XW8qtaE0b2tKO9nSgI53oTBe60o3u9KAnvehNH/rSj/4MYCCDGMwQhjKM4YxgJKMYzRjGMo7xTGAik5jMFKYyjenMYCazmM0c5jKP+SxgIYtYzBKWsozlrGAlq1jNGtayjvVsYCOb2MwWtrKN7exgJ7vYzR72so/9HOAghzjMEY5yjOOc4CSnOM0ZznKO81zgIpe4zBWuco3r3OAmt7jNHe5yj/s84CGPeMwTnvKM57zgJa94zRve8o73fOAjn/jMF77yje/84Ce/+M0fAoLZP4EITBCCEozghCAkoQhNGMISjvBEICKRiEwUohKN6MQgJrGITRziEo/4JCAhiUhMEpKSjOSkICWpSE0a0pKO9GQgI5nITBayko3s5CAnuchNHvKSj/wU4D/VpZLf
+  </data>
+ </layer>
+</map>

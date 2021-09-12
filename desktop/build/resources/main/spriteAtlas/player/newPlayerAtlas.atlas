@@ -1,0 +1,47 @@
+newPlayerAtlas.png
+size: 114, 1091
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fallingxxxhdpi
+  rotate: false
+  xy: 1, 1
+  size: 112, 164
+  orig: 112, 164
+  offset: 0, 0
+  index: -1
+jumpingxxxhdpi
+  rotate: false
+  xy: 1, 720
+  size: 105, 172
+  orig: 105, 172
+  offset: 0, 0
+  index: -1
+running01xxxhdpi
+  rotate: false
+  xy: 1, 167
+  size: 110, 182
+  orig: 110, 182
+  offset: 0, 0
+  index: -1
+running02xxxhdpi
+  rotate: false
+  xy: 1, 351
+  size: 110, 181
+  orig: 110, 181
+  offset: 0, 0
+  index: -1
+running03xxxhdpi
+  rotate: false
+  xy: 1, 534
+  size: 109, 184
+  orig: 109, 184
+  offset: 0, 0
+  index: -1
+standxxxhdpi
+  rotate: false
+  xy: 1, 894
+  size: 97, 196
+  orig: 97, 196
+  offset: 0, 0
+  index: -1

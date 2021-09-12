@@ -1,0 +1,33 @@
+NewKnightRight.png
+size: 1356, 367
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+knightAnimationA
+  rotate: false
+  xy: 1, 1
+  size: 337, 365
+  orig: 337, 365
+  offset: 0, 0
+  index: -1
+knightAnimationB
+  rotate: false
+  xy: 340, 1
+  size: 337, 365
+  orig: 337, 365
+  offset: 0, 0
+  index: -1
+knightAnimationC
+  rotate: false
+  xy: 679, 1
+  size: 337, 365
+  orig: 337, 365
+  offset: 0, 0
+  index: -1
+knightAnimationD
+  rotate: false
+  xy: 1018, 1
+  size: 337, 365
+  orig: 337, 365
+  offset: 0, 0
+  index: -1

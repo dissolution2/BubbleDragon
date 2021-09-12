@@ -1,0 +1,367 @@
+package com.mygdx.game.framework.ai.steering.steeringbehavior;
+
+import com.badlogic.gdx.ai.steer.behaviors.Arrive;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.framework.MyGdxGame;
+import com.mygdx.game.framework.world.objects.MarkerBase;
+import com.mygdx.game.framework.ai.steering.SteeringEntity;
+import com.mygdx.game.framework.world.GameMarker;
+import com.mygdx.game.framework.sprites.enemies.Enemy;
+import com.mygdx.game.framework.managers.GameSteeringStateManager;
+import com.mygdx.game.framework.sprites.BubblePlayer;
+
+
+
+
+public class PursueState extends BaseState {
+
+
+
+    SteeringEntity aiEntity;
+    private SteeringEntity targetEntity;
+    float linearSpeed = 10f;
+
+    private Array<SteeringEntity> aiEntityList = new Array<SteeringEntity>();
+    private Array<Enemy> enemyListFromGame = new Array<Enemy>();
+    private Array<MarkerBaseAI> markerBaseAIList = new Array<MarkerBaseAI>();
+    private boolean usePatrollAiMarker;
+    private String aiLastTargetMark;
+    private String testTargetAiName;
+
+    private int counter=0;
+
+
+    /*
+     * change it : Array<Object> enemyList ??
+     *
+     * public PursueState(MyGdxGame app, GameSteeringStateManager gameSteeringStateManagerBoss,
+			BubblePlayer player, Array<Enemy> enemyList)
+     */
+
+    // Get Player as a ref, make smallEnemyDef's here as we tryed with other ProNewFrameWork B2WorldCreate !!
+    /*
+    public PursueState(MyGdxGame app, GameSteeringStateManager gameSteeringStateManagerBoss,
+                       BubblePlayer player,
+                       Array<Enemy> enemyList,
+                       Array<MarkerBaseAI> aiMarkerList,
+                       boolean useAIMarker,
+                       String targetN) {
+     */
+
+    public PursueState(MyGdxGame app, GameSteeringStateManager gameSteeringStateManagerBoss,
+                       BubblePlayer player,
+                       Array<Enemy> enemyList) {
+        super(app, gameSteeringStateManagerBoss);
+
+        this.enemyListFromGame = enemyList;
+        //this.markerBaseAIList = aiMarkerList;
+        //this.usePatrollAiMarker = useAIMarker;
+
+        //this.testTargetAiName = targetN;
+
+        //targetBody = player !!
+        //mobileEntity = Enemy with SteeringBehavior
+
+        //System.out.println("enemyList size : " + enemyListFromGame.size);
+
+        /**
+         * Only the last one activated and we had to turn off gravity with inn base class Enemy!!
+         */
+        for(int i =0; i < enemyListFromGame.size; i++) {
+
+            aiEntityList.add(new SteeringEntity(enemyListFromGame.get(i).b2body, false, .5f));
+            aiEntityList.get(i).setMaxLinearSpeed(10); //10
+            aiEntityList.get(i).setMaxLinearAcceleration(100); // 100
+
+        }
+
+        targetEntity = new SteeringEntity(player.b2body, false, .5f);
+
+        for(int i =0; i < aiEntityList.size; i++) {
+
+            final Arrive<Vector2> arriveSB = new Arrive<Vector2>(aiEntityList.get(i), targetEntity)
+                    .setTimeToTarget(1f)
+                    .setArrivalTolerance(0.001f)
+                    .setDecelerationRadius(0); //6
+            aiEntityList.get(i).setSteeringBehavior(arriveSB);
+        }
+
+/*
+        // true - run
+        if(usePatrollAiMarker) {
+            //TODO use the ai marker that is close's to the smallEnemyDef and walk to it etc
+//System.out.println("PursueState Class Use Patroll AI Marker ");
+
+            for (MarkerBaseAI aiMark : markerBaseAIList){
+                // First Mark to be used - For now !!
+                //if( ((MarkerAI)aiMark).getMarkerID().equals("MarkStartMove") ) {
+                if( ((MarkerAI)aiMark).getMarkerID().equals(this.testTargetAiName) ) {
+                    targetEntity = new SteeringEntity(aiMark.b2body, false, .5f);
+
+//System.out.println("PursueState Class 'first' aiLastTarget test: " );
+
+                }
+            }
+        }else{
+            targetEntity = new SteeringEntity(player.b2body, false, .5f);
+//System.out.println("PursueStat Class Test: We set player as a steering Target!!");
+        }
+
+
+        for(int i =0; i < aiEntityList.size; i++) {
+
+            final Arrive<Vector2> arriveSB = new Arrive<Vector2>(aiEntityList.get(i), targetEntity)
+                    .setTimeToTarget(1f)
+                    .setArrivalTolerance(0.001f)
+                    .setDecelerationRadius(0); //6
+            aiEntityList.get(i).setSteeringBehavior(arriveSB);
+        }
+*/
+    }
+
+
+
+
+    @Override
+    public void input() {
+        // TODO Auto-generated method stub
+        //System.out.println("input called!!");
+/*
+		if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            targetEntity.getBody().applyForce(0f, linearSpeed, 0, 0, true);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            targetEntity.getBody().applyForce(0f, -linearSpeed, 0, 0, true);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            targetEntity.getBody().applyForce(-linearSpeed, 0f, 0, 0, true);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            targetEntity.getBody().applyForce(linearSpeed, 0f, 0, 0, true);
+        }
+*/
+    }
+
+    @Override
+    public void update(float dt) {
+
+//System.out.println("WE are updating pursueState!!");
+        for(int i =0; i < aiEntityList.size; i++) {
+            aiEntityList.get(i).update(dt); //GdxAI.getTimepiece().getDeltaTime());
+        }
+        //System.out.println("Target : " + targetEntity.getBody().getPosition().x );
+        //System.out.println("Enemy : " + aiEntityList.get(0).getBody().getPosition().x );
+
+        targetEntity.update(dt); //GdxAI.getTimepiece().getDeltaTime());
+
+    }
+
+    @Override
+    public void render() {}
+
+    @Override
+    public void resize(int w, int h) {}
+
+    @Override
+    public void dispose() {}
+
+// Might not need this, set up once with in main make, !!???
+    public void setNewTarget(float dt, String targetName){
+//System.out.println("PursueState Class SetNewTarget test!!!");
+
+        for (MarkerBaseAI aiMark : markerBaseAIList) {
+
+            if (((MarkerAI) aiMark).getMarkerID().equals(targetName)) {
+                targetEntity = new SteeringEntity(aiMark.b2body, false, .5f);
+//System.out.println("PursueState Class : new target is set ? : " + targetName + " target changed to: " + ((MarkerAI) aiMark).getMarkerID());
+            }
+        }
+
+        for(int i =0; i < aiEntityList.size; i++) {
+
+            final Arrive<Vector2> arriveSB = new Arrive<Vector2>(aiEntityList.get(i), targetEntity)
+                    .setTimeToTarget(1f)
+                    .setArrivalTolerance(0.001f)
+                    .setDecelerationRadius(0); //6
+            aiEntityList.get(i).setSteeringBehavior(arriveSB);
+        }
+        // ned to call update after or it wont change - and move
+        update(dt);
+
+    }
+
+    public void markAsSensor (SteeringEntity character) {
+        Array<Fixture> fixtures = character.getBody().getFixtureList();
+        for (int i = 0; i < fixtures.size; i++) {
+            fixtures.get(i).setSensor(false);
+        }
+    }
+
+}
+***************************
+
+package com.mygdx.game.framework.managers;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.framework.MyGdxGame;
+import com.mygdx.game.framework.world.objects.MarkerBase;
+import com.mygdx.game.framework.ai.steering.steeringbehavior.BaseState;
+import com.mygdx.game.framework.ai.steering.steeringbehavior.PursueState;
+import com.mygdx.game.framework.ai.steering.steeringbehavior.FlockState;
+import com.mygdx.game.framework.ai.steering.steeringbehavior.WanderState;
+import com.mygdx.game.framework.sprites.enemies.Enemy;
+import com.mygdx.game.framework.sprites.BubblePlayer;
+
+
+import java.util.Stack;
+
+public class GameSteeringStateManager {
+
+    public MyGdxGame app;
+    public enum State {
+        // Decision AI
+        FSM,
+        PUSHDOWN,
+        TREES,
+
+
+        INACTIVE,
+        ACTIVE,
+
+
+        // Steering/Movement AI
+        FLOCK,
+        FORMATION,
+        PURSUE,
+        PURSUE_AI_MARKER,
+        WANDER,
+        WANDER_AI_MARKER,
+
+        // Pathfinding AI
+        ASTAR,
+        HIERARCHICAL
+    }
+
+    private Stack<BaseState> states;
+    //private Stack<GameScreen> states;
+    private Array<Enemy> gameEnemyList;
+    private Array<MarkerBaseAI> gameAIMarkerList;
+    private BubblePlayer gamePlayer;
+    private boolean usePatrollAiMarker = false;
+
+    //public GameSteeringStateManager(MyGdxGame app, BubblePlayer player, Array<Enemy> enemyList) {
+    public GameSteeringStateManager(MyGdxGame app, BubblePlayer player, Array<Enemy> enemyList) { //}, Array<MarkerBaseAI> aiMarkerList, boolean useAiMarker) {
+        this.app = app;
+        states = new Stack<BaseState>();
+        //states = new Stack<GameScreen>();
+
+        this.gamePlayer = player;
+        this.gameEnemyList = enemyList;
+        //this.gameAIMarkerList = aiMarkerList;
+        //this.usePatrollAiMarker = useAiMarker;
+    }
+
+
+
+
+
+
+
+    public void setState(State state) {
+        if (states.size() >= 1) {
+            states.pop().dispose();
+        }
+        states.push(getState(state));
+    }
+/*
+    public void setState(State state, String targetAIString) {
+        if (states.size() >= 1) {
+            states.pop().dispose();
+        }
+        states.push(getState(state, targetAIString ));
+    }
+*/
+    String returnTest ="";
+    public String hasState(){
+        if(!states.empty()) {
+          return states.peek().toString();
+        }else{
+            return returnTest = "null";
+        }
+
+    }
+
+    /*
+     * tried to use GameScreen as baseState screen, not sure!!!
+     *
+     * might sett up levels instead ???
+     */
+    //Work her !! MaerkerAI etc
+
+    public void changeTarget(float dt, String targetString){
+
+
+        //((PursueState)this.states.pop()).setNewTarget(dt, targetString);
+        if(!states.empty()) {
+            ((PursueState) this.states.peek()).setNewTarget(dt, targetString);
+        }else{
+            states.push(getState(State.PURSUE));
+System.out.println( "GameSteeringStateManager Class test set new target, states is empty!!");
+        }
+    }
+
+    public void changeTargetTwo(float dt, String targetString){
+
+        if(!states.empty()) {
+            ((PursueState) this.states.peek()).setNewTarget(dt, targetString);
+System.out.println("GameSteeringStateManager test: Stack!! run state ");
+        }else{
+System.out.println("GameSteeringStateManager test: Stack is Empty!! ");
+        }
+    }
+
+
+    // TODO change might just need the PURSUE OR SEEK STATE !!?
+    private BaseState getState(State state){ //}, String targetName) {
+        //private GameScreen getState(State state) {
+        switch (state) {
+            case FLOCK:
+                return new FlockState(app, this, gamePlayer, gameEnemyList);
+            case FORMATION:
+                return null;//new FormationState(app, this);
+            case PURSUE:
+                //return new PursueState(app, this, gamePlayer, gameEnemyList, this.gameAIMarkerList, this.usePatrollAiMarker, targetName);
+                return new PursueState(app, this, gamePlayer, gameEnemyList);
+            case WANDER:
+                return new WanderState(app, this, gamePlayer, gameEnemyList, this.gameAIMarkerList);
+            default:
+                return null;
+        }
+    }
+
+    public void render() {
+
+        //states.peek().input(); //we get input from else where!!
+
+        if(!states.empty()) {
+//System.out.println("Render GameSteeringStateManager");
+            states.peek().update(Gdx.graphics.getDeltaTime());
+            states.peek().render();
+        }
+    }
+
+    public void resize(int w, int h) {
+        states.peek().resize(w, h);
+    }
+
+    public void dispose() {
+        for (BaseState gs : states) {
+            gs.dispose();
+        }
+        states.clear();
+    }
+}
+

@@ -1,0 +1,605 @@
+package com.mygdx.game.framework.debug.screens;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.framework.debug.NameGame;
+import com.mygdx.game.framework.debug.util.GameUtility;
+
+
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
+
+public class GameMapScreen {
+
+    private Stage stage;
+    private NameGame game;
+    private Viewport viewport;
+
+    private boolean
+            exitPressed,
+            pauseMenuIsHidden;
+    private Window gameMap; // final ???
+
+    private TextureRegion imgPower_Chosen_one;
+    private Image imgPowerChosenOne, imgPowerChosenTwo, imgWeaponChosen, imgPowerEmptyOne, imgPowerEmptyTwo, imgPowerWeaponDefault;
+    private Skin skin;
+    private TextureAtlas textureAtlas_Skin;
+
+
+    private ImageButtonStyle closeButtonStyle, closeButtonStyle_2, closeButtonStyle_3 ;
+    private Label power_picked_label,power_to_picked_label, power_Discription_of_Power_label, power_discription_message_Label, power_one_Label,power_two_Label, power_three_Label, power_four_Label, power_five_Label, power_six_Label;
+
+    private String powerStringOne, discriptionOfPowerText;
+    private Window.WindowStyle windowStyle, windowStyle_two_test;
+
+    private boolean testButtonIsPressed = false;
+    private Table tablePowerImageOfPowerInUse;
+
+    private boolean powerTestIsUsed = false;
+
+    private Button powerBlueImgButton;
+
+    public GameMapScreen(NameGame g) {
+
+
+        this.game = g;
+        //stage = new Stage(new FitViewport(Utility.V_WIDTH, Utility.V_HEIGHT ));
+        viewport = new FitViewport(GameUtility.V_WIDTH, GameUtility.V_HEIGHT, new OrthographicCamera());
+        stage = new Stage(viewport, game.batch);
+
+
+        //imgPower_Chosen_one = new TextureRegion( GameUtility.getTextureAtlas("controllerUi/BubbleGameUI.atlas").findRegion("attack_one_up"), 0, 0, 52, 56);
+        skin = new Skin();
+        textureAtlas_Skin = GameUtility.getTextureAtlas("gameMapScreen/GameMapScreenAssets.atlas"); //"controllerUi/BubbleGameUI.atlas");
+        skin.addRegions( textureAtlas_Skin );
+
+        tablePowerImageOfPowerInUse = new Table();
+
+        imgPowerChosenOne = new Image(skin.getDrawable("powerImgSword60"));//"power_one_up"));
+        imgPowerChosenOne.setWidth(22);
+        imgPowerChosenOne.setHeight(26);
+        imgPowerChosenOne.setX(0);
+        imgPowerChosenOne.setY(0);
+
+        imgPowerChosenTwo = new Image(skin.getDrawable("powerImgShild60"));//("power_two_up"));
+        imgPowerChosenOne.setWidth(22);
+        imgPowerChosenOne.setHeight(26);
+        imgPowerChosenOne.setX(0);
+        imgPowerChosenOne.setY(0);
+
+        imgWeaponChosen = new Image(skin.getDrawable("powerImgBlue60"));//("attack_one_up"));
+        imgPowerChosenOne.setWidth(22);
+        imgPowerChosenOne.setHeight(26);
+        imgPowerChosenOne.setX(0);
+        imgPowerChosenOne.setY(0);
+
+        imgPowerEmptyOne = new Image(skin.getDrawable("powerImgEmptyPowerUnlocked60"));//("attack_one_up"));
+        imgPowerEmptyOne.setWidth(22);
+        imgPowerEmptyOne.setHeight(26);
+        imgPowerEmptyOne.setX(0);
+        imgPowerEmptyOne.setY(0);
+
+        imgPowerEmptyTwo = new Image(skin.getDrawable("powerImgEmptyPowerLocked60"));//("attack_one_up"));
+        imgPowerEmptyTwo.setWidth(22);
+        imgPowerEmptyTwo.setHeight(26);
+        imgPowerEmptyTwo.setX(0);
+        imgPowerEmptyTwo.setY(0);
+
+        imgPowerWeaponDefault = new Image(skin.getDrawable("powerImgBlue60"));//("attack_one_up"));
+        imgPowerWeaponDefault.setWidth(22);
+        imgPowerWeaponDefault.setHeight(26);
+        imgPowerWeaponDefault.setX(0);
+        imgPowerWeaponDefault.setY(0);
+
+
+        // Layout with Table
+/*
+		Table table = new Table();
+		table.setFillParent(true);
+
+		Image title = new Image(Utility.STATUSUI_TEXTUREATLAS.findRegion("bludbourne_title"));
+		TextButton newGameButton = new TextButton("New Game", Utility.STATUSUI_SKIN);
+
+		//Layout Table organized
+		table.add(title).spaceBottom(75).row();
+		table.add(newGameButton).spaceBottom(10).row();
+
+*/
+        // ToDo: move all into one atlas a must!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("windows.pack"));
+        TextureAtlas textureAtlasButtons = new TextureAtlas(Gdx.files.internal("gameMapScreen/GameMapScreenAssets.atlas")); //"controllerUi/BubbleGameUI.atlas"));
+
+        //windowStyle = new Window.WindowStyle(new BitmapFont(), Color.BLACK, new TextureRegionDrawable(textureAtlas.findRegion("window-1-background")));
+
+
+        gameMap = new Window("", GameUtility.STATUSUI_SKIN); // OR USE // windowStyle);
+
+//gameMap.setDebug(true);
+        //gameMap.setFillParent(true);
+        powerStringOne = "40";
+        discriptionOfPowerText = "This power comes at a dark price";
+        power_picked_label = new Label("-Power's In Use-", new Label.LabelStyle(new BitmapFont(), Color.GOLDENROD));
+        power_to_picked_label = new Label("-Chose your Power's-", new Label.LabelStyle(new BitmapFont(), Color.GOLDENROD));
+        power_Discription_of_Power_label = new Label("-Power's Description-", new Label.LabelStyle(new BitmapFont(), Color.GOLDENROD));
+
+        power_one_Label = new Label("label 1 " + powerStringOne, new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        power_two_Label = new Label("label 2", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        power_three_Label = new Label("label 3", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        power_four_Label = new Label("label 4", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        power_five_Label = new Label("label 5", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        power_six_Label = new Label("label 6", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+
+        power_discription_message_Label = new Label("" + discriptionOfPowerText, new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        // or see through
+        //gameMap = new Window("", GameUtility.STATUSUI_SKIN);
+
+
+
+        closeButtonStyle = new ImageButtonStyle();
+        closeButtonStyle.imageUp = new TextureRegionDrawable(textureAtlasButtons.findRegion("windowCloseButton"));
+        Button closeButton = new ImageButton(closeButtonStyle);
+        closeButton.addListener(new ClickListener() {
+                                    @Override
+                                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                                        exitPressed = true;
+                                        System.out.println("Button Close");
+                                        hide();
+                                        return true;
+                                    }
+
+                                    @Override
+                                    public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                                        //System.out.println("Button pressed in Menu Window down");
+                                        exitPressed = false;
+
+                                    }
+                                }
+        );
+
+
+        closeButtonStyle_2 = new ImageButtonStyle();
+        closeButtonStyle_2.imageUp = new TextureRegionDrawable(textureAtlasButtons.findRegion("buttonBlue65_Up"));
+
+        closeButtonStyle_2.imageDown = new TextureRegionDrawable(textureAtlasButtons.findRegion("buttonBlue65_Down"));
+
+        closeButtonStyle_2.imageDisabled = new TextureRegionDrawable(textureAtlasButtons.findRegion("powerImgEmptyPowerLocked60"));
+
+        powerBlueImgButton = new ImageButton(closeButtonStyle_2);
+        powerBlueImgButton.addListener(new ClickListener() {
+                                    @Override
+                                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+
+                                        if(!powerBlueImgButton.isDisabled()) {
+                                            System.out.println("Button 1");
+                                            testButtonIsPressed = true;
+                                        }
+                                        return true;
+                                    }
+
+                                    @Override
+                                    public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                                    }
+
+
+                                }
+        );
+
+
+
+        closeButtonStyle_3 = new ImageButtonStyle();
+        closeButtonStyle_3.imageUp = new TextureRegionDrawable(textureAtlasButtons.findRegion("buttonShild65"));
+        Button testButtonImage_2 = new ImageButton(closeButtonStyle_3);
+        testButtonImage_2.addListener(new ClickListener() {
+                                    @Override
+                                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                                        System.out.println("Button 2");
+                                        return true;
+                                    }
+
+                                    @Override
+                                    public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+
+
+                                    }
+                                }
+        );
+
+        closeButtonStyle_3 = new ImageButtonStyle();
+        closeButtonStyle_3.imageUp = new TextureRegionDrawable(textureAtlasButtons.findRegion("buttonSword65"));
+        Button testButtonImage_3 = new ImageButton(closeButtonStyle_3);
+        testButtonImage_3.addListener(new ClickListener() {
+                                          @Override
+                                          public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                                              System.out.println("Button 3");
+                                              return true;
+                                          }
+
+                                          @Override
+                                          public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+
+
+                                          }
+                                      }
+        );
+
+        closeButtonStyle_3 = new ImageButtonStyle();
+        closeButtonStyle_3.imageUp = new TextureRegionDrawable(textureAtlasButtons.findRegion("buttonBlue65_Up"));
+        Button testButtonImage_4 = new ImageButton(closeButtonStyle_3);
+        testButtonImage_4.addListener(new ClickListener() {
+                                          @Override
+                                          public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                                              System.out.println("Button 4");
+                                              return true;
+                                          }
+
+                                          @Override
+                                          public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+
+
+                                          }
+                                      }
+        );
+
+        closeButtonStyle_3 = new ImageButtonStyle();
+        closeButtonStyle_3.imageUp = new TextureRegionDrawable(textureAtlasButtons.findRegion("buttonBlue65_Up"));
+        Button testButtonImage_5 = new ImageButton(closeButtonStyle_3);
+        testButtonImage_5.addListener(new ClickListener() {
+                                          @Override
+                                          public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                                              System.out.println("Button 5");
+                                              return true;
+                                          }
+
+                                          @Override
+                                          public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+
+
+                                          }
+                                      }
+        );
+
+        closeButtonStyle_3 = new ImageButtonStyle();
+        closeButtonStyle_3.imageUp = new TextureRegionDrawable(textureAtlasButtons.findRegion("buttonBlue65_Up"));
+        Button testButtonImage_6 = new ImageButton(closeButtonStyle_3);
+        testButtonImage_6.addListener(new ClickListener() {
+                                          @Override
+                                          public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                                              System.out.println("Button 6");
+                                              return true;
+                                          }
+
+                                          @Override
+                                          public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+
+
+                                          }
+                                      }
+        );
+
+
+        // Layout with Window // se into Table to get all the item sorted best way
+        //final Window gameMap = new Window("Map", GameUtility.STATUSUI_SKIN);
+
+        //gameMap.getTitleTable().add(new TextButton("X", GameUtility.STATUSUI_SKIN)).height(gameMap.getPadTop()); // ImageButton("",) //test ???
+
+        //TextButton test = new TextButton("X", GameUtility.STATUSUI_SKIN);
+
+        //gameMap.getTitleTable().add(test).size(38,38).padRight(240).padTop(-20); // ImageButton("",) //test ???
+        gameMap.getTitleTable().add(closeButton).size(38, 38).padLeft(-1020).padTop(-5);
+
+        Table tablePowerText = new Table();
+//tablePowerText.setDebug(true);
+
+        //Table tablePowerImageOfPowerInUse = new Table();
+//tablePowerImageOfPowerInUse.setDebug(true);
+
+        Table tablePowerToChoseText = new Table();
+//bottomTablePickViewWeapon.setDebug(true);
+
+        Table tablePowerToChoseButtons = new Table();
+//tablePowerToChoseButtons.setDebug(true);
+
+        Table tablePowerDiscriptionText = new Table();
+
+        Table tablePowerDiscriptInfo = new Table();
+
+
+        Table parentHolderMainTable = new Table();
+//parentHolderMainTable.setDebug(true);
+
+        tablePowerText.add(power_picked_label); // Cell 1
+        tablePowerText.add().size(5); // 2
+        tablePowerText.add().size(5); // 3
+        tablePowerText.add().size(5); // 4
+        tablePowerText.add().size(5); // 5
+        tablePowerText.add().size(5); // 6
+        tablePowerText.add().size(5); // 7
+
+
+parentHolderMainTable.add(tablePowerText);
+parentHolderMainTable.row();
+parentHolderMainTable.add().size(5);
+parentHolderMainTable.row();
+
+        tablePowerImageOfPowerInUse.add().size(5); // Cell 1
+        tablePowerImageOfPowerInUse.add(imgPowerEmptyOne); //testButtonImage); // Cell 2
+        tablePowerImageOfPowerInUse.add().size(5); // Cell 3
+        tablePowerImageOfPowerInUse.add(imgPowerEmptyTwo); // Cell 4
+        tablePowerImageOfPowerInUse.add().size(5); // Cell 5
+        tablePowerImageOfPowerInUse.add(imgPowerWeaponDefault); // Cell 6
+        tablePowerImageOfPowerInUse.add().size(5); // Cell 7
+
+parentHolderMainTable.add(tablePowerImageOfPowerInUse);
+parentHolderMainTable.row();
+parentHolderMainTable.add().size(5);
+parentHolderMainTable.row();
+
+        tablePowerToChoseText.add(power_to_picked_label);
+        tablePowerToChoseText.add().size(5); // 2
+        tablePowerToChoseText.add().size(5); // 3
+        tablePowerToChoseText.add().size(5); // 4
+        tablePowerToChoseText.add().size(5); // 5
+        tablePowerToChoseText.add().size(5); // 6
+        tablePowerToChoseText.add().size(5); // 7
+
+parentHolderMainTable.add(tablePowerToChoseText);
+parentHolderMainTable.row();
+parentHolderMainTable.add().size(5);
+parentHolderMainTable.row();
+
+        tablePowerToChoseButtons.add().size(5); // Cell 1
+        tablePowerToChoseButtons.add(powerBlueImgButton); //testButtonImage_4); // Cell 2
+        tablePowerToChoseButtons.add().size(5); // Cell 3
+        tablePowerToChoseButtons.add(power_one_Label);
+        tablePowerToChoseButtons.add().size(5); // Cell 3
+        tablePowerToChoseButtons.add(testButtonImage_2); // Cell 4
+        tablePowerToChoseButtons.add().size(5); // Cell 5
+        tablePowerToChoseButtons.add(power_two_Label);
+        tablePowerToChoseButtons.add().size(5); // Cell 5
+
+        tablePowerToChoseButtons.add(testButtonImage_3); // Cell 6
+        tablePowerToChoseButtons.add().size(5); // Cell 7
+        tablePowerToChoseButtons.add(power_three_Label);
+        tablePowerToChoseButtons.add().size(5); // Cell 7
+
+        tablePowerToChoseButtons.row();
+        tablePowerToChoseButtons.add().size(10); // Cell 7
+        tablePowerToChoseButtons.row();
+
+        tablePowerToChoseButtons.add().size(5); // Cell 1
+        tablePowerToChoseButtons.add(testButtonImage_4); //testButtonImage_4); // Cell 2
+        tablePowerToChoseButtons.add().size(5); // Cell 3
+        tablePowerToChoseButtons.add(power_four_Label);
+        tablePowerToChoseButtons.add().size(5); // Cell 3
+        tablePowerToChoseButtons.add(testButtonImage_5); // Cell 4
+        tablePowerToChoseButtons.add().size(5); // Cell 5
+        tablePowerToChoseButtons.add(power_five_Label);
+        tablePowerToChoseButtons.add().size(5); // Cell 5
+        tablePowerToChoseButtons.add(testButtonImage_6); // Cell 6
+        tablePowerToChoseButtons.add().size(5); // Cell 7
+        tablePowerToChoseButtons.add(power_six_Label);
+        tablePowerToChoseButtons.add().size(5); // Cell 7
+
+parentHolderMainTable.add(tablePowerToChoseButtons);
+parentHolderMainTable.row();
+parentHolderMainTable.add().size(5);
+parentHolderMainTable.row();
+
+        tablePowerDiscriptionText.add(power_Discription_of_Power_label);
+        tablePowerDiscriptionText.add().size(5); // 2
+        tablePowerDiscriptionText.add().size(5); // 3
+        tablePowerDiscriptionText.add().size(5); // 4
+        tablePowerDiscriptionText.add().size(5); // 5
+        tablePowerDiscriptionText.add().size(5); // 6
+        tablePowerDiscriptionText.add().size(5); // 7
+
+parentHolderMainTable.add(tablePowerDiscriptionText);
+parentHolderMainTable.row();
+parentHolderMainTable.add().size(5);
+parentHolderMainTable.row();
+
+        tablePowerDiscriptInfo.add(power_discription_message_Label);
+
+parentHolderMainTable.add(tablePowerDiscriptInfo);
+
+        //gameMap.add(tablePowerText).padRight(90).padTop(-70);
+        //gameMap.add().row();
+        gameMap.add(parentHolderMainTable).padLeft(-90).padTop(-70);
+        //gameMap.add(topTableOverViewOfPowers).expandX().pad(40);
+
+        gameMap.setMovable(false);
+        gameMap.setResizable(true);
+        //gameMap.padTop(50);
+        //gameMap.pack();
+
+
+
+/*
+		Image jumpImg = new Image(new Texture("jumpButton.png"));
+        jumpImg.setSize(50, 50);
+        jumpImg.addListener(new InputListener() {
+
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            	//jumpPressed = true;
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            	//jumpPressed = false;
+            }
+        });
+
+*/
+
+
+        //pause.add(jumpImg);//new TextButton("Continue" , Utility.STATUSUI_SKIN));
+
+        TextButton continueGameButton = new TextButton("Continue", GameUtility.STATUSUI_SKIN);
+        continueGameButton.addListener(new ClickListener() {
+                                           @Override
+                                           public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                                               exitPressed = true;
+                                               System.out.println("Button pressed in Menu Window up");
+                                              hide();
+                                               //Gdx.app.exit();
+                                               return true;
+                                           }
+
+                                           @Override
+                                           public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                                               //devilGame.setScreen(new MainGameScreen((Devil) devilGame));
+                                               System.out.println("Button pressed in Menu Window down");
+                                               exitPressed = false;
+
+                                           }
+                                       }
+        );
+
+        TextButton backToMainMenuGameButton = new TextButton("Main Menu", GameUtility.STATUSUI_SKIN);
+        backToMainMenuGameButton.addListener(new ClickListener() {
+                                                 @Override
+                                                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                                                     // Here we should make a end splase screen or a transition screen etc.
+                                                     return true;
+                                                 }
+
+                                                 @Override
+                                                 public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                                                     //devilGame.setScreen(new MainGameScreen((Devil) devilGame));
+                                                     //System.out.println("Button pressed in Menu Window");
+
+                                                     System.out.println("Back to menu Pressed!!");
+
+                                                     //devilGame.setScreen(new MainMenuScreen((Devil) devilGame ));
+                                                     //dispose();
+                                                 }
+                                             }
+        );
+
+        //gameMap.add(continueGameButton).size(38,38).padBottom(0);
+
+        //gameMap.add(closeButton).size(38,38).padTop(0);
+
+        //gameMap.add().padBottom(50).row();
+        //gameMap.add(backToMainMenuGameButton);
+        //pause.add(new TextButton("Exit" , Utility.STATUSUI_SKIN));
+
+
+        //don't work !!!
+        //pause.setHeight(stage.getHeight() / 1.5f);
+        //pause.setWidth(stage.getWidth() / 1.5f );
+        //pause.setSize(stage.getWidth() / 1.5f, stage.getHeight() / 1.5f );
+        //gameMap.setSize(GameUtility.V_WIDTH / 1.5f, GameUtility.V_HEIGHT / 1.5f); // org
+        gameMap.setSize(GameUtility.V_WIDTH / 1.5f, GameUtility.V_HEIGHT / 1.5f); // org
+        gameMap.setPosition(GameUtility.V_WIDTH / 2 - gameMap.getWidth() / 2 , GameUtility.V_HEIGHT / 2 - gameMap.getHeight() / 2 );
+        //pause.setHeight(Utility.V_HEIGHT / 1.5f);
+        //pause.setWidth(Utility.V_WIDTH / 1.5f );
+
+        //pause.setPosition(10 , 10, Align.center);
+        //pause.pack();
+
+
+
+        // Set Stage
+        //stage.addActor(table);
+        stage.addActor(gameMap);
+        //Gdx.input.setInputProcessor(stage);
+
+
+
+    }
+
+    public void show() {
+        //Gdx.input.setInputProcessor(this.getStage());
+        gameMap.setVisible(true);
+
+        if(testButtonIsPressed){
+
+            tablePowerImageOfPowerInUse.clearChildren();
+            tablePowerImageOfPowerInUse.add().size(5); // Cell 1
+            tablePowerImageOfPowerInUse.add(imgPowerChosenOne); //testButtonImage); // Cell 2
+            tablePowerImageOfPowerInUse.add().size(5); // Cell 3
+            tablePowerImageOfPowerInUse.add(imgPowerEmptyTwo); // Cell 4
+            tablePowerImageOfPowerInUse.add().size(5); // Cell 5
+            tablePowerImageOfPowerInUse.add(imgPowerWeaponDefault); // Cell 6
+            tablePowerImageOfPowerInUse.add().size(5); // Cell 7
+            testButtonIsPressed = false;
+            powerBlueImgButton.setDisabled(true);
+
+
+
+        }
+
+        //System.out.println("ButtonBlue is: " + powerBlueImgButton.isDisabled());
+
+    }
+
+    public void hide() {
+        //Gdx.input.setInputProcessor(null);
+        //dispose();
+        gameMap.setVisible(false);
+
+
+    }
+
+
+    public void setActorWindowVisible(boolean value){this.gameMap.setVisible(value); }
+
+    public void draw(){
+        stage.draw();
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public boolean getExitWindow(){return this.exitPressed; }
+
+    public void resize(int width, int height){
+        viewport.update(width, height);
+    }
+
+
+    public boolean isExitPressed() {
+        return exitPressed;
+    }
+
+
+    public void dispose() {
+        stage.dispose();
+    }
+}

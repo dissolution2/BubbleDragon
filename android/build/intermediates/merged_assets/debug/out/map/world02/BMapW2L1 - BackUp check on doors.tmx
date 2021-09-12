@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="64" tileheight="64" infinite="0" nextlayerid="20" nextobjectid="333">
+ <tileset firstgid="1" name="BubbleWorld2Level1" tilewidth="64" tileheight="64" tilecount="65" columns="13">
+  <image source="BubbleWorld2Level1.png" trans="ff00ff" width="846" height="373"/>
+ </tileset>
+ <layer id="1" name="GroundLowLayerGraphic" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHtUVsKgDAM2xG8gB7D+x/N5SOQBdqvMSe2MPpYlsbYWkU5UA6UA+VAOfAPB+4PfaZrvTbT/ra+YzM/XM7ZB/hnyNHBvZ4Ip3Ny9qdDKEbrASSNYlCrDu5wjPaO1x44D32rtePYK2ZWTY3g84h2OI49ubIccWZz8M3Ql+1YeUe/PD+QwBJ+
+  </data>
+ </layer>
+ <objectgroup id="15" name="GAME_INFO_MAP">
+  <object id="316" name="MAP_INFO" x="14" y="553" width="68" height="76">
+   <properties>
+    <property name="KEY" value="5"/>
+    <property name="MAP INFO BOSS" value="false"/>
+    <property name="MAP INFO IS DEAD" value="false"/>
+    <property name="MAP INFO LEVEL" value="1"/>
+    <property name="MAP INFO WORLD" value="2"/>
+   </properties>
+  </object>
+  <object id="317" name="MAP_SPAWN_POINT" x="21" y="930" width="21" height="24">
+   <properties>
+    <property name="ID" value="2"/>
+   </properties>
+  </object>
+  <object id="324" name="MAP_SPAWN_POINT" x="1396" y="928" width="23" height="23">
+   <properties>
+    <property name="ID" value="4"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="2" name="GAME_MAP_GROUND_LAYER">
+  <object id="68" x="0.5" y="961" width="1480" height="8"/>
+  <object id="195" x="512" y="641" width="65" height="126"/>
+ </objectgroup>
+ <objectgroup id="3" name="GAME_MAP_WALL_AND_SEALING_LAYER"/>
+ <objectgroup id="16" name="GAME_MAP_WALL_JUMPING_LAYER"/>
+ <objectgroup id="8" name="GAME_MAP_POLYLINE_LAYER"/>
+ <objectgroup id="4" name="ENEMY_LAYER">
+  <object id="329" name="EnemyA" x="602" y="921" width="34" height="32">
+   <properties>
+    <property name="Active" value="true"/>
+    <property name="SpawnType" value="EX_LIFE"/>
+   </properties>
+  </object>
+  <object id="332" name="EnemyA" x="1127" y="907" width="40" height="35">
+   <properties>
+    <property name="Active" value="true"/>
+    <property name="SpawnType" value="EX_LIFE"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="ENEMY_BOSS_LAYER"/>
+ <objectgroup id="7" name="GAME_OBJECT_LAYER">
+  <object id="259" name="GAME_SWITCH_OPEN" x="713.5" y="931" width="25" height="26">
+   <properties>
+    <property name="Association Number" value="12"/>
+    <property name="Key Door Status" value="LOCKED"/>
+    <property name="Key Type" value="GREEN BOSS"/>
+    <property name="Type" value="Switch"/>
+   </properties>
+  </object>
+  <object id="314" name="GAME_SAVE_POINT" x="235" y="877.5" width="26" height="25">
+   <properties>
+    <property name="LEVEL" value="1"/>
+    <property name="SAVEPOINT" value="0"/>
+    <property name="VISIBLE" value="true"/>
+    <property name="WORLD" value="2"/>
+   </properties>
+  </object>
+  <object id="315" name="GAME_PORTAL_HIDDEN_TRANSITION" x="0.5" y="862" width="26" height="32">
+   <properties>
+    <property name="DESTINATION" value="1"/>
+    <property name="DIRECTION" value="V"/>
+    <property name="MAP LEVEL" value="1"/>
+    <property name="MAP WORLD" value="2"/>
+    <property name="PORTAL ID" value="1"/>
+    <property name="TRAVEL DIRECTION" value="LEFT DOWN"/>
+    <property name="TRAVEL LEVEL" value="1"/>
+    <property name="TRAVEL TYPE" value="WORLD"/>
+    <property name="TRAVEL WORLD" value="1"/>
+   </properties>
+  </object>
+  <object id="325" name="GAME_PORTAL_HIDDEN_TRANSITION" x="1448.5" y="882" width="26" height="32">
+   <properties>
+    <property name="DESTINATION" value="2"/>
+    <property name="DIRECTION" value="V"/>
+    <property name="MAP LEVEL" value="1"/>
+    <property name="MAP WORLD" value="2"/>
+    <property name="PORTAL ID" value="0"/>
+    <property name="TRAVEL DIRECTION" value="RIGHT DOWN"/>
+    <property name="TRAVEL LEVEL" value="2"/>
+    <property name="TRAVEL TYPE" value="LEVEL"/>
+    <property name="TRAVEL WORLD" value="2"/>
+   </properties>
+  </object>
+  <object id="327" name="GAME_SWITCH_OPEN" x="449.5" y="931" width="25" height="26">
+   <properties>
+    <property name="Association Number" value="11"/>
+    <property name="Key Door Status" value="OPEN"/>
+    <property name="Key Type" value="LEVEL 2"/>
+    <property name="Type" value="Switch"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="9" name="DOOR_OBJECT_LAYER">
+  <object id="258" name="Door" x="529" y="766" width="25" height="191.5">
+   <properties>
+    <property name="Association Number" value="11"/>
+    <property name="Size" value="L"/>
+    <property name="Type" value="Door"/>
+   </properties>
+  </object>
+  <object id="326" name="Door" x="786" y="768" width="25" height="191.5">
+   <properties>
+    <property name="Association Number" value="12"/>
+    <property name="Size" value="L"/>
+    <property name="Type" value="Door"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="10" name="AI_LAYER">
+  <object id="330" name="AI_BODY_CHANGE" x="564.667" y="823.334" width="18.6667" height="137.333">
+   <properties>
+    <property name="Association Number" value="1"/>
+    <property name="type" value="Velocity"/>
+   </properties>
+  </object>
+  <object id="331" name="AI_BODY_CHANGE" x="771.667" y="821.334" width="18.6667" height="137.333">
+   <properties>
+    <property name="Association Number" value="1"/>
+    <property name="type" value="Velocity"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="17" name="PFX_LAYER"/>
+ <objectgroup id="19" name="LIGHT_LAYER"/>
+ <objectgroup id="11" name="SPAWN_LAYER">
+  <object id="275" name="EX_LIFE" x="334" y="892.5" width="30" height="25"/>
+ </objectgroup>
+ <layer id="13" name="GraphicBackGroundLayerRenderSpesial" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCgy0E5AaZg8zQ3DPY3IfmvFHuaAiMhsAgDgEABz4Acw==
+  </data>
+ </layer>
+ <layer id="14" name="GraphicForGroundkLayerRenderSpesial" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <layer id="18" name="PlayerForGroundLayerGraphic" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+</map>

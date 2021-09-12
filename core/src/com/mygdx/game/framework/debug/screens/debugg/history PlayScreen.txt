@@ -1,0 +1,901 @@
+package com.mygdx.game.framework.debug.screens;
+
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.RayCastCallback;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+
+import com.mygdx.game.framework.debug.NameGame;
+import com.mygdx.game.framework.debug.controllers.Action;
+import com.mygdx.game.framework.debug.controllers.Button;
+import com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle;
+import com.mygdx.game.framework.debug.controllers.NavigationDrawerScreen;
+import com.mygdx.game.framework.debug.hud.PlayerHUD;
+import com.mygdx.game.framework.debug.managers.GameManagerAI;
+import com.mygdx.game.framework.debug.managers.GameManagerAssets;
+import com.mygdx.game.framework.debug.managers.RayCastManager;
+import com.mygdx.game.framework.debug.sprites.BubblePlayer;
+import com.mygdx.game.framework.debug.sprites.enemies.SmallEnemyDef;
+import com.mygdx.game.framework.debug.sprites.enemies.EnemyA;
+import EnemyKnightDevil;
+import com.mygdx.game.framework.debug.world.gameObjects.GameObjectDef;
+import com.mygdx.game.framework.debug.testingObjects.Item;
+import com.mygdx.game.framework.debug.util.FPSLogger;
+import com.mygdx.game.framework.debug.util.GameUtility;
+import com.mygdx.game.framework.debug.world.B2WorldCreator;
+import com.mygdx.game.framework.debug.world.OrthogonalTiledMapRendererWithSprites;
+import com.mygdx.game.framework.debug.world.TiledMapReader;
+import com.mygdx.game.framework.debug.world.WorldContactListener;
+
+import java.util.ArrayList;
+
+import box2dLight.PointLight;
+import box2dLight.RayHandler;
+
+
+public class PlayScreen extends GameScreen {
+
+    protected static final String TAG = null;
+    private NameGame gameName;
+    private int level;
+
+    //basic playscreen variables
+    private OrthographicCamera gamecam;
+    private Viewport gamePort;
+    private PlayerHUD hud;
+
+    //Tiled map variables
+    private TmxMapLoader maploader;
+    private TiledMap map;
+    private OrthogonalTiledMapRenderer renderer;
+    private TiledMapReader mapReader;
+    private float backgroundTime;
+    TiledMapRenderer tiledMapRenderer;
+
+    //Box2d variables
+    private World world;
+    private Box2DDebugRenderer b2dr;
+    private B2WorldCreator worldB2VarsCreate;
+
+    //TEST TODO test on remove instance of GameManagerAI
+    private GameManagerAI gameManagerAI;
+
+
+    //sprites
+    private BubblePlayer bubble;
+
+    private RayHandler rayHandler;
+    private PointLight myLight, myLightTwo;
+
+    // Controller
+    //private ControllerJoyStick controllerJoyStick;
+
+    //private ControllerJoyStickButtonStyle controllerJoyStickButtonStyle;
+    //TODO testing adding and removing button in game !!! cant use button_list.remove(i) on a fixed list !!!
+    //private List<Button> buttons_list = Arrays.asList(new Button("attack", 4, new Action()), new Button("heal", 10, new Action()));
+
+    //DrawerNavigation
+    //private static final float NAV_WIDTH = 280;//200F;
+    //private static final float NAV_HEIGHT = 420;//1920F;
+    NavigationDrawerScreen navigationDrawerScreen;
+    ControllerJoyStickButtonStyle controllerJoyStickButtonStyle;
+    //private List<Button> buttons_list = Arrays.asList(new Button("heal", 0, new Action()), new Button("attack_one", 1, new Action()), new Button("power", 0, new Action()) );
+    private ArrayList<Button> buttons_list; // = new Button("heal", 0, new Action()), new Button("attack_one", 1, new Action()), new Button("power", 0, new Action()) );
+    private InputMultiplexer inputMultiplexer;
+
+    /*Might put this in a CameraManager*/
+    float statTime = 0;
+    Vector3 lerpTarget;
+
+    /*Might put this in a LevelManager*/
+    int levelWidth = 0;
+    int levelHeight = 0;
+
+    private Vector2 startVector2, endVector2;
+    private Vector2 vecPoint, vecNormal;
+    private float dist;
+
+    Vector2 rayDir = new Vector2();
+    Vector2 rayEnd = new Vector2();
+    Vector2 center = new Vector2();
+
+    //private AI artificialIntelligence;
+
+    //Debugging Line
+    ShapeRenderer shapeRenderer;
+    float[] aabb = new float[10];
+    float[] angleLinetesting = new float[10];
+
+    Array<Body> bodiesWithinArea = new Array<Body>();
+
+    Array<BubblePlayer> testPlayerAABB = new Array<BubblePlayer>();
+
+
+    Array<Body> bodyList = new Array<Body>();
+
+
+
+    //SteeringEntity aiEntity;
+    //SteeringEntity targetEntity;
+    //Array<SteeringEntity> arraySterringEntity;
+
+    //B2dSteeringEntity aiEntity;
+    //B2dSteeringEntity targetEntity;
+    //Array<B2dSteeringEntity> arraySterringEntity;
+
+
+    // Testing
+    RayCastManager raycastManager;
+    Vector2 enemyRayPointCenter = new Vector2();
+    Vector2 enemyLosDegree40 = new Vector2();
+    Vector2 enemyLosDegree25 = new Vector2();
+    Vector2 enemyLosDegree0 = new Vector2();
+
+    Vector2 enemyLosDegree75 = new Vector2();
+    Vector2	enemyLosDegree90 = new Vector2();
+    Vector2	enemyLosDegree125 = new Vector2();
+
+    Vector2 collision = new Vector2(), normal = new Vector2();
+    boolean directionFacingRight;
+
+
+
+
+    int numRays = 10;
+    float angle = 0;
+
+    Vector2 vertxVectorP1 = new Vector2();
+    Vector2 vertxVectorP2 = new Vector2();
+    Vector2 vertxVectorP3 = new Vector2();
+    Vector2 vertxVectorP4 = new Vector2();
+
+    Vector2 enemyLOSlength = new Vector2(0.5f,0f);
+    float lowerX , lowerY , upperX , upperY;
+
+
+    //Array<Vector2> arrayShapeRenderEnemyPointVector;
+
+    //Vector2 p1 = new Vector2();
+    //Vector2 p2 = new Vector2();
+
+    /*
+    Draw text on to screen , for now just a test on gesture
+     */
+    private BitmapFont font;
+    private ParallaxGameScreen parallaxGameScreen;
+
+
+    /**
+     *  Start testing Var's
+     */
+    GameMapScreen gameMapScreen;
+
+
+    FPSLogger fpsLogger;
+    // if implement drawer fails - test making this super and invoke render etc in gameScreen to test with stage there!!!
+    public PlayScreen(NameGame game, int levelGame) {
+
+        fpsLogger = new FPSLogger();
+
+        Gdx.input.setCatchBackKey(true);
+
+        this.buttons_list = new ArrayList<Button>();
+        buttons_list.add(new Button("heal", 0, new Action()));
+        buttons_list.add(new Button("attack_one", 1, new Action()));
+        buttons_list.add(new Button("power_one", 0, new Action()) );
+
+
+        //TODO : text on screen so we se when we use fling etc...
+        //this.font = new BitmapFont(Gdx.files.internal("assets/fonts/sans_serif_18.fnt")); //game.font24; // not sure !!
+        font = new BitmapFont();
+        //initFonts();
+
+
+
+        this.gameName = game;
+        this.level = levelGame;
+
+
+        //create cam used to follow mario through cam world
+        gamecam = new OrthographicCamera();
+        lerpTarget = new Vector3(); // follow the player up close
+
+        //create a FitViewport to maintain virtual aspect ratio despite screen size
+        gamePort = new FitViewport(GameUtility.V_WIDTH / GameUtility.PPM, GameUtility.V_HEIGHT / GameUtility.PPM, gamecam);
+
+        //create our game HUD for scores/timers/level info
+        hud = new PlayerHUD(gameName.batch );
+
+        map = GameManagerAssets.instance.getCurrentMap(); // can just get the current map
+
+        renderer = new OrthogonalTiledMapRenderer(map, 1  / GameUtility.PPM);
+
+
+        //renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("GroundToppLayerGraphic"));
+
+        MapProperties mapProps = map.getProperties();
+
+        levelWidth = mapProps.get("width", Integer.class);
+        levelHeight = mapProps.get("height", Integer.class);
+
+        //initially set our gamcam to be centered correctly at the start of of map
+        gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
+
+
+//********************************************************************
+
+        //create our Box2D world, setting no gravity in X, -10 gravity in Y, and allow bodies to sleep
+        //world = new level(new Vector2(0, -10), true);
+        world = new World(new Vector2(0, -10), true);
+
+
+
+        //tiledMap = new TmxMapLoader().load("Levels/Level " + GameConstants.SELECTED_LEVEL + ".tmx");
+        tiledMapRenderer = new OrthogonalTiledMapRendererWithSprites(map, GameUtility.PPM, game.batch);
+
+        mapReader = new TiledMapReader(game, map, world, gamecam, rayHandler);
+
+
+        //allows for debug lines of our box2d world.
+        b2dr = new Box2DDebugRenderer();
+        shapeRenderer = new ShapeRenderer(); // Draw Line From Enemy -LOS- Debug
+
+
+        //Lights
+        rayHandler = new RayHandler(world);
+        rayHandler.setAmbientLight(.7f); // Value 0 - 1
+
+        //myLight = new PointLight(rayHandler, 100, Color.WHITE, 6, bubble.b2body.getPosition().x, (bubble.b2body.getPosition().y + 20f) );
+
+
+
+
+
+
+
+        // Here We get All smallEnemyDef from tiledMap
+        worldB2VarsCreate = new B2WorldCreator(this, game, gamecam );
+
+        //mapReader = new TiledMapReader(game, map, world, gamecam, rayHandler);
+
+
+
+
+        //create player in our game world
+        if(GameManagerAssets.instance.gameManagerSaveFileExists()) {
+
+            // get fixed string on last named spawn location ?
+            bubble = new BubblePlayer(world, this, new Vector2(2.6463342f,3.8649995f));
+
+        }else{
+            bubble = new BubblePlayer(world, this);
+        }
+
+        myLight = new PointLight(rayHandler, 100, Color.WHITE, 0.4f, (50 / GameUtility.PPM ), 400 / GameUtility.PPM);
+        myLightTwo = new PointLight(rayHandler, 100, Color.WHITE, 0.4f, (350 / GameUtility.PPM ), 400 / GameUtility.PPM);
+
+        myLight.setSoftnessLength(0f);
+        myLightTwo.setSoftnessLength(0f);
+
+        //GameManagerAssets.saveGameDataHolderClass.getSaveGameBubblePlayer(bubble);
+        //GameManagerAssets.saveGameDataHolderClass.setPlayerPosition(bubble.b2body.getPosition());
+
+
+        // if the Maps are very diffrent - need to change the ContactListnere or NullPointError i think will acure
+        world.setContactListener(new WorldContactListener());
+        //Artificial Intelligence
+        /*
+         * artificialIntelligence = new AI( worldB2VarsCreate.getEnemies(), bubble );
+         *
+         * have to move Ray casting also !!!
+         * this.gameName, Start up GameAI, getEnemy's and player and the level we are inn !!!
+         *
+         * ? Break up the EnemyList in to Several EnemyList One ArrayList for Every Type of Enemy ?
+         * can then set the different behavior on the smallEnemyDef easier ?
+         */
+
+        gameManagerAI = new GameManagerAI(gameName, bubble, this.worldB2VarsCreate, levelGame);
+
+/*      // old ??
+        gameManagerAI = new GameManagerAI(gameName,
+                worldB2VarsCreate.getEnemies(), worldB2VarsCreate.getGameLevelMarkerList(),
+                bubble,
+                levelGame);
+*/
+
+
+/*
+        // old
+        gameManagerAI = new GameManagerAI(gameName,
+                worldB2VarsCreate.getEnemies(),
+                worldB2VarsCreate.getMarkers(),
+                bubble,
+                levelGame);
+*/
+/*
+        GameManagerAI.instance.init(gameName,
+                worldB2VarsCreate.getEnemies(),
+                worldB2VarsCreate.getMarkers(),
+                bubble,
+                levelGame);
+*/
+        // Parallax testing
+        parallaxGameScreen = new ParallaxGameScreen(this.gameName);
+
+
+
+
+        //raycastManager
+        // RayCastManager can take 0.1 seconds for each update tick as maximum
+        //raycastManager = new RayCastManager(world, 0.1f);
+
+
+        //Testing on Raycasting !!!
+
+        //End testing
+
+
+
+//********************************************************************
+
+        // Controllers menu etc
+        inputMultiplexer = new InputMultiplexer();
+        navigationDrawerScreen = new NavigationDrawerScreen(gameName, 280 , 420 );
+        //controllerJoyStickButtonStyle = new ControllerJoyStickButtonStyle( gameName, buttons_list);
+        controllerJoyStickButtonStyle = new ControllerJoyStickButtonStyle( gameName, this.buttons_list, bubble);
+
+        //Sound Effect Load Call
+        //notify(AudioObserver.AudioCommand.SOUND_LOAD, AudioObserver.AudioTypeEvent.SOUND_JUMP);
+        //notify(AudioObserver.AudioCommand.SOUND_LOAD, AudioObserver.AudioTypeEvent.SOUND_DROP);
+
+
+
+        inputMultiplexer.addProcessor(navigationDrawerScreen.getStage() );
+        inputMultiplexer.addProcessor(controllerJoyStickButtonStyle.getStage()); // 1. in line // controllerJoyStickButtonStyle
+        inputMultiplexer.addProcessor(controllerJoyStickButtonStyle.getGestureDect() );
+        Gdx.input.setInputProcessor(inputMultiplexer);
+
+
+
+
+
+        System.out.println("PlayScreen State : " + GameManagerAssets.instance.getGameState() );
+        System.out.println("PlayScreen preState : " + GameManagerAssets.instance.getpreGameState() );
+    }
+
+
+
+    @Override
+    public void show() {
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.BACK) ) {
+//System.out.println("PlayScreen Test : back key is pressed");
+            navigationDrawerScreen.setPauseMenuActive().showManually(true);
+        }
+    }
+
+
+    private void handleInput(float dt) {
+
+        if (Gdx.input.isTouched(0) && controllerJoyStickButtonStyle.getKnobPXLeft() < 0 || controllerJoyStickButtonStyle.getKnobPXLeft() > 0) {
+
+            if (controllerJoyStickButtonStyle.getKnobPXLeft() > 0 && bubble.b2body.getLinearVelocity().x <= 1.5f ) {
+                bubble.b2body.applyLinearImpulse(new Vector2(0.1f, 0), bubble.b2body.getWorldCenter(), true);
+            }
+            else if (controllerJoyStickButtonStyle.getKnobPXLeft() < 0 && bubble.b2body.getLinearVelocity().x >= -1.5f ) {
+                bubble.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), bubble.b2body.getWorldCenter(), true);
+            }
+        }
+
+        //if(bubble.currentState != BubblePlayer.State.DEAD) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
+            bubble.jump();
+
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && bubble.b2body.getLinearVelocity().x <= 1.5f)
+            bubble.b2body.applyLinearImpulse(new Vector2(0.1f, 0), bubble.b2body.getWorldCenter(), true);
+
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && bubble.b2body.getLinearVelocity().x >= -1.5f)
+            bubble.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), bubble.b2body.getWorldCenter(), true);
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            bubble.fire(1);
+            //notify(AudioObserver.AudioCommand.SOUND_PLAY_ONCE, AudioObserver.AudioTypeEvent.SOUND_DROP);
+        }
+        //}
+
+
+    }
+
+    public void update(float dt) {
+
+        if(GameManagerAssets.instance.getGameState() != GameManagerAssets.GameState.GAME_PAUSED ) {
+            handleInput(dt);
+
+            world.step( 1 / 60f,  6,  2);
+            rayHandler.update();
+
+
+            //System.out.println("PlayScreen Class rnRange test: " + GameManagerAI.rnRange(1, 30)); // Static get from a static function
+            //System.out.println("PlayScreen Class rnRange test: " + gameManagerAI.rnRange(1, 30)); // None-Static get from a static function
+
+            bubble.update(dt);
+
+            // Old this we don't use !!!
+            if(bubble.getSaveGameBoolean()) {
+                //GameManagerAssets.instance.getPlayerPositionInnGame(this.bubble.getPlayerPosition(), GameManagerAssets.instance.g    );
+                GameManagerAssets.instance.saveTheGame();
+                bubble.setSetSaveGameBooleanFalse();
+                System.out.println("PlayScreen Class Test : Save the game!!");
+            }
+            /*
+             * Update GameManagerAI
+             *
+             * Enemy
+             * SteeringStateManager
+             */
+            //GameManagerAI.instance.update(dt);
+            gameManagerAI.update(dt);
+
+            for(GameObjectDef gameObjectDef : worldB2VarsCreate.getGameObject()) {
+                gameObjectDef.update(dt);
+            }
+
+
+
+            //TODO refactoring smallEnemyDef update moved
+/*      // Moved to GameManagerAI
+            for(Enemy smallEnemyDef : worldB2VarsCreate.getEnemies()) {
+
+                smallEnemyDef.update(dt);
+                if(smallEnemyDef.getX() < bubble.getX() + 300 / GameUtility.PPM) {//300 / GameUtility.PPM) {
+                //System.out.println("bubble X :" + bubble.getX() + 300 / Utility.PPM);
+
+                smallEnemyDef.b2body.setActive(true);
+
+
+                }
+            }
+/*
+            /* Need this only if one wants texture Like Spawn Points , buttons etc
+            for (MarkerBase marker : worldB2VarsCreate.getMarkers()) {
+                marker.update(dt);
+            }
+            */
+
+
+            // SteeringEntity Enemy AI - Refactor later ??
+/*
+	        for( int i = 0; i < arraySterringEntity.size; i++ ) {
+	        	arraySterringEntity.get(i).update(GdxAI.getTimepiece().getDeltaTime());
+	        	targetEntity.update(GdxAI.getTimepiece().getDeltaTime());
+	        }
+*/
+            // this line makes the player live forever just falls from the sky if drops from the platforms
+            // Enemy follows the player still with out this line ?!!
+            //targetEntity.update(GdxAI.getTimepiece().getDeltaTime());
+
+
+            // if smallEnemyDef body is not set here to true they will be none active and draw will crash application!!
+
+
+
+
+
+
+            //hud update
+            hud.update(dt);
+            controllerJoyStickButtonStyle.update();
+
+
+            //attach our gamecam to our players.x coordinate
+            gamecam.position.x = bubble.b2body.getPosition().x;
+
+            float startX = gamePort.getWorldWidth() / 2; //gamecam.viewportWidth / 2;
+            float startY = gamePort.getWorldHeight() / 2; //gamecam.viewportHeight / 2;
+
+            // Something is wrong when us this... ??? don't know why
+            boundary(gamecam, startX, startY, levelWidth * 64 - startX * 2, levelHeight * 64 - startY * 2);
+
+
+            //update our gamecam with correct coordinates after changes
+            gamecam.update();
+            //tell our renderer to draw only what our camera can see in our game world.
+            renderer.setView(gamecam);
+
+            //rayHandler.setCombinedMatrix(gamecam.combined.cpy().scl(GameUtility.PPM));
+            rayHandler.setCombinedMatrix(gamecam);
+        }
+    }
+/*
+	public void cameraUpdate(float dt) {
+		Vector3 position = gamecam.position;
+		// a + (b - a) * lerp
+		// b = target
+		// a = current camera postion
+
+		position.x = gamecam.position.x + (bubble.b2body.getPosition().x * 2 - gamecam.position.x) * .1f;
+		position.y = gamecam.position.y + (bubble.b2body.getPosition().y * 2 - gamecam.position.x) * .1f;
+		gamecam.position.set(position);
+
+		gamecam.update();
+	}
+
+	public void cameraUpdateLerp(float dt) {
+		gamecam.position.lerp(lerpTarget.set( gamecam.position.x + (bubble.b2body.getPosition().x - gamecam.position.x) ,
+				gamecam.position.x + (bubble.b2body.getPosition().y - gamecam.position.y), 0), .1f * dt);
+
+		gamecam.update();
+	}
+*/
+    //gamecam.position.lerp(lerpTarget.set(bubble.b2body.getPosition().x,bubble.b2body.getPosition().y, 0),2f * dt);
+
+    @Override
+    public void render(float dt) {
+
+        update(dt);
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        //**************
+        backgroundTime += Gdx.graphics.getDeltaTime();
+        //**************
+
+
+        // TODO : All parallax Screen are background -> we want all so som in front of player !!!???
+        gameName.batch.setProjectionMatrix(parallaxGameScreen.getParallaxStage().getCamera().combined);
+        parallaxGameScreen.render(dt);
+
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.BACK) ) {
+            System.out.println("back key is pressed");
+            navigationDrawerScreen.setPauseMenuActive().showManually(true);
+            GameManagerAssets.instance.setGameState(GameManagerAssets.GameState.GAME_PAUSED);
+        }
+        /**
+         * Internal Clock for CoolTime on UI Buttons
+         */
+        if(GameManagerAssets.instance.getGameState() != GameManagerAssets.GameState.GAME_PAUSED) {
+
+            GameTime.updateCurrentTime(Gdx.graphics.getDeltaTime());
+        }
+
+        if(GameManagerAssets.instance.getGameState() == GameManagerAssets.GameState.GAME_PAUSED) {
+
+            inputMultiplexer.removeProcessor(controllerJoyStickButtonStyle.getStage());
+            inputMultiplexer.removeProcessor(controllerJoyStickButtonStyle.getGestureDect());
+        }
+
+        if(GameManagerAssets.instance.getGameState() == GameManagerAssets.GameState.GAME_RESUMED &&
+                GameManagerAssets.instance.getpreGameState() == GameManagerAssets.GameState.GAME_PAUSED ) {
+
+            GameManagerAssets.instance.setGameState(GameManagerAssets.GameState.GAME_RUNNING);
+            inputMultiplexer.addProcessor(controllerJoyStickButtonStyle.getStage());
+            inputMultiplexer.addProcessor(controllerJoyStickButtonStyle.getGestureDect());
+        }
+
+
+
+
+        //TODO : this works - but testing NEW CameraStyle
+        gamecam.position.lerp(lerpTarget.set(bubble.b2body.getPosition().x,bubble.b2body.getPosition().y, 0), 2f * dt);
+
+        //CameraStyle.lerpToTarget(gamecam, bubble.b2body.getPosition()); // box2d is out of sync with graphics
+
+
+
+
+
+        // Debugging for RayCasting steering MarkerBase
+        shapeRenderer.setProjectionMatrix(gamecam.combined);
+        shapeRenderer.begin(ShapeType.Line);
+
+
+
+
+
+        for(Enemy smallEnemyDef : worldB2VarsCreate.getEnemies()) {
+
+
+
+            if(smallEnemyDef.getClass().getSimpleName().equals("EnemyKnightDevil")) {
+
+                shapeRenderer.line(smallEnemyDef.b2body.getPosition(), ((EnemyKnightDevil)smallEnemyDef).getEnemyLosRayONE() ); //enemyRayPointCenter,enemyLosDegree0) ;
+                shapeRenderer.line(smallEnemyDef.b2body.getPosition(),((EnemyKnightDevil)smallEnemyDef).getEnemyLosRayTWO()) ;
+                shapeRenderer.line(smallEnemyDef.b2body.getPosition(),((EnemyKnightDevil)smallEnemyDef).getEnemyLosRayTHREE()) ;
+                shapeRenderer.line(((EnemyKnightDevil)smallEnemyDef).getEnemyCollision(), ((EnemyKnightDevil)smallEnemyDef).getEnemyNormal() );//collision,normal);
+
+
+            }
+            if(smallEnemyDef.getClass().getSimpleName().equals("EnemyA")) {
+                shapeRenderer.line(smallEnemyDef.b2body.getPosition(), ((EnemyA)smallEnemyDef).getEnemyLosRayONE() ); //enemyRayPointCenter,enemyLosDegree0) ;
+                shapeRenderer.line(((EnemyA)smallEnemyDef).getEnemyCollision(), ((EnemyA)smallEnemyDef).getEnemyNormal() );//collision,normal);
+            }
+
+
+        }
+        shapeRenderer.end();
+/*
+		// this is to debug level Query AABB
+		shapeRenderer.begin(ShapeType.Filled);
+		for(Body b : bodiesWithinArea)
+			shapeRenderer.circle(b.getPosition().x, b.getPosition().y, 0.2f, 20); // 20);
+		shapeRenderer.end();
+*/
+        //render our game map
+        //renderer.getBatch().enableBlending();
+        //renderer.getBatch().setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+        // TODO : render layer ???
+
+        //renderer.getBatch().begin();
+        //renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("GroundLowLayerGraphic"));
+        //renderer.getBatch().end();
+
+        renderer.render();
+
+
+
+        //Debug Line Renderer
+        b2dr.render(world, gamecam.combined);
+
+
+
+
+
+        gameName.batch.setProjectionMatrix(gamecam.combined);
+
+        // Remmber Draw Order if you draw eks Portals befor Player -/ Player will go behind Portal's
+        gameName.batch.begin();
+
+
+//*************************************
+        //mapReader.draw(gameName.batch, GameUtility.getTextureAtlas("Images/Images.pack"), backgroundTime);
+        //mapReader.draw(gameName.batch);
+        //worldB2VarsCreate.draw(gameName.batch, GameUtility.getTextureAtlas("Images/Images.pack"));
+        tiledMapRenderer.setView(gamecam);
+        mapReader.draw(gameName.batch, GameUtility.getTextureAtlas("Images/Images.pack"), backgroundTime);
+        //worldB2VarsCreate.draw(gameName.batch, GameUtility.getTextureAtlas("Images/Images.pack"),backgroundTime);
+
+
+
+//*************************************
+
+
+        //player
+        bubble.draw(gameName.batch);
+
+        //smallEnemyDef -
+        // System.out.println("Enemy Renderd size : " + worldB2VarsCreate.getEnemies().size);
+// ToDo : Debug remove Grapichs on smallEnemyDef if we want to see the hitbox better
+
+        for (Enemy smallEnemyDef : worldB2VarsCreate.getEnemies()) {
+            smallEnemyDef.draw(gameName.batch);
+        }
+
+
+        //System.out.println("PlayScreen Render: Door: " + worldB2VarsCreate.getGameObject().size);
+
+        for(GameObjectDef gameObjectDef : worldB2VarsCreate.getGameObject()) {
+           gameObjectDef.draw(gameName.batch);
+        //   System.out.println("PlayScreen Render: Door");
+        }
+
+
+
+
+
+
+
+        /* Need this only if one wants texture
+        for(MarkerBase mark : worldB2VarsCreate.getMarkers() ) {
+            mark.draw(gameName.batch);
+        }
+        */
+        gameName.batch.end();
+
+        //ToDo : animation or parallaxing
+        // Inn TilMap this layer have to be over all other layers or object layers craps out ??!!!
+        renderer.getBatch().begin();
+        // Renders Graphic that player will go back of
+        //renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("GraphicBackGroundLayerRenderSpesial")); // render first - background
+        //renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("GraphicForGroundkLayerRenderSpesial")); // render second - ForGround
+
+        //renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("RenderGraphicAfterPlayer")); // Layer 2 render after player / Player is behind graphics
+        renderer.getBatch().end();
+
+
+
+        //rayHandler.render();
+
+
+        //Set our batch to now draw what the Hud camera sees.
+        gameName.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.render(dt);
+
+
+        /**
+         * tested to take away Controllers because screen jumping/staggering
+         * But don't seems to be the problem - next
+         */
+
+        // Controller's
+        gameName.batch.setProjectionMatrix(controllerJoyStickButtonStyle.getStage().getCamera().combined);
+        //font.draw(gameName.batch, controllerJoyStickButtonStyle.getMessage(),GameUtility.V_WIDTH / GameUtility.PPM, GameUtility.V_HEIGHT / GameUtility.PPM);
+//TODO font testing with fling!!
+//TODO font fpsLogger
+        gameName.batch.begin();
+        font.draw(gameName.batch, controllerJoyStickButtonStyle.getMessage(), bubble.b2body.getPosition().x + 150, bubble.b2body.getPosition().y + 150);
+        //font.draw(gameName.batch, fpsLogger.logg(), GameUtility.V_WIDTH / GameUtility.PPM  +5 , GameUtility.V_HEIGHT / GameUtility.PPM + 415 ); // Upper Left Corner
+        font.draw(gameName.batch, fpsLogger.logg(), GameUtility.V_WIDTH / GameUtility.PPM  +5 , GameUtility.V_HEIGHT / GameUtility.PPM +10 ); // Down Left Corner
+        gameName.batch.end();
+
+        controllerJoyStickButtonStyle.render(dt);
+        /**
+         * this update button action timer , with out deltaTime
+         */
+        controllerJoyStickButtonStyle.update(); // need to update buttons on cooldown
+
+        //gameName.batch.setProjectionMatrix(navigationDrawerScreen.getStage().getCamera().combined);
+        navigationDrawerScreen.render(dt);
+        //navigationDrawerScreen.update(dt); // diden't look like i needed this one ?
+
+        /**
+         * Testing : just to show it for now, this is of course very wrong how to sett it... etc.
+         */
+        if(navigationDrawerScreen.getGameMapShow()) {
+            gameMapScreen = new GameMapScreen(this.gameName);
+            gameMapScreen.draw();
+        }
+
+
+
+        if(gameOver()){
+            gameName.setScreen(new GameOverScreen(gameName));
+            dispose();
+        }
+    }
+
+    public boolean gameOver(){
+
+        //System.out.println("Ypos : " + player.b2body.getPosition().y);
+
+        // StateTimer is not fully in use i think - look to Mario and might be use full on Harder Level time level
+        // add && bubble.getLife != 0
+        if(bubble.currentState == BubblePlayer.PlayerState.DEAD && bubble.getStateTimer() > 3 || bubble.b2body.getPosition().y < -2){
+            return true;
+        }
+
+        return false;
+    }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public TiledMap getMap() {
+        return map;
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        gamePort.update(width, height);
+
+
+    }
+
+    @Override
+    public void pause() {
+
+        //System.out.println("pause is Used");
+        navigationDrawerScreen.setPauseMenuActive().showManually(true);
+        GameManagerAssets.instance.setGameState(GameManagerAssets.GameState.GAME_PAUSED);
+
+    }
+
+
+    @Override
+    public void resume() {
+        // TODO Auto-generated method stub
+
+    }
+
+
+    @Override
+    public void hide() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void dispose() {
+        map.dispose();
+        renderer.dispose();
+        world.dispose();
+        //rayhandler.dispose();
+        b2dr.dispose();
+        GameManagerAssets.instance.disposeGameIsRunning();
+
+
+        // TODO check this : not working!! after restart of game!!
+        //GameManagerAI.instance.dispose();
+        gameManagerAI.dispose();
+
+        //controllerDpad.dispose();
+        //controllerJoyStick.dispose();
+//ControllerJoyStickButtonStyle.dispose(); static ??!! change
+        hud.dispose();
+
+    }
+
+
+
+    // takes away black bars at each ends of the view game!!?
+    public static void boundary(OrthographicCamera camera, float startX, float startY, float with, float height ) {
+
+        Vector3 position = camera.position;
+
+        if(position.x < startX) {
+            position.x = startX;
+        }
+        if(position.y < startY) {
+            position.y = startY;
+        }
+
+        if(position.x > startX + with) {
+            position.x = startX + with;
+        }
+
+        if(position.y > startY + height) {
+            position.y = startY + height;
+        }
+        camera.position.set(position);
+        camera.update();
+
+
+    }
+
+    public Vector2 rotatePoint(Vector2 center, Vector2 point, float angle) {
+
+        angle = angle * MathUtils.degreesToRadians;
+        float rotatedX = MathUtils.cos(angle) * (point.x - center.x) - MathUtils.sin(angle) * (point.y - center.y) + center.x;
+        float rotatedY = MathUtils.sin(angle) * (point.x - center.x) + MathUtils.cos(angle) * ( point.y - center.y ) + center.y;
+
+        return new Vector2(rotatedX, rotatedY);
+    }
+
+    private void initFonts() {
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Adequate.ttf")); //Arcon.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
+
+        params.size = 8;
+        params.color = Color.WHITE;
+        params.borderWidth = 3;
+
+        font = generator.generateFont(params);
+    }
+}

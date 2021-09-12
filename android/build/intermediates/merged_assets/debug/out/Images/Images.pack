@@ -1,0 +1,82 @@
+Images.png
+size: 51, 51
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Wall
+  rotate: false
+  xy: 1, 1
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+Door
+  rotate: false
+  xy: 1, 1
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+PistonHead
+  rotate: false
+  xy: 1, 1
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+PistonAxis
+rotate: false
+  xy: 1, 1
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+PistonHeadHorizontal
+rotate: false
+  xy: 1, 1
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+PistonAxisHorizontal
+rotate: false
+  xy: 1, 1
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+SwitchOn
+rotate: false
+  xy: 1, 1
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+SwitchOff
+rotate: false
+  xy: 1, 1
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+MovingObstacle
+rotate: false
+  xy: 1, 1
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+FuelRefill
+rotate: false
+  xy: 1, 1
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+WhiteSquare
+rotate: false
+  xy: 1, 1
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1

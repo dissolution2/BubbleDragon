@@ -1,0 +1,12 @@
+ItemDragonEgg.png
+size: 30, 41
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+GragonEgg
+  rotate: false
+  xy: 1, 1
+  size: 28, 39
+  orig: 28, 40
+  offset: 0, 0
+  index: -1

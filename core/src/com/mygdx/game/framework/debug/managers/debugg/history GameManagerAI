@@ -1,0 +1,944 @@
+if(this.worldBoss.equals("2")) { // World Boss Level 2
+
+            setSteeringStateManagerBoss( getSteeringStateManagerBossBoolean() );
+
+            //setBossKnightActiveDirectionBoolean(false); // check of to make steering after jump but need it for jump ?
+
+            switch (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyLife()) {
+                case 20:
+                    System.out.println("20:15");
+                    /** Jump 1 */
+                    enemyBossJumpFollowPlayer(true, 0, dt);
+
+                    // this is set after jump and timer is > 1.8f
+                    if( getBossKnightActiveDirectionBoolean() ){ // bossKnightActiveDirection
+
+                        //this should stop all jumpActivity for looping
+                        bossJumpFollowPlayerStopAllActivity = true;
+                    }
+                    setSteeringStateManagerBossBoolean(true);
+                    setSteeringStateManagerBoss(getSteeringStateManagerBossBoolean());
+                    startSteeringStateManagerBossKnight(true, 0, 1, 0);
+                    break;
+                case 19:
+                    System.out.println("19:15");
+                    stopSteeringStateManagerBossKnight(true);
+                    setSteeringStateManagerBossBoolean(false);
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+
+                    setSteeringStateManagerBossBoolean(true);
+                    setSteeringStateManagerBoss(getSteeringStateManagerBossBoolean());
+                    startSteeringStateManagerBossKnight(true, 0, 0, 0);
+                    break;
+                case 18:
+                case 17:
+                case 16:
+                case 15:
+                    System.out.println("18:15");
+
+                    /**  *NB*  -if jump two after Steering have been active this must be set- *NB* */
+                    bossJumpFollowPlayerStopAllActivity = false;
+                    stopSteeringStateManagerBossKnight(true);
+                    setSteeringStateManagerBossBoolean(false);
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+
+                    /** Jump 2 */
+                    enemyBossJumpFollowPlayer(false, 1, dt);
+
+
+
+
+
+
+
+                    //enemyBossJumpFollowPlayer(true, 1, dt); // 0 or 1
+                    //worldBossLevelKnightDevilStage01(dt, worldBoss); // last 10 sec , ca 7 attacks Range
+                    /** Jump 1 */
+                    //enemyBossJumpSingleRepeat(true, 0, dt);
+
+//System.out.println("Direction: On/Off: " + getBossKnightActiveDirectionBoolean());
+
+                    /** Will be true in jump done and timer > 1.8f && EnemyOnGround */
+                    if( bossKnightActiveDirection  ){ //
+
+
+                        /** Set false to stop -Steering -STOP- to be repeating */
+                        //setBossJumpBool(false);
+                        //((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+                        //((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveRangeAttack(true);
+
+                        //setSteeringStateManagerBossBoolean(true);
+                        //setSteeringStateManagerBoss(getSteeringStateManagerBossBoolean());
+                        //startSteeringStateManagerBossKnight(true, 0, 1, 0);
+
+
+
+
+                        //setSteeringStateManagerBossBoolean(true);
+                        //setSteeringStateManagerBoss(getSteeringStateManagerBossBoolean());
+                        //startSteeringStateManagerBossKnight(true, 0, 1, 0);
+                        //setRangeAttackFollowingPlayer(dt, true); // works alone
+                    }
+
+                    //setRangeAttackFollowingPlayer(dt, true); // works alone
+                    break;
+                case 14:
+                case 13:
+                case 12:
+                    System.out.println("14:12");
+                    break;
+                case 11:
+                case 10:
+                case 9:
+                case 8:
+                case 7:
+                    System.out.println("11:7");
+
+                    // More aggressive line of attacks
+                    //stopSteeringStateManagerBossKnight(true);
+                    //setSteeringStateManagerBossBoolean(false);
+                    //setBossKnightActiveDirectionBoolean(true);
+                    //((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+
+                    //setSteeringStateManagerBossBoolean(true);
+                    //setSteeringStateManagerBoss(getSteeringStateManagerBossBoolean());
+                    //startSteeringStateManagerBossKnight(true, 0, 1, 0);
+                    break;
+                case 6:
+                    System.out.println("6:6");
+                    stopSteeringStateManagerBossKnight(true);
+                    setSteeringStateManagerBossBoolean(false);
+                    setBossKnightActiveDirectionBoolean(true);
+                    break;
+                case 5:
+                case 4:
+                case 3:
+                case 2:
+                case 1:
+                    break;
+            }
+
+            if(gamePlayer.isDead()) {
+                if(gameSteeringStateManagerArray.size > 0) {
+                    stopSteeringStateManagerBossKnight(true);
+                    setSteeringStateManagerBossBoolean(false);
+                    System.out.println("Player died - call off EnemySteering!!! ");
+
+                    TimerAI_KnightBoss.stopCurrentTime();
+                    TimerAI_RangeAttack.stopCurrentTime();
+                }
+            }
+
+            if( ((EnemyKnightDevil)enemyObjectsKnights.get(0)).getEnemyBossIsDead() ){
+                System.out.println("Boss is dead, should spawn a prize & further the game along!!");
+            }
+        }
+
+//*************************** first test on sequvent AI Boss Knight Devil *************
+
+
+        setBossKnightActiv(dt, getSetBossKnightActiveDirectionBoolean()); //true);
+        // To crazy
+        //((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+        //((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveRangeAttack(true);
+
+
+        if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).b2body.isActive() &&
+                ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() &&
+                !((EnemyKnightDevil) enemyObjectsKnights.get(0)).isDead() ) {//!(TimerAI.getCurrentTime() > 30.9f)) {
+
+            TimerAI.updateCurrentTime(dt);
+            //System.out.println("AI Timer: " + TimerAI.getCurrentTime() );
+        }
+
+        /** Dash and Jump */
+        levelOneBossSequence(dt);
+
+        if (TimerAI.getCurrentTime() > 10.5f && !(TimerAI.getCurrentTime() > 10.7f)) {
+
+            /** Stop Dash */
+            setDashMoveBool(false);
+        }
+
+        if (TimerAI.getCurrentTime() > 12.1f && !(TimerAI.getCurrentTime() > 12.2f)) {
+
+            /** Stop Jump */
+            setBossJumpBool(false);
+
+            /** AI Time Boss - So we can use Jump another time */
+            TimerAI_KnightBoss.resetCurrentTime();
+
+            /** AI Time Jump - So we can use Jump another time*/
+            TimerAI_Jump.resetCurrentTime();
+        }
+        if (!getDashMoveBool() && !getBossJumpBool()) {
+            stopSteeringStateManagerBossKnight(true);
+            setSteeringStateManagerBossBoolean(false);
+            setBossKnightActiveDirectionBoolean(true);
+        }
+
+
+
+        if (TimerAI.getCurrentTime() > 17.1f && !(TimerAI.getCurrentTime() > 20.2f)) {
+            /** Reset Jump To - true - So it can be used again*/
+            setBossJumpBool(true);
+            /** only jump */
+            levelTwoSequence(dt);
+        }
+
+        /** Reset TimerAI - so Everything can be repeated */
+        if (TimerAI.getCurrentTime() > 20.8f ) { // && !(TimerAI.getCurrentTime() > 30.9f)) {
+
+            // this is the place where we call - everything to repeat so long as the smallEnemyDef is not dead!!!!
+            //setBossKnightActiveDirectionBoolean(true); if no repeat us this!!!
+
+            setBossKnightActiveDirectionBoolean(false);
+            setSteeringStateManagerBossBoolean(true);
+            setDashMoveBool(true);
+            TimerAI_Dash.resetCurrentTime();
+            TimerAI.resetCurrentTime();
+        }
+
+********************************END******************************************
+
+
+
+
+
+
+
+
+
+/*
+        if(((EnemyKnightDevil)enemyObjectsKnights.get(0)).b2body.isActive() && ((EnemyKnightDevil)enemyObjectsKnights.get(0)).getEnemyKnightOnGround()) {
+
+
+            TimerAI.updateCurrentTime(dt);
+            gameRandomSequensTimer.updateCurrentTime(dt);
+            System.out.println("Main timer: " + TimerAI.getCurrentTime() );
+        }
+
+        if(TimerAI.getCurrentTime() > 0.1f  && !(TimerAI.getCurrentTime() > 0.11f)) {
+            randomSequens = rnRange(0,3);
+            System.out.println("pick a random number: " + randomSequens);
+        }
+
+        if(TimerAI.getCurrentTime() > 0.4f  && !(TimerAI.getCurrentTime() > 5f)) {
+
+            //enemyBossJump(dt);
+
+
+            switch (randomSequens) {
+                case 0:
+                    //System.out.println("randDom 0");
+                    if(gameRandomSequensTimer.getCurrentTime() > 0.4f  && !(gameRandomSequensTimer.getCurrentTime() > 2f)) {
+                        System.out.println("0 Timer: " + gameRandomSequensTimer.getCurrentTime() );
+                    }
+
+                    break;
+                case 1:
+                    //System.out.println("randDom 1");
+                    if(gameRandomSequensTimer.getCurrentTime() > 0.4f  && !(gameRandomSequensTimer.getCurrentTime() > 2f)) {
+                        System.out.println("1 Timer: " + gameRandomSequensTimer.getCurrentTime() );
+                    }
+
+                    break;
+                case 2:
+                    //System.out.println("randDom 2");
+                    if(gameRandomSequensTimer.getCurrentTime() > 0.4f  && !(gameRandomSequensTimer.getCurrentTime() > 2f)) {
+                        System.out.println("2 Timer: " + gameRandomSequensTimer.getCurrentTime() );
+                    }
+
+                    break;
+                case 3:
+                    //System.out.println("randDom 3");
+                    if(gameRandomSequensTimer.getCurrentTime() > 0.4f  && !(gameRandomSequensTimer.getCurrentTime() > 2f)) {
+                        System.out.println("3 Timer: " + gameRandomSequensTimer.getCurrentTime() );
+                    }
+
+                    break;
+            }
+
+            if(TimerAI.getCurrentTime() > 5.1f ) {
+                System.out.println(" timer rest !!"  );
+                TimerAI.resetCurrentTime();
+            }
+        }
+*/
+
+
+
+
+
+
+
+
+
+/*
+
+        if(TimerAI.getCurrentTime() > 0.4f  && !(TimerAI.getCurrentTime() > 2f)){
+            ((EnemyKnightDevil)enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+            ((EnemyKnightDevil)enemyObjectsKnights.get(0)).setActiveRangeAttack(true);
+            TimerAI_KnightBoss.updateCurrentTime(dt);
+            TimerAI_RangeAttack.updateCurrentTime(dt);
+            System.out.println("Timer running: " + TimerAI_KnightBoss.getCurrentTime() );
+            //enemyTrashTesting2(dt);
+            testRangeAttackLeft(dt);
+        }else if(TimerAI.getCurrentTime() > 3.4f  && !(TimerAI.getCurrentTime() > 4f)){
+
+           TimerAI_KnightBoss.updateCurrentTime(dt);
+           TimerAI_RangeAttack.updateCurrentTime(dt);
+
+           System.out.println("Timer running 2: " + TimerAI_KnightBoss.getCurrentTime() );
+           testRangeAttackRight(dt);
+        }
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+        // this is aiTestOne(dt);
+        if( ((EnemyKnightDevil)enemyObjectsKnights.get(0)).b2body.isActive() && ((EnemyKnightDevil)enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+            gameManagerAITimerKnightBoss.updateCurrentTime(dt);
+            //System.out.println("current time running - Enemy Is alive!! " + timerAI.getCurrentTime() );
+        }
+
+        if(gameManagerAITimerKnightBoss.getCurrentTime() > 0.4f && !(gameManagerAITimerKnightBoss.getCurrentTime() >  4.0f ) ) {
+            startSteeringStateManagerBossKnight(true, 0); // 0 = LongRange, 1 = CloseRange
+        }else if( gameManagerAITimerKnightBoss.getCurrentTime() > 4.2f && !(gameManagerAITimerKnightBoss.getCurrentTime() >  4.3f ) ) {
+            stopSteeringStateManagerBossKnight(true);
+            setSteeringStateManagerBossBoolean(false);
+            //System.out.println("GameManagerAI Class - Stop running State && Not set New Value to gameSteeringStateManagerArray !!!");
+        }
+
+
+        if(gameManagerAITimerKnightBoss.getCurrentTime() > 8.0f && !(gameManagerAITimerKnightBoss.getCurrentTime() >  25.0f ) ) {
+            setSteeringStateManagerBossBoolean(true);
+            startSteeringStateManagerBossKnight(true, 1); // 0 = LongRange, 1 = CloseRange
+        }else if( gameManagerAITimerKnightBoss.getCurrentTime() > 25.2f && !(gameManagerAITimerKnightBoss.getCurrentTime() >  25.3f ) ) {
+        stopSteeringStateManagerBossKnight(true);
+        setSteeringStateManagerBossBoolean(false);
+        //System.out.println("GameManagerAI Class - Stop running State && Not set New Value to gameSteeringStateManagerArray !!!");
+        }
+*/
+
+
+        //**************LEVEL BOSS ACTIVE AND FUNCTIONS*****************************
+        // if Steering Array != 0 we don't steer the boss, Boss = dead, Player = dead | remove steering, else Steer the Boss!!
+        /*
+        if( !(gameSteeringStateManagerArray.size == 0) && ((EnemyKnightDevil)enemyObjectsKnights.get(0)).b2body.isActive() ) {
+
+            if( ((EnemyKnightDevil)this.enemyObjectsKnights.get(0)).isDead() || gamePlayer.isDead()) {
+
+                           this.gameSteeringStateManagerArray.get(0).dispose();
+                           this.gameSteeringStateManagerArray.removeIndex(0);
+
+            }else if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() && gameSteeringStateManagerArray.size > 0 ) {
+                //gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE, 50, 20); // close range
+                gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE, 50, 45); // long range
+
+            }
+        }
+        */
+/*
+        // Sett's the Boss EnemyKnight Active if hiddenMarker is hit
+        for( int i = 0; i < enemyObjectsKnights.size; i++){
+           enemyObjectsKnights.get(i).update(dt);
+           if( enemyObjectsKnights.get(i).getX() < gamePlayer.getX() + 300 / GameUtility.PPM  &&
+                   gameAIBossHiddenMarkers.get(i).getHitBossBoolean()  ){
+
+               ((EnemyKnightDevil)enemyObjectsKnights.get(0)).b2body.setActive(true);
+               setBossKnightAlwaysFacingPlayer(true, i);
+           }
+
+*/
+           //*********************RANDOM ATTACKS OF THE BOSS*****************************
+
+            //Start random attacks by the boss smallEnemyDef
+            /*
+            if( !((EnemyKnightDevil) enemyObjectsKnights.get(0)).isDead()) {
+                if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).b2body.isActive() &&
+                        ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround()) {
+                }
+            }
+            */
+            //*********************RANDOM ATTACKS OF THE BOSS*****************************
+
+
+        //}
+        //*************************END BOSS ACTIVITY'S********************************
+
+
+
+public void update(float dt) {
+
+        jumpTimerTest += dt ;
+        // updates all smallEnemyDef
+        for(Enemy smallEnemyDef : gameEnemyList ) {
+
+            smallEnemyDef.update(dt);
+            distanceBetweenPlayerEnemyX = ( smallEnemyDef.getX() - gamePlayer.getX() );
+            distanceBetweenPlayerEnemyY = ( smallEnemyDef.getY() - gamePlayer.getY() );
+//System.out.println( "GameManagerAI Class Test Distance X: "
+//        + ( smallEnemyDef.getX() - gamePlayer.getX() ) + " Distance Y: "
+//        + ( smallEnemyDef.getY() - gamePlayer.getY() ) );
+
+// if more smallEnemyDef !? and active !!
+
+            // Every Enemy in game Drive from Enemy Bass - Inn base we sett : b2body.setActive(false);
+            if(smallEnemyDef.b2body.isActive()) {
+                //System.out.println("Enemy body is active");
+            }else if(smallEnemyDef.getX() < gamePlayer.getX() + 300 / GameUtility.PPM) {//300 / GameUtility.PPM) {
+                //System.out.println("bubble X :" + bubble.getX() + 300 / Utility.PPM);
+
+
+                // Every smallEnemyDef Should be active be for or after : A range from Player!!
+                smallEnemyDef.b2body.setActive(true);
+                }
+        }
+        //System.out.println("GameManagerAI Class: test State: " + jumpTimerTest ++);
+
+        //((EnemyKnightDevil) enemyObjectsKnights.get(0)).b2body.setLinearVelocity(((EnemyKnightDevil) enemyObjectsKnights.get(0)).velocityMovment);
+
+
+        // TODO AI - Enemy update works form both side... where action with inn smallEnemyDef and call them from Ai Manager ?
+//System.out.println("GameManagerAI Class: test State: " + jumpTimerTest );
+        if(jumpTimerTest > 5) {
+
+            //((EnemyKnightDevil) enemyObjectsKnights.get(0)).b2body.applyLinearImpulse(new Vector2(0, 5f), ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyWorldCenter(), true); //Vector2(0, 4f) 5.6f);
+            //((EnemyKnightDevil) enemyObjectsKnights.get(0)).jumpTest(); // ok
+            //((EnemyKnightDevil) enemyObjectsKnights.get(0)).setJumpIngbool(); // ok
+            jumpTimerTest = 0;
+        }
+
+        // With inn the EnemyKnightDevil Class
+        if( !((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+
+            //gravityFallingHard += (dt + 10f) * 0.02f;
+          //  ((EnemyKnightDevil) enemyObjectsKnights.get(0)).b2body.setLinearVelocity(0,-11.5f);//.setGravityScale(gravityFallingHard);
+        }
+//Debug Test:
+        if(((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+            //System.out.println("GameManagerAI Class - Test EnemyKnight on Ground !!");
+        }
+
+
+//System.out.println( "GameManagerAI Class: test State: " + this.gameSteeringStateManagerArray.get(0).hasState() );
+        //this.gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.FLOCK);
+
+        // ToDo : working on a Algorithm change state and when smallEnemyDef should pursue player or get back to his post!!!
+//********************************************************************
+
+        // find an Algorithm
+
+        /*
+         * sequent attack Algorithm
+         */
+
+        int velocitySwitch  = 5;
+        int persuePlayerRadiousStop = 6; // 6 ok as a range test longer range
+        if( ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+            switch (velocitySwitch) {
+                case 0: // Speed is Null will not follow - Only Option is then to attack from far off!!
+                    this.gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE, velocitySwitch, persuePlayerRadiousStop);
+                    break;
+                case 5: // Default speed, stop 2 = close attack, stop 6 = range attack
+                    switch (persuePlayerRadiousStop) {
+
+                        case 2:
+                            this.gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE, velocitySwitch, persuePlayerRadiousStop);
+                            break;
+                        case 6:
+                            this.gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE, velocitySwitch, persuePlayerRadiousStop);
+                            break;
+                    }
+                    break;
+            }
+        }
+/*
+        actionTimer += dt;
+        if(actionTimer > 10f){
+            actionBoolVelcityStopp = true;
+        }
+
+        if(actionTimer > 20f) {
+            actionBoolVelcityStopp = false;
+            actionBoolVelcityStart = true;
+        }
+
+        if(actionTimer > 25f) {
+            actionTimer = 0;
+            actionBoolVelcityStart = false;
+        }
+
+        // Set a state if the stat is null!!
+        if( this.gameSteeringStateManagerArray.get(0).hasState().equals("null") && ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+            System.out.println("GameManagerAI Class: Test State/Enemy *FLOCK* Start State");
+            // PURSUE, SPEED, (HOW CLOSE WE WILL BE TO THE PLAYER / DECELERATION)
+            this.gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE, 5, 6);
+        }
+        if( !this.gameSteeringStateManagerArray.get(0).hasState().equals("null") && ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() && actionBoolVelcityStopp) {
+            System.out.println("GameManagerAI Class: Test State/Enemy *PURSUE* Velocity 0 ");
+            this.gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE, 0, 6);
+        }
+
+        if( !this.gameSteeringStateManagerArray.get(0).hasState().equals("null") && ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() && actionBoolVelcityStart) {
+            System.out.println("GameManagerAI Class: Test State/Enemy *PURSUE* Velocity 5 ");
+            this.gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE, 5, 2);
+         }
+//********************************************************END*****************************************************************
+
+*/
+        // if Player is dead, need to dispose of the steering entity
+        if(gamePlayer.isDead()) {
+
+            this.gameSteeringStateManagerArray.get(0).dispose();
+        }
+
+        for(int i=0; i < this.gameSteeringStateManagerArray.size; i++) {
+            this.gameSteeringStateManagerArray.get(i).render();
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Switch the state if it has a state !!!
+        if( !this.gameSteeringStateManagerArray.get(0).hasState().equals("null") && ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+
+//System.out.println("GameManagerAI Class: Test State/Enemy inn State != null && OnGroundEnemy true ");
+
+
+             //* Test on rayCallback see player / distance / time etc. set state
+            if( this.gameSteeringStateManagerArray.get(0).hasState().equals( "FlockState" )) {
+
+//System.out.println("GameManagerAI Class: Test State/Enemy inn flock state switch!! ");
+
+                if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemySePlayer() && distanceBetweenPlayerEnemyX < -6f ) {
+
+                    System.out.println("GameManagerAI Class: Test State/Enemy *PURSUE* ");
+                    this.gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE);
+                }
+            }
+
+            if( this.gameSteeringStateManagerArray.get(0).hasState().equals("PursueState")) {
+
+                if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemySePlayer() && distanceBetweenPlayerEnemyX > -6f ) {
+                    System.out.println("GameManagerAI Class: Test State/Enemy *FLOCK* After PursueSate !!");
+                    this.gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.HOMESTATE);
+                }
+
+
+                /*
+                if (!((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemySePlayer()) {
+
+                    //gameSteeringStateManagerArray.get(0).dispose(); ??? nothing happen !
+
+                    //gameSteeringStateManagerArray.clear();
+                    // walk the eemy back to its GUARD PLACE START LOCATION ??!!! TESTING
+                    //gameSteeringStateManagerArray.add(
+                    //        new GameSteeringStateManager(this.g, this.gamePlayer, this.enemyObjectsKnights, this.gameMarkerList ));
+
+
+                    System.out.println("GameManagerAI Class: Test State/Enemy *FLOCK* After PursueSate !!");
+                    this.gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.HOMESTATE);
+                }
+                */
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+gameSteeringStateManagerArray.add(new GameSteeringStateManager(this.g, this.gamePlayer, this.enemyObjectsKnights, this.gameMarkerBaseAIList, true));
+
+        /**
+         * get first state of the boss / smallEnemyDef - > like is it grounded etc then set MoveStates / AttackStates etc
+         */
+
+
+
+
+//System.out.println( ((EnemyKnightDevil)this.enemyObjectsKnights.get(0)).getEnemyState() );
+
+        //gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE);
+
+
+        gameSteeringStateManagerArray.add(new GameSteeringStateManager(this.g, this.gamePlayer, this.enemyObjectsEnemyA, this.gameMarkerBaseAIList, false));
+
+        /*
+         * get first state of the boss / smallEnemyDef - > like is it grounded etc then set MoveStates / AttackStates etc
+         *//*
+
+        for (MarkerBaseAI mark : gameMarkerBaseAIList) {
+
+            //System.out.println("Marker name : " + ((MarkerAI) mark).getMarkerID());
+
+            if (((MarkerAI) mark).getMarkerID().equals("MarkStartMove")) {
+
+                //System.out.println("Position :" + mark.getX());
+                //this.enemyObjectsEnemyA.get(0).b2body
+            }
+        }
+*/
+
+        gameSteeringStateManagerArray.get(1).setState(GameSteeringStateManager.State.WANDER);
+
+//        System.out.println("Knight List Size : " + knightEnemyList.size +
+//                " EnemyA List Size : " + enemyAEnemyList.size);
+
+
+
+public void setActivityEnemyA() {
+
+        if(knightEnemyList.get(0).getX() < gamePlayer.getX() + 260 / GameUtility.PPM) {
+
+            steeringStateManager.setState(GameSteeringStateManager.State.PURSUE);
+        }
+    }
+    public void setActivityEnemyB() {
+
+        if(enemyAEnemyList.get(0).getX() < gamePlayer.getX() + 220 / GameUtility.PPM) {
+
+            steeringStateManager.setState(GameSteeringStateManager.State.WANDER);
+        }
+    }
+
+    /*
+     * test on view of sight be for we set the PURSUE state
+     * And we should test with in the class for witch smallEnemyDef should get what state !!!
+     */
+    public void testActivity() {
+
+        if(gameEnemyList.get(0).getX() < gamePlayer.getX() + 260 / GameUtility.PPM) {
+
+            steeringStateManager.setState(GameSteeringStateManager.State.PURSUE);
+        }
+    }
+
+
+    /*
+        public void init(MyGdxGame game,
+                         Array<Enemy> enemyListFromGame,
+                         Array<MarkerBaseAI> markerBaseAIListFromGame,
+                         BubblePlayer player,
+                         int level) {
+
+            /**
+             * Stirng enum or something that states what enemies we have for different game level !!!
+             */
+    //        System.out.println("GameAI Manager Loaded lev :" + level);
+
+    //        this.gameEnemyList = enemyListFromGame;
+    //        this.gameMarkerBaseAIList = markerBaseAIListFromGame;
+    //        this.gamePlayer = player;
+    //        this.g = game;
+
+
+
+
+            //System.out.println("Size of list AI Marker List " + gameMarkerBaseAIList.size );
+    /*
+
+            for (MarkerBaseAI mark : gameMarkerBaseAIList){
+
+                System.out.println("Marker name : "+((MarkerAI)mark).getMarkerID());
+
+                if( ((MarkerAI)mark).getMarkerID().equals("MarkStartMove") ) {
+
+                    System.out.println( "Position :" +mark.getX() );
+                }
+
+                System.out.println( "Position body :" + mark.b2body.getPosition() );
+            }
+
+            splitEnemyList(gameEnemyList);
+
+
+            /**
+             *
+             * We want to have the ability to change behavior -> from one state to another state ? Boss ?
+             *
+             *
+             */
+
+            // now we have to give it more - Enemy - Player etc !!!
+            //steeringStateManager = new GameSteeringStateManager(game, this.gamePlayer, this.gameEnemyList);
+            // Set's the default behavior of the smallEnemyDef !!
+            //steeringStateManager.setState(GameSteeringStateManager.State.FLOCK);
+    //    }
+
+
+ // Runs inn update!!
+    int count = 0;
+
+    //TODO : this cant be in update, have to move some out , and use that in update!!!
+    private void enemyBehaviorTest_NOT_Updatable_Rename() {
+
+
+
+        if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() && count == 0) {
+            gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE); //, "MarkerEndRight");
+System.out.println( "Test GameManagerAI Class: Set PURSUE STATE ON KNIGHT " + count++);
+        }
+
+        if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() && count == 40) {
+            gameSteeringStateManagerArray.get(0).changeTarget(Gdx.graphics.getDeltaTime(),"MarkerEndRight");
+System.out.println( "GameManagerAI Class: test State: " + this.gameSteeringStateManagerArray.get(0).hasState() );
+
+
+
+
+
+        }
+        count++;
+    }
+
+
+    /*
+    // Set the State but need to see if the Boss is grounded be for !!!
+            if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+
+                gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE, "MarkStartMove");
+//System.out.println( "Test GameManagerAI Class: Set PURSUE STATE ON KNIGHT " + count++);
+
+                //enemyObjectsKnights.get(0).b2body.setLinearVelocity(new Vector2(2f,0f));
+//System.out.println( "Test GameManagerAI Class: How many times dose this try to run !!!" + count++ );
+//                enemyObjectsKnights.get(0).b2body.setLinearVelocity(enemyObjectsKnights.get(0).velocityMovment);
+
+
+            }
+     */
+
+
+
+    private void enemyBehaviorTest_Updatable_Rename() {
+
+        // Boss EnemyKnight
+        if( enemyObjectsKnights.get(0).b2body.isActive()) {
+
+            // Last Target Patrol Marker is hit - Change Target AI Patrol Marker
+            //TODO : WE HAVE HIT "MARKER START" - SET NEW TARGET : LEFT
+            if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getPatroll_Marker_Start_True()) {
+
+                //gameSteeringStateManagerArray.get(0).changeTarget(dt, "MarkerEndLeft");
+                //gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE, "MarkerEndLeft");
+            }
+
+            //TODO : WE HAVE HIT "MARKER LEFT" - SET NEW TARGET : RIGHT
+            if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getPatroll_Marker_Left_True() ){
+
+                //gameSteeringStateManagerArray.get(0).changeTarget(dt, "MarkerEndRight");
+                //gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE, "MarkerEndRight");
+//System.out.println("GameManagerAI test : Marker left = true hit");
+                //enemyObjectsKnights.get(0).reverseVelocity(true, false);
+            }
+
+            //TODO : WE HAVE HIT "MARKER RIGHT" - SET NEW TARGET : LEFT
+            if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getPatroll_Marker_Right_True()){
+
+                //gameSteeringStateManagerArray.get(0).changeTarget(dt, "MarkerEndLeft");
+                //gameSteeringStateManagerArray.get(0).setState(GameSteeringStateManager.State.PURSUE, "MarkerEndLeft");
+//System.out.println("GameManagerAI test : Marker right = true hit");
+                //enemyObjectsKnights.get(0).reverseVelocity(true, false);
+            }
+
+        }
+
+     }
+
+
+
+     //TODO when smallEnemyDef see Player : Action , attack near , attack far etc...
+int countLOS = 0;
+     private void getEnemyLineOfSight(){
+
+         if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+
+             if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemySePlayer()) {
+
+
+                 enemyBehaviorTest_NOT_Updatable_Rename();
+
+
+//System.out.println("GAmeManagerAI Class test:  Player see smallEnemyDef!! " + countLOS++ );
+            /*
+             ((EnemyKnightDevil) enemyObjectsKnights.get(0)).b2body.setLinearVelocity(
+                     ((EnemyKnightDevil) enemyObjectsKnights.get(0)).velocityCeroStanding) ;
+            */
+             }
+         }
+
+     }
+
+
+
+
+
+
+    // update SteeringStateManager to run it...
+    public void update(float dt) {
+
+        //steeringStateManager.render();
+
+        // updates all smallEnemyDef
+        for(Enemy smallEnemyDef : gameEnemyList ) {
+
+            smallEnemyDef.update(dt);
+
+
+            // Every Enemy in game Drive from Enemy Bass - Inn base we sett : b2body.setActive(false);
+            if(smallEnemyDef.b2body.isActive()) {
+                //System.out.println("Enemy body is active");
+            }
+
+            if(smallEnemyDef.getX() < gamePlayer.getX() + 300 / GameUtility.PPM) {//300 / GameUtility.PPM) {
+                //System.out.println("bubble X :" + bubble.getX() + 300 / Utility.PPM);
+
+
+                // Every smallEnemyDef Should be active be for or after : A range from Player!!
+                smallEnemyDef.b2body.setActive(true);
+
+
+            }
+        }
+//System.out.println("GAmeManagerAI Class test: Update running!! ");
+        enemyBehaviorTest_NOT_Updatable_Rename();
+        //getEnemyLineOfSight();
+
+
+
+
+        for(int i=0; i < this.gameSteeringStateManagerArray.size; i++) {
+            this.gameSteeringStateManagerArray.get(i).render();
+// Check OK has a state.
+//System.out.println( "GameManagerAI Class: test State: " + this.gameSteeringStateManagerArray.get(i).hasState() );
+
+        }
+
+
+
+
+    }
+
+    public  void dispose(){
+        this.steeringStateManager.dispose();
+    }
+
+}
+
+
+//if( ((EnemyA)enemyObjectsEnemyA.get(j)).isDead()) {
+
+                    //System.out.println("dead id: " + ((EnemyA)enemyObjectsEnemyA.get(j)).getEnemyID() );
+
+                    //if(((EnemyA)enemyObjectsEnemyA.get(j)).getEnemyID() == 194 ) {
+                        //System.out.println("Is it active body: " + ((EnemyA)enemyObjectsEnemyA.get(j)).b2body.isActive());
+                        //System.out.println("Is itDead : " + ((EnemyA)enemyObjectsEnemyA.get(j)).isDead() );
+                        //System.out.println("body Vel: " + ((EnemyA)enemyObjectsEnemyA.get(j)).b2body.getLinearVelocity() );
+                    //}
+                //}
+
+                // EnemyA(PlayScreen screen, float x, float y, MapObject object)
+                //if( ((EnemyA)enemyObjectsEnemyA.get(j)).isDead() ) {
+
+
+                    //System.arraycopy(enemyObjectsEnemyA, j, testArray, 0, 1);
+
+
+                //}
+
+                //if(((EnemyA)enemyObjectsEnemyA.get(j)).getIsDestroyed()) {
+                //    System.out.println("enemyObjectsEnemyA isDestroyed: " + ((EnemyA)enemyObjectsEnemyA.get(j)).getEnemyID() );
+                //}
+
+                //if(testArray.size > 0 ) {
+                //    System.out.println("testArray.Size: " + testArray.size);
+                //}
+/*
+                if( ((EnemyA) enemyObjectsEnemyA.get(j)).getEnemyID() == 227 ) {
+
+                    if( !((EnemyA)enemyObjectsEnemyA.get(j)).isDead() ) {
+                        //System.out.println("Stop When body is destroyed ");
+                    }
+
+                }
+*/

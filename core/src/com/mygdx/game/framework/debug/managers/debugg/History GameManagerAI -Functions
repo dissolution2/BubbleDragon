@@ -1,0 +1,479 @@
+if (gameAIBossHiddenMarkers.get(0).getHitBossBoolean() &&
+                !((EnemyKnightDevil) enemyObjectsKnights.get(0)).isDead()) {
+
+
+            if( ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyLife() < 19 &&
+                    !(((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyLife() > 18 )
+            && gamePlayer.getPlayerLife() < 2  && happenOnTime == 0 ) {
+
+                happenOnTime = 1;
+                System.out.println("happenOnTime spawn Ekstra life");
+                extraLifeSpawnfromdead.add(new ExtraLifeGameItem((PlayScreen) g.getScreen(),
+                        ((EnemyKnightDevil) enemyObjectsKnights.get(0)).b2body.getPosition().x,
+                        ((EnemyKnightDevil) enemyObjectsKnights.get(0)).b2body.getPosition().y + 0.4f,
+                        "EX_SPAWN_LIFE",
+                        0 ));
+
+            }
+
+            if( ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getEnemyLife() < 16 && happenOnTime == 1 ) {
+
+                //System.out.println("happenOnTime reset");
+                //happenOnTime = 0;
+            }
+
+
+        }
+
+
+
+*********************************************************
+private void enemyBossJump(float dt, boolean run, int jumpType){
+
+        if(run){
+            //((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+
+            if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).b2body.isActive()) {
+
+                /** AI Time Boss */
+                TimerAI_KnightBoss.updateCurrentTime(dt);
+                //System.out.println("TimeAI_knightBoss " + TimerAI_KnightBoss.getCurrentTime());
+
+                /** AI Time Jump */
+                TimerAI_Jump.updateCurrentTime(dt);
+
+
+                if (TimerAI_KnightBoss.getCurrentTime() > 1.0f && !(TimerAI_KnightBoss.getCurrentTime() > 1.1f)) {
+
+                    //setEnemyAIState(EnemyAIBossState.JUMPING);
+
+
+                    if (TimerAI_Jump.getCurrentTime() > 1.01f &&
+                            !(TimerAI_Jump.getCurrentTime() > 1.02f)) {
+                        /** if i set this earlier dash will pick up on it || but that was all so cool !!! */
+                        ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+                        if (jumpType == 0) {
+                            //!gamePlayer.getPlayerFacingDirection()
+                            ((EnemyKnightDevil) enemyObjectsKnights.get(0)).enemyShortJumpTest(((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight());
+                            //((EnemyKnightDevil) enemyObjectsKnights.get(0)).enemyLongJumpTest(((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight());
+                        }
+                        if (jumpType == 1) {
+                            //!gamePlayer.getPlayerFacingDirection()
+                            //((EnemyKnightDevil) enemyObjectsKnights.get(0)).enemyShortJumpTest(((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight());
+                            ((EnemyKnightDevil) enemyObjectsKnights.get(0)).enemyLongJumpTest(((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight());
+
+
+                        }
+
+                    }
+
+                    /**BossJump Reset Timer */
+                /*
+                if (TimerAI_Jump.getCurrentTime() > 7f) {
+                    TimerAI_Jump.resetCurrentTime();
+                    TimerAI_Jump.updateCurrentTime(5.0f);
+                }
+                */
+                }
+
+                /** if finished with jump / steering  */
+                /*
+                if (jumpType == 0) {
+                    if (TimerAI_KnightBoss.getCurrentTime() > 2.2f && !(TimerAI_KnightBoss.getCurrentTime() > 2.3f)) { //7.2f ) {
+                        //((EnemyKnightDevil) enemyObjectsKnights.get(0)).b2body.setLinearVelocity(0, 0);
+                        //setBossKnightActiveDirectionBoolean(true);
+                        //System.out.println("finished jump");
+                    }
+                }
+                */
+                //if(jumpType == 1){
+                    if (TimerAI_KnightBoss.getCurrentTime() > 3.3f && !(TimerAI_KnightBoss.getCurrentTime() > 3.4f)) { //7.2f ) {
+                        ((EnemyKnightDevil) enemyObjectsKnights.get(0)).b2body.setLinearVelocity(0, 0);
+                        //setBossKnightActiveDirectionBoolean(true);
+                        //System.out.println("finished jump");
+                    }
+                //}
+
+
+            }
+
+        }
+    }
+*********************************************************
+
+
+/**  test working on */
+    private void aiTest_MoveAndJump(float dt){
+
+        ((EnemyKnightDevil)enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+        ((EnemyKnightDevil)enemyObjectsKnights.get(0)).setActiveRangeAttack(true);
+        //setBossKnightAlwaysFacingPlayer(true);
+
+        //System.out.println("SteeringArray.Size: " + gameSteeringStateManagerArray.size );
+
+        //System.out.println("Boss Time loop: " + TimerAI_KnightBoss.getCurrentTime());
+        //System.out.println("jump Time loop: " + TimerAI_Jump.getCurrentTime());
+
+        if( ((EnemyKnightDevil)enemyObjectsKnights.get(0)).b2body.isActive() ) { //&& ((EnemyKnightDevil)enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+            /** Boss Time */
+            TimerAI_KnightBoss.updateCurrentTime(dt);
+            /** Jump Time */
+            TimerAI_Jump.updateCurrentTime(dt);
+
+
+            if (TimerAI_KnightBoss.getCurrentTime() > 0.4f && !(TimerAI_KnightBoss.getCurrentTime() > 4.0f)) {
+                /** true = start |
+                 *  (0 = follow Player, 1 = follow AI-Marker)
+                 *
+                 *  - Use On Player
+                 *  ( 0 = LongRange, 1 = CloseRange )
+                 *
+                 *  -Use On AI-Marker
+                 *  ( 0 = close range(normal speed), 1 = Close Range(Super dash speed)
+                 *
+                 *  - following AIBody number( not in use with following player )
+                 *  */
+                startSteeringStateManagerBossKnight(true, 1, 1, 0);
+            } else if (TimerAI_KnightBoss.getCurrentTime() > 4.2f && !(TimerAI_KnightBoss.getCurrentTime() > 4.3f)) {
+                stopSteeringStateManagerBossKnight(true);
+                setSteeringStateManagerBossBoolean(false);
+                //System.out.println("steering Array Size should be 0");
+
+                //setBossKnightAlwaysFacingPlayer(false);
+
+                //System.out.println("GameManagerAI Class - Stop running State && Not set New Value to gameSteeringStateManagerArray !!!");
+            }
+            /** BossTimer > 5.0f to 10.0f */
+            if (TimerAI_KnightBoss.getCurrentTime() > 5.0f && !(TimerAI_KnightBoss.getCurrentTime() > 10.0f)) {
+
+
+                /** BossJumpTimer > 5.01f to 5.02f */
+                if (TimerAI_Jump.getCurrentTime() > 5.01f &&
+                        !(TimerAI_Jump.getCurrentTime() > 5.02f)) {
+
+                    //setBossKnightAlwaysFacingPlayer(true);
+
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveCloseAttack(false);
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveRangeAttack(false);
+
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).enemyShortJumpTest( !gamePlayer.getPlayerFacingDirection() );//((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight());
+
+
+                }
+
+
+                    /**BossJump Reset Timer */
+                if (TimerAI_Jump.getCurrentTime() > 7f) {
+                    TimerAI_Jump.resetCurrentTime();
+                    TimerAI_Jump.updateCurrentTime(5.0f);
+                }
+            }
+
+            if( TimerAI_KnightBoss.getCurrentTime() > 10.4f) {
+                TimerAI_KnightBoss.resetCurrentTime();
+                //System.out.println("Boss Looping -TimerAI_KnightBoss: " + TimerAI_KnightBoss.getCurrentTime());
+            }
+        }
+    }
+
+    private void aiTest_MoveAndJump2(float dt){
+
+        ((EnemyKnightDevil)enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+        ((EnemyKnightDevil)enemyObjectsKnights.get(0)).setActiveRangeAttack(true);
+        //setBossKnightAlwaysFacingPlayer(true);
+
+        //System.out.println("SteeringArray.Size: " + gameSteeringStateManagerArray.size );
+
+        //System.out.println("Boss Time loop: " + TimerAI_KnightBoss.getCurrentTime());
+        //System.out.println("jump Time loop: " + TimerAI_Jump.getCurrentTime());
+
+        if( ((EnemyKnightDevil)enemyObjectsKnights.get(0)).b2body.isActive() ) { //&& ((EnemyKnightDevil)enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+            /** Boss Time */
+            TimerAI_KnightBoss.updateCurrentTime(dt);
+            /** Jump Time */
+            TimerAI_Jump.updateCurrentTime(dt);
+
+
+            if (TimerAI_KnightBoss.getCurrentTime() > 0.4f && !(TimerAI_KnightBoss.getCurrentTime() > 4.0f)) {
+                /** true = start |
+                 *  (0 = follow Player, 1 = follow AI-Marker)
+                 *
+                 *  - Use On Player
+                 *  ( 0 = LongRange, 1 = CloseRange )
+                 *
+                 *  -Use On AI-Marker
+                 *  ( 0 = close range(normal speed), 1 = Close Range(Super dash speed)
+                 *
+                 *  - following AIBody number( not in use with following player )
+                 *  */
+                startSteeringStateManagerBossKnight(true, 1, 1, 1);
+            } else if (TimerAI_KnightBoss.getCurrentTime() > 4.2f && !(TimerAI_KnightBoss.getCurrentTime() > 4.3f)) {
+                stopSteeringStateManagerBossKnight(true);
+                setSteeringStateManagerBossBoolean(false);
+                //System.out.println("steering Array Size should be 0");
+
+                //setBossKnightAlwaysFacingPlayer(false);
+
+                //System.out.println("GameManagerAI Class - Stop running State && Not set New Value to gameSteeringStateManagerArray !!!");
+            }
+
+            /** BossTimer > 5.0f to 10.0f */
+            if (TimerAI_KnightBoss.getCurrentTime() > 5.0f && !(TimerAI_KnightBoss.getCurrentTime() > 10.0f)) {
+
+                //setBossKnightActiveDirectionBoolean(false);
+
+                /** BossJumpTimer > 5.01f to 5.02f */
+                if (TimerAI_Jump.getCurrentTime() > 5.01f &&
+                        !(TimerAI_Jump.getCurrentTime() > 5.02f)) {
+
+                    //setBossKnightAlwaysFacingPlayer(true);
+
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveCloseAttack(false);
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setActiveRangeAttack(false);
+//!gamePlayer.getPlayerFacingDirection() ); //
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).enemyShortJumpTest( ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight());
+                }
+
+                //don't work . no jump and stutter
+                //((EnemyKnightDevil) enemyObjectsKnights.get(0)).b2body.setLinearVelocity(0,0);
+                //setBossKnightActiveDirectionBoolean(true);
+
+
+
+                /**BossJump Reset Timer */
+                if (TimerAI_Jump.getCurrentTime() > 7f) {
+                    TimerAI_Jump.resetCurrentTime();
+                    TimerAI_Jump.updateCurrentTime(5.0f);
+                }
+            }
+
+            if( TimerAI_KnightBoss.getCurrentTime() > 10.4f) {
+                TimerAI_KnightBoss.resetCurrentTime();
+                //System.out.println("Boss Looping -TimerAI_KnightBoss: " + TimerAI_KnightBoss.getCurrentTime());
+            }
+        }
+    }
+
+    private void aiTest_NoMoveFightLooping(float dt){
+
+        ((EnemyKnightDevil)enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+        ((EnemyKnightDevil)enemyObjectsKnights.get(0)).setActiveRangeAttack(true);
+
+        if( ((EnemyKnightDevil)enemyObjectsKnights.get(0)).b2body.isActive() && ((EnemyKnightDevil)enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+            TimerAI_KnightBoss.updateCurrentTime(dt);
+            TimerAI_RangeAttack.updateCurrentTime(dt);
+            //System.out.println("current time running - Enemy Is alive!! " + timerAI.getCurrentTime() );
+        }
+        /** BossTimer > 8.0f to 25.0f */
+        if(TimerAI_KnightBoss.getCurrentTime() > 8.0f && !(TimerAI_KnightBoss.getCurrentTime() >  25.0f ) ) {
+
+            /** RangeAttack Activate */
+            if (TimerAI_RangeAttack.getCurrentTime() > 8.2f &&
+                    !(TimerAI_RangeAttack.getCurrentTime() > 8.4f) &&
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getRangeAttackActiveBool()) {
+                ((EnemyKnightDevil) enemyObjectsKnights.get(0)).rangeAttack(null);
+            }
+            /** RangeAttack Reset Timer */
+            if (TimerAI_RangeAttack.getCurrentTime() > 10f) {
+                TimerAI_RangeAttack.resetCurrentTime();
+                TimerAI_RangeAttack.updateCurrentTime(7.9f);
+            }
+        }
+
+        /** BossTimer > 8.0f to 25.0f */
+        if( TimerAI_KnightBoss.getCurrentTime() > 25.4f) {
+            TimerAI_KnightBoss.resetCurrentTime();
+            System.out.println("Boss Looping -TimerAI_KnightBoss: " + TimerAI_KnightBoss.getCurrentTime());
+        }
+
+    }
+
+    private void enemyBossChangeDirection(float dt){
+
+        if( ((EnemyKnightDevil)enemyObjectsKnights.get(0)).b2body.isActive() && ((EnemyKnightDevil)enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+            TimerAI_KnightBoss.updateCurrentTime(dt);
+
+
+            if (TimerAI_KnightBoss.getCurrentTime() > 2.1f && !(TimerAI_KnightBoss.getCurrentTime() > 2.11f)) {
+
+                //setBossKnightAlwaysFacingPlayer(true);
+                System.out.println("direction: " + ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight());
+                if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight()) {
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setIsRunningRight(false);
+                    System.out.println("running false");
+                } else {
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setIsRunningRight(true);
+                    System.out.println("running true");
+                }
+
+                //TimerAI_KnightBoss.resetCurrentTime();
+                //System.out.println("Boss Looping -TimerAI_KnightBoss: " + TimerAI_KnightBoss.getCurrentTime());
+            }
+        }
+    }
+
+    private void enemyTrashTesting(float dt){
+
+        ((EnemyKnightDevil)enemyObjectsKnights.get(0)).setActiveCloseAttack(true);
+        ((EnemyKnightDevil)enemyObjectsKnights.get(0)).setActiveRangeAttack(true);
+
+        if( ((EnemyKnightDevil)enemyObjectsKnights.get(0)).b2body.isActive()
+                && ((EnemyKnightDevil)enemyObjectsKnights.get(0)).getEnemyKnightOnGround() ) {
+
+
+            TimerAI_KnightBoss.updateCurrentTime(dt);
+            TimerAI_RangeAttack.updateCurrentTime(dt);
+            //System.out.println("current time running - Enemy Is alive!! " + timerAI.getCurrentTime() );
+        }
+
+        if(TimerAI_KnightBoss.getCurrentTime() > 8.0f && !(TimerAI_KnightBoss.getCurrentTime() >  25.0f ) ) {
+
+            /** RangeAttack Activate */
+            if( TimerAI_RangeAttack.getCurrentTime() > 8.2f &&
+                    !(TimerAI_RangeAttack.getCurrentTime() > 8.4f)  ) {
+
+                // running right ->
+                if( ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight() ) {
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setIsRunningRight(false);
+                    System.out.println("running true, changing to false!! ");
+                }
+                ((EnemyKnightDevil) enemyObjectsKnights.get(0)).rangeAttack(null);
+                System.out.println("Range attack 1");
+            }
+
+            /** RangeAttack Activate */
+            if( TimerAI_RangeAttack.getCurrentTime() > 10f &&
+                    !(TimerAI_RangeAttack.getCurrentTime() > 10.2f)  ) {
+
+                // running <- left
+                if( !((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight() ) {
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setIsRunningRight(true);
+                    System.out.println("running false, changing to true!! ");
+                }
+                ((EnemyKnightDevil) enemyObjectsKnights.get(0)).rangeAttack(null);
+                System.out.println("Range attack 2");
+            }
+
+
+
+            /** RangeAttack Reset Timer */
+            if(TimerAI_RangeAttack.getCurrentTime() > 10f ) {
+                //    TimerAI_RangeAttack.resetCurrentTime();
+                //    TimerAI_RangeAttack.updateCurrentTime(7.9f);
+                //    System.out.println("time reset");
+            }
+        }
+
+        if( TimerAI_KnightBoss.getCurrentTime() >  25.0f && !(TimerAI_KnightBoss.getCurrentTime() >  25.1f) ) {
+            //TimerAI_KnightBoss = null;
+            //TimerAI_KnightBoss.stopCurrentTime();
+            //TimerAI_KnightBoss.resetCurrentTime();
+            sequenceBoolDone = true;
+            System.out.println("Boss time > 25f sequenceBoolDone = true");
+        }
+
+
+
+    }
+
+    private void enemyTrashTesting2(float dt){
+
+        // 8.0 | 10.8 two attacks = 2.8
+        if(TimerAI_KnightBoss.getCurrentTime() > 0.1f && !(TimerAI_KnightBoss.getCurrentTime() >  2.5f ) ) {
+
+            /** RangeAttack Activate */
+            if( TimerAI_RangeAttack.getCurrentTime() > 0.2f &&
+                    !(TimerAI_RangeAttack.getCurrentTime() > 0.21f)  ) { // 8
+
+                // running right ->
+                if( ((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight() ) {
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setIsRunningRight(false);
+                    System.out.println("running true, changing to false!! ");
+                }
+                ((EnemyKnightDevil) enemyObjectsKnights.get(0)).rangeAttack(null);
+                System.out.println("Range attack 1");
+            }
+
+            /** RangeAttack Activate */
+            if( TimerAI_RangeAttack.getCurrentTime() > 1.91f &&
+                    !(TimerAI_RangeAttack.getCurrentTime() > 1.92f)  ) {
+
+                // running <- left
+                if( !((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight() ) {
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setIsRunningRight(true);
+                    System.out.println("running false, changing to true!! ");
+                }
+                ((EnemyKnightDevil) enemyObjectsKnights.get(0)).rangeAttack(null);
+                System.out.println("Range attack 2");
+            }
+
+        }
+
+        if( TimerAI_KnightBoss.getCurrentTime() >  2.5f && !(TimerAI_KnightBoss.getCurrentTime() >  2.6f) ) {
+            //sequenceBoolDone = true;
+            System.out.println("Boss time > 25f sequenceBoolDone");
+
+            TimerAI_KnightBoss.resetCurrentTime();
+            TimerAI_RangeAttack.resetCurrentTime();
+        }
+
+
+
+    }
+
+    private void testRangeAttackRight(float dt){
+
+        if(TimerAI_KnightBoss.getCurrentTime() > 0.1f && !(TimerAI_KnightBoss.getCurrentTime() >  1.5f ) ) {
+
+            /** RangeAttack Activate */
+            if (TimerAI_RangeAttack.getCurrentTime() > 0.2f &&
+                    !(TimerAI_RangeAttack.getCurrentTime() > 0.22f)) { // 8
+
+                // running right ->
+                if ( !((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight()) {
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setIsRunningRight(true);
+                    System.out.println("running false, changing to true!! ");
+                }
+                ((EnemyKnightDevil) enemyObjectsKnights.get(0)).rangeAttack(null);
+                System.out.println("Range attack 1");
+            }
+        }
+
+        if( TimerAI_KnightBoss.getCurrentTime() >  1.5f && !(TimerAI_KnightBoss.getCurrentTime() >  1.6f) ) {
+            //sequenceBoolDone = true;
+            System.out.println("Boss time > 25f sequenceBoolDone");
+
+            TimerAI_KnightBoss.resetCurrentTime();
+            TimerAI_RangeAttack.resetCurrentTime();
+        }
+
+    }
+
+    private void testRangeAttackLeft(float dt){
+
+        if(TimerAI_KnightBoss.getCurrentTime() > 0.1f && !(TimerAI_KnightBoss.getCurrentTime() >  1.5f ) ) {
+
+            /** RangeAttack Activate */
+            if (TimerAI_RangeAttack.getCurrentTime() > 0.2f &&
+                    !(TimerAI_RangeAttack.getCurrentTime() > 0.22f)) { // 8
+
+                // running right ->
+                if (((EnemyKnightDevil) enemyObjectsKnights.get(0)).getIsRunningRight()) {
+                    ((EnemyKnightDevil) enemyObjectsKnights.get(0)).setIsRunningRight(false);
+                    System.out.println("running true, changing to false!! ");
+                }
+                ((EnemyKnightDevil) enemyObjectsKnights.get(0)).rangeAttack(null);
+                System.out.println("Range attack 1");
+            }
+        }
+
+        if( TimerAI_KnightBoss.getCurrentTime() >  1.5f && !(TimerAI_KnightBoss.getCurrentTime() >  1.6f) ) {
+            //sequenceBoolDone = true;
+            System.out.println("Boss time > 25f sequenceBoolDone");
+
+            TimerAI_KnightBoss.resetCurrentTime();
+            TimerAI_RangeAttack.resetCurrentTime();
+        }
+
+    }
+    /**  test working on */

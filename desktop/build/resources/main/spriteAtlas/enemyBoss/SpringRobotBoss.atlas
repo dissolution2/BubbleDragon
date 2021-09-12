@@ -1,0 +1,33 @@
+SpringRobotBoss.png
+size: 482, 138
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+SpringRobotBoss01
+  rotate: false
+  xy: 366, 1
+  size: 115, 133
+  orig: 130, 144
+  offset: 10, 6
+  index: -1
+SpringRobotBoss02
+  rotate: false
+  xy: 1, 1
+  size: 122, 121
+  orig: 130, 144
+  offset: 4, 0
+  index: -1
+SpringRobotBoss03
+  rotate: false
+  xy: 125, 1
+  size: 122, 120
+  orig: 130, 144
+  offset: 4, 2
+  index: -1
+SpringRobotBoss04
+  rotate: false
+  xy: 249, 1
+  size: 115, 136
+  orig: 130, 144
+  offset: 10, 4
+  index: -1

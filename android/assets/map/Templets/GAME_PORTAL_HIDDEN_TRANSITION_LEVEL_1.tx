@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+ <object name="GAME_PORTAL_HIDDEN_TRANSITION" width="36.6667" height="33">
+  <properties>
+   <property name="DESTINATION" value="2"/>
+   <property name="DIRECTION" value="V"/>
+   <property name="KEY_ACTIVE" value="true"/>
+   <property name="MAP LEVEL" value="1"/>
+   <property name="MAP WORLD" value="1"/>
+   <property name="PORTAL ID" value="0"/>
+   <property name="TRAVEL DIRECTION" value="LEFT DOWN"/>
+   <property name="TRAVEL LEVEL" value="2"/>
+   <property name="TRAVEL TYPE" value="LEVEL"/>
+   <property name="TRAVEL WORLD" value="1"/>
+  </properties>
+ </object>
+</template>

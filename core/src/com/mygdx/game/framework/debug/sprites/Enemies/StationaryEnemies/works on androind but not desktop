@@ -1,0 +1,162 @@
+// GameManagerAI Start
+
+ private void setEnemyMovingFallingActive(float dt) {
+
+
+        /** Moving Falling Enemy Stalgmites if one comes from othere direction cant have X < X then it must be X > X !!!
+         *
+         *  We can have Y if we want some to fall when we jump !!!
+         *
+         */
+        for(int i=0; i < gameMovingFallingEnemyList.size; i++ ) {
+
+            gameMovingFallingEnemyList.get(i).update(dt);
+
+            try {
+//System.out.println("failSafe is " + failSafe_On_Active);
+
+                float stalgShouldFall = ( gameMovingFallingEnemyList.get(i).getY() - (gamePlayer.getY() + 100 / GameUtility.PPM));
+/*
+                if(stalgShouldFall > 2.0f){
+                    System.out.println("stalgShouldFall > 2 ? " + stalgShouldFall);
+                }else{
+                    System.out.println("stalgShouldFall < 2 ? " + stalgShouldFall);
+                }
+*/
+                if( gameMovingFallingEnemyList.get(i).getX() < gamePlayer.getX() + 100 / GameUtility.PPM
+                        && gameMovingFallingEnemyList.get(i).getX() > gamePlayer.getX() - 100 / GameUtility.PPM
+                        && stalgShouldFall < 2f ) {
+
+                    //System.out.println("stalg Y " + gameMovingFallingEnemyList.get(i).getY() );
+                    //System.out.println("player Y " + (gamePlayer.getY() + 100 / GameUtility.PPM) );
+
+                    if( !((EnemyStalactite)gameMovingFallingEnemyList.get(i)).getIsDestroyed() ) {
+                        ((EnemyStalactite) gameMovingFallingEnemyList.get(i)).b2body.setActive(true);
+                        //failSafe_On_Active = true;
+                    }
+                }
+
+
+                if(((EnemyStalactite) gameMovingFallingEnemyList.get(i)).b2body.isActive() && ((EnemyStalactite) gameMovingFallingEnemyList.get(i)).getEnemyHitGround()){
+                    //if(((EnemyStalactite) gameMovingFallingEnemyList.get(i)).getEnemyHitGround()) {
+
+
+                        //graphicTimer += dt;
+                        //if(graphicTimer > 1.5f){
+
+                            ((EnemyStalactite) gameMovingFallingEnemyList.get(i)).die();
+
+                            if(((EnemyStalactite) gameMovingFallingEnemyList.get(i)).isDead()) {
+
+                                ((EnemyStalactite) gameMovingFallingEnemyList.get(i)).setToDestroyed(true);
+
+                                //gameMovingFallingEnemyList.removeIndex(i);
+                                System.out.println("Set to destroy true from AI !!!");
+                            }
+
+                            if(((EnemyStalactite) gameMovingFallingEnemyList.get(i)).getIsDestroyed()){
+                                gameMovingFallingEnemyList.removeIndex(i);
+                                System.out.println("Remove index on Stalg Size "  + gameMovingFallingEnemyList.size );
+                            }
+                            //if(((EnemyStalactite) gameMovingFallingEnemyList.get(i)).isDead()){
+
+                                //((EnemyStalactite) gameMovingFallingEnemyList.get(i)).b2body.setActive(false);
+
+                                //world.destroyBody( ((EnemyStalactite) gameMovingFallingEnemyList.get(i)).b2body);
+
+                                //gameMovingFallingEnemyList.removeIndex(i);
+                                //failSafe_On_Active = false;
+                            //}
+                        //    graphicTimer = 0;
+                        //}
+
+
+
+                        //((EnemyStalactite) gameMovingFallingEnemyList.get(i)).setdeath_Gapich_Timer_Active();
+                    //}
+
+                    //if(((EnemyStalactite) gameMovingFallingEnemyList.get(i)).getIsDestroyed() ) {
+
+                        //System.out.println("Falling Stig destroyed " + ((EnemyStalactite) gameMovingFallingEnemyList.get(i)).getIsDestroyed() );
+
+                        //System.out.println("stag list be for removeIndex " + gameMovingFallingEnemyList.size);
+                        //gameMovingFallingEnemyList.removeIndex(i);
+                        //System.out.println("stag list after removeIndex " + gameMovingFallingEnemyList.size);
+                      //  failSafe_On_Active = false;
+                    //}
+
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error on World remove object EnemyStalactite: " + e ); //+ " enemy ID: " + ((EnemyStalactite) gameMovingFallingEnemyList.get(i)).getClass() );
+            }
+
+        }
+    }
+
+// GameManagerAI End
+
+//EnemyStalactite update
+
+public void update(float dt) {
+        if(gameManagerAssetsInstance.getGameState() != GameManagerAssets.GameState.GAME_PAUSED ) {
+
+
+            if(enemyOnGround){
+                time_to_defineHit_Floor = true;
+                //System.out.println("Stalg on the floor");
+                //setdeath_Gapich_Timer_Active();
+            }
+
+            /** Stag Enemy after hit floor player don't take damage and cant move it */
+            if(time_to_defineHit_Floor){
+                defineMovingFallingEnemyHitFloor();
+                //System.out.println("define activated and timer");
+                //setToDestroy = true; // get's destroyed immediately
+                //death_Gapich_Timer_Activate = true;
+            }
+
+/*
+            if(death_Gapich_Timer_Activate){
+
+                death_Grapich_Timer += dt;
+//System.out.println("destroy timer: " + death_Grapich_Timer);
+                if(death_Grapich_Timer > 1.5f){
+
+System.out.println("setTodestroy id " + this.enemyID );
+                    setToDestroy = true;
+                    death_Gapich_Timer_Activate = false;
+                    death_Grapich_Timer = 0;
+                }
+            }
+*/
+            if(isDead()){
+                setToDestroy = true;
+  //              System.out.println("setToDestroy is true isDead with inn test!!");
+            }
+
+
+            if(setToDestroy && !destroyed) {
+//System.out.println("stalg object get's destroyed !! id " + this.enemyID );
+
+
+
+                world.destroyBody(this.b2body);
+                destroyed = true;
+System.out.println("EnemyStalcitite is destroyed");
+            }else if (!destroyed){
+
+                if(isHit()) {
+                   die();
+                }
+
+            }
+
+            setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+            setRegion(getFrame(dt));
+        }
+    }
+
+

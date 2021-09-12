@@ -1,0 +1,269 @@
+
+
+ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+ table_To_Chose_Life_Weapon_Skills = new Table();
+         table_Discription_Add_From_Life_Weapon_Skills = new Table();
+
+
+         table_To_Chose_Life_Weapon_Skills.add(imgLifePuzzleTwo); // life Image
+         table_To_Chose_Life_Weapon_Skills.add().size(20);
+         table_To_Chose_Life_Weapon_Skills.add(label_lifeForce_text);
+         table_To_Chose_Life_Weapon_Skills.add().size(20);
+         table_To_Chose_Life_Weapon_Skills.add();
+         table_To_Chose_Life_Weapon_Skills.add().size(20);
+         table_To_Chose_Life_Weapon_Skills.add();
+
+
+
+         /** Table Skills_To_Chose Start */
+
+         table_Discription_Add_From_Life_Weapon_Skills.add().size(5);
+         table_Discription_Add_From_Life_Weapon_Skills.add().size(5);
+         table_Discription_Add_From_Life_Weapon_Skills.add().size(15);
+         table_Discription_Add_From_Life_Weapon_Skills.add().size(5);
+
+         table_Discription_Add_From_Life_Weapon_Skills.add().row();
+         table_Discription_Add_From_Life_Weapon_Skills.add();
+         table_Discription_Add_From_Life_Weapon_Skills.add().size(5);
+         label_power_And_Skill_Discription.setText("Pick up life force crystal to extend your life\n" +
+                 "5 crystal's will forge into One life");
+         table_Discription_Add_From_Life_Weapon_Skills.add(label_power_And_Skill_Discription);
+         table_Discription_Add_From_Life_Weapon_Skills.add().row();
+         table_Discription_Add_From_Life_Weapon_Skills.add();//).size(5);
+         table_Discription_Add_From_Life_Weapon_Skills.add().size(5);
+         table_Discription_Add_From_Life_Weapon_Skills.add();//).size(5);
+
+         table_Discription_Add_From_Life_Weapon_Skills.add().size(5);
+         table_Discription_Add_From_Life_Weapon_Skills.add().row();
+         table_Discription_Add_From_Life_Weapon_Skills.add();//).size(5);
+         table_Discription_Add_From_Life_Weapon_Skills.add().size(5);
+         table_Discription_Add_From_Life_Weapon_Skills.add();//).size(5);
+         table_Discription_Add_From_Life_Weapon_Skills.add();//chosebutton);
+
+
+
+
+
+         tableTextHeadLineOne.add().size(25);
+         tableTextHeadLineOne.add(labelHeadLineOne).colspan(28);
+         tableTextHeadLineOne.add().size(25);
+
+         tableTextHeadLineTwo.add().size(25);
+         tableTextHeadLineTwo.add(labelHeadLineTwo).colspan(28);
+         tableTextHeadLineTwo.add().size(25);
+
+         tableTextHeadLineThree.add().size(25);
+         tableTextHeadLineThree.add(labelHeadLineThree).colspan(28);
+         tableTextHeadLineThree.add().size(25);
+
+
+
+         tablePowerImageOfPowerInUse.row();
+         tablePowerImageOfPowerInUse.add(imgPowerUnlocked);
+         tablePowerImageOfPowerInUse.add().size(5);
+         tablePowerImageOfPowerInUse.add(imgPowerLocked);
+         tablePowerImageOfPowerInUse.add().size(5);
+         tablePowerImageOfPowerInUse.add(imgPowerWeaponDefault);
+
+         /** -PARENT TABLE HOLDER- */
+
+         /** -PARENT TABLE HOLDER FOR PLAYER- */
+
+         /** -PARENT TABLE HOLDER FOR WEAPON- */
+
+         /** -PARENT TABLE HOLDER FOR SKILLS- */
+
+         tableMainFirstWindow.add(label_menu_player_text).colspan(28).row();
+         tableMainFirstWindow.add().size(10).colspan(28).row();
+         tableMainFirstWindow.add(table_Player_Button_Menu).colspan(28).row();
+
+         tableMainFirstWindow.add().size(40).colspan(28).row();
+
+         tableMainFirstWindow.add(label_menu_weapon_text).colspan(28).row();
+         tableMainFirstWindow.add().size(10).colspan(28).row();
+         tableMainFirstWindow.add(table_Weapon_Button_Menu).colspan(28).row();
+
+         tableMainFirstWindow.add().size(40).colspan(28).row();
+
+         tableMainFirstWindow.add(label_menu_skills_text).colspan(28).row();
+         tableMainFirstWindow.add().size(10).colspan(28).row();
+         tableMainFirstWindow.add(table_Skill_Button_Menu).colspan(28).row();
+
+         tableMainSecondWindow.add(tablePowerImageOfPowerInUse);
+
+         /**Text Headline One*/
+         //parentTableHolder.add(tableTextHeadLineOne).colspan(70).size(70,30).row();//.add(tablePowerTextOfPowerInUse).colspan(22).row(); // Text Headline - power in use - don't need to change
+
+
+
+         //parentTableHolder.add(table_Player_Button_Menu).colspan(28); // player main menu button , don't need to change.
+
+         //parentTableHolder.add(tablePowerImageOfPowerInUse).colspan(70).expand(70,0).row(); // this we ned to change what powers one chose
+         //parentTableHolder.add().colspan(70).expand(70,0).row(); // this we ned to change what powers one chose
+
+         //parentTableHolder.add(label_menu_weapon_text).colspan(28); // Menu Text over Weapon , don't need to change
+
+
+
+
+         /**Text Headline Two*/
+         //parentTableHolder.add(tableTextHeadLineTwo).colspan(70).size(70,30).row();//.add(tablePowerTextOfPowerLabel).colspan(22).row(); //ToDo: need to change !!!
+
+
+
+
+         //parentTableHolder.add(table_Weapon_Button_Menu).colspan(28); // weapon main menu button, don't need to change.
+         //parentTableHolder.add(table_To_Chose_Life_Weapon_Skills).colspan(70).row(); //ToDo: need to change !!
+         //parentTableHolder.add(label_menu_skills_text).colspan(28); // Menu Text over Skills , don't need to change
+
+
+         /**Text Headline Three*/
+         //parentTableHolder.add(tableTextHeadLineThree).colspan(70).size(70,30).row();//.add(tablePowerTextOfPowerDiscription).colspan(22).row();//label_skills_one).colspan(20).row(); //ToDo: need to change !!!
+
+
+
+         //parentTableHolder.add(table_Skill_Button_Menu).colspan(28); // Menu Skills button, don't need to change
+         //parentTableHolder.add(table_Discription_Add_From_Life_Weapon_Skills).colspan(70).row(); //ToDo: need to change !!!
+
+
+ \\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+  Table tablePowerText = new Table();
+//tablePowerText.setDebug(true);
+
+        //Table tablePowerImageOfPowerInUse = new Table();
+//tablePowerImageOfPowerInUse.setDebug(true);
+
+        Table tablePowerToChoseText = new Table();
+//bottomTablePickViewWeapon.setDebug(true);
+
+        Table tablePowerToChoseButtons = new Table();
+//tablePowerToChoseButtons.setDebug(true);
+
+        Table tablePowerDiscriptionText = new Table();
+
+        Table tablePowerDiscriptInfo = new Table();
+
+
+        Table parentTableMiddle = new Table();
+
+        Table parentTableLeftSide = new Table();
+//parentTableMiddle.setDebug(true);
+
+        //parentTableLeftSide.add(power_picked_label);
+
+        tablePowerText.add(power_picked_label); // Cell 1
+        tablePowerText.add().size(5); // 2
+        tablePowerText.add().size(5); // 3
+        tablePowerText.add().size(5); // 4
+        tablePowerText.add().size(5); // 5
+        tablePowerText.add().size(5); // 6
+        tablePowerText.add().size(5); // 7
+
+
+parentTableMiddle.add(tablePowerText);
+parentTableMiddle.row();
+parentTableMiddle.add().size(5);
+parentTableMiddle.row();
+
+//test
+
+        tablePowerImageOfPowerInUse_Active.add().size(5);
+        tablePowerImageOfPowerInUse_Active.add(imgPowerChosenOne);
+        tablePowerImageOfPowerInUse_Active.add().size(5);
+
+        tablePowerImageOfPowerInUse_InActive.add().size(5); // Cell 1
+        tablePowerImageOfPowerInUse_InActive.add(imgNotChosenPowerOne); //testButtonImage); // Cell 2
+        tablePowerImageOfPowerInUse_InActive.add().size(5);
+        tablePowerImageOfPowerInUse_InActive.add(imgNotChosenPowerTwo); //testButtonImage); // Cell 2
+        tablePowerImageOfPowerInUse_InActive.add().size(5);
+        //tablePowerImageOfPowerInUse_InActive.add(imgNotChosenWeaponDefault);
+        //tablePowerImageOfPowerInUse_InActive.add().size(5);
+
+        //tablePowerImageOfPowerInUse_Active.add().size(5);
+
+parentTableMiddle.add(tablePowerImageOfPowerInUse_Active);
+parentTableMiddle.add().size(5);
+parentTableMiddle.add(tablePowerImageOfPowerInUse_InActive);
+parentTableMiddle.row();
+parentTableMiddle.add().size(5);
+parentTableMiddle.row();
+
+        tablePowerToChoseText.add(power_to_picked_label);
+        tablePowerToChoseText.add().size(5); // 2
+        tablePowerToChoseText.add().size(5); // 3
+        tablePowerToChoseText.add().size(5); // 4
+        tablePowerToChoseText.add().size(5); // 5
+        tablePowerToChoseText.add().size(5); // 6
+        tablePowerToChoseText.add().size(5); // 7
+
+parentTableMiddle.add(tablePowerToChoseText);
+parentTableMiddle.row();
+parentTableMiddle.add().size(5);
+parentTableMiddle.row();
+
+        tablePowerToChoseButtons.add().size(5); // Cell 1
+        tablePowerToChoseButtons.add(testButtonImage); //testButtonImage_4); // Cell 2
+        tablePowerToChoseButtons.add().size(5); // Cell 3
+        tablePowerToChoseButtons.add(power_one_Label);
+        tablePowerToChoseButtons.add().size(5); // Cell 3
+        tablePowerToChoseButtons.add(testButtonImage_2); // Cell 4
+        tablePowerToChoseButtons.add().size(5); // Cell 5
+        tablePowerToChoseButtons.add(power_two_Label);
+        tablePowerToChoseButtons.add().size(5); // Cell 5
+
+        tablePowerToChoseButtons.add(testButtonImage_3); // Cell 6
+        tablePowerToChoseButtons.add().size(5); // Cell 7
+        tablePowerToChoseButtons.add(power_three_Label);
+        tablePowerToChoseButtons.add().size(5); // Cell 7
+
+        tablePowerToChoseButtons.row();
+        tablePowerToChoseButtons.add().size(10); // Cell 7
+        tablePowerToChoseButtons.row();
+
+        tablePowerToChoseButtons.add().size(5); // Cell 1
+        tablePowerToChoseButtons.add(testButtonImage_4); //testButtonImage_4); // Cell 2
+        tablePowerToChoseButtons.add().size(5); // Cell 3
+        tablePowerToChoseButtons.add(power_four_Label);
+        tablePowerToChoseButtons.add().size(5); // Cell 3
+        tablePowerToChoseButtons.add(testButtonImage_5); // Cell 4
+        tablePowerToChoseButtons.add().size(5); // Cell 5
+        tablePowerToChoseButtons.add(power_five_Label);
+        tablePowerToChoseButtons.add().size(5); // Cell 5
+        tablePowerToChoseButtons.add(testButtonImage_6); // Cell 6
+        tablePowerToChoseButtons.add().size(5); // Cell 7
+        tablePowerToChoseButtons.add(power_six_Label);
+        tablePowerToChoseButtons.add().size(5); // Cell 7
+
+parentTableMiddle.add(tablePowerToChoseButtons);
+parentTableMiddle.row();
+parentTableMiddle.add().size(5);
+parentTableMiddle.row();
+
+        tablePowerDiscriptionText.add(power_Discription_of_Power_label);
+        tablePowerDiscriptionText.add().size(5); // 2
+        tablePowerDiscriptionText.add().size(5); // 3
+        tablePowerDiscriptionText.add().size(5); // 4
+        tablePowerDiscriptionText.add().size(5); // 5
+        tablePowerDiscriptionText.add().size(5); // 6
+        tablePowerDiscriptionText.add().size(5); // 7
+
+parentTableMiddle.add(tablePowerDiscriptionText);
+parentTableMiddle.row();
+parentTableMiddle.add().size(5);
+parentTableMiddle.row();
+
+        tablePowerDiscriptInfo.add(power_discription_message_Label);
+
+parentTableMiddle.add(tablePowerDiscriptInfo);
+
+        //gameMap.add(tablePowerText).padRight(90).padTop(-70);
+        //gameMap.add().row();
+
+        //gameMap.add(parentTableLeftSide).padLeft(-90);
+        //gameMap.add(parentTableLeftSide).padLeft(-90).padTop(-20);
+        gameMap.add(parentTableMiddle).padTop(-20); //.padLeft(-90).padTop(-70);
+
+        //gameMap.add(topTableOverViewOfPowers).expandX().pad(40);

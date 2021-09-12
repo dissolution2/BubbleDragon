@@ -1,0 +1,12 @@
+ItemPowerUpWJAtlas.png
+size: 67, 84
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+powerUp
+  rotate: false
+  xy: 1, 1
+  size: 65, 82
+  orig: 65, 82
+  offset: 0, 0
+  index: -1
