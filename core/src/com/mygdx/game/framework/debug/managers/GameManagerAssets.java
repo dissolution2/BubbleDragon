@@ -106,6 +106,8 @@ public class GameManagerAssets {
     private int foPlayerMainLife;
     private BubblePlayer bubblePlayer;
 
+    private int foSavePowerCrystalInUse;
+
     private int foSaveGreenPowerCrystal;
     private int foSaveBlackPowerCrystal;
     private int foSaveBluePowerCrystal;
@@ -305,6 +307,7 @@ public class GameManagerAssets {
         System.out.println("\tSavePointMarker: " + saveGamePlayerDataHolderClass.getSavePointMarker() );
         System.out.println("\tMainLife " + saveGamePlayerDataHolderClass.getSavePlayerMainLife() );
         System.out.println("\tHighScores " + saveGamePlayerDataHolderClass.getSaveHighScores() );
+        System.out.println("\tPower In Use " + saveGamePlayerDataHolderClass.getSavePlayerPowerCrystalInUse() );
 
         System.out.println("\tPower Crystals ");
         System.out.println("\t\tGreen " + saveGamePlayerDataHolderClass.getPowerCrystalGreen() );
@@ -1040,6 +1043,8 @@ public class GameManagerAssets {
             saveGamePlayerDataHolderClass.setSavePointPowerCrystalBlue(this.bubblePlayer.getBallooneBulletBlue());
             saveGamePlayerDataHolderClass.setSavePointPowerCrystalRed(this.bubblePlayer.getBallooneBulletRed());
 
+            saveGamePlayerDataHolderClass.setSavePlayerPoserCrystalInUse(this.bubblePlayer.getPlayerActvieShootingPower());
+
             gameManagerPlayerDataReadWriteSave();
         }else{
             //System.out.println("GameManagerAssets Class SaveFile Don't Exists!!" );
@@ -1048,6 +1053,8 @@ public class GameManagerAssets {
             saveGamePlayerDataHolderClass.setSavePointPosition(position);
             saveGamePlayerDataHolderClass.setSavePointMarker(savepoint);
             saveGamePlayerDataHolderClass.setSavePlayerMainLife(this.bubblePlayer.updatePlayerLifeToHudAndSaveOnExit());
+
+            saveGamePlayerDataHolderClass.setSavePlayerPoserCrystalInUse(this.bubblePlayer.getPlayerActvieShootingPower());
 
             /** Not sure ?!! */
             saveGamePlayerDataHolderClass.setSavePointPowerCrystalGreen(this.bubblePlayer.getBallooneBulletGreen());

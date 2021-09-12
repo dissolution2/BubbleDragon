@@ -173,11 +173,11 @@ public class BubblePlayer extends Sprite implements Serializable {
     private GameManagerAssets gameManagerAssetsInstance;
 
     // remove playScreen , PlayScreen playScreen???
-    public BubblePlayer(World world, Vector2 spawn, int hudlife, int maxHitperMainLifeLosted, int pwGreen, int pwBlack, int pwBlue, int pwRed, boolean mapWT, boolean mapLT, GameManagerAssets instance) {
-        init(world, spawn, hudlife, maxHitperMainLifeLosted, pwGreen, pwBlack, pwBlue, pwRed, mapWT, mapLT, instance );
+    public BubblePlayer(World world, Vector2 spawn, int hudlife, int maxHitperMainLifeLosted, String pwInUse, int pwGreen, int pwBlack, int pwBlue, int pwRed, boolean mapWT, boolean mapLT, GameManagerAssets instance) {
+        init(world, spawn, hudlife, maxHitperMainLifeLosted, pwInUse, pwGreen, pwBlack, pwBlue, pwRed, mapWT, mapLT, instance );
     }
 //, PlayScreen playScreen
-    public void init(World world, Vector2 spawnPos, int hudLife, int maxHitperMainLifeLosted, int pwGreen, int pwBlack, int pwBlue, int pwRed, boolean mapWT, boolean mapLT, GameManagerAssets instance){
+    public void init(World world, Vector2 spawnPos, int hudLife, int maxHitperMainLifeLosted, String pwInUse, int pwGreen, int pwBlack, int pwBlue, int pwRed, boolean mapWT, boolean mapLT, GameManagerAssets instance){
 
 
 

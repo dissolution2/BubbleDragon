@@ -18,6 +18,7 @@ public class SaveGamePlayerDataHolderClass implements Serializable{
     private String level;
     private String savePointID;
     private int powerCrystalGreen, powerCrystalBlack, powerCrystalBlue, powerCrystalRed;
+    private String powerCrystalInUse;
     private ArrayList<PowerUp> playerPowerUpList = new ArrayList<PowerUp>();
 
     int playerMainLife;
@@ -30,6 +31,7 @@ public class SaveGamePlayerDataHolderClass implements Serializable{
         this.level = null;
         this.savePointID = null;
         this.playerMainLife = 0;
+        this.powerCrystalInUse = "1";
     }
 
     public String getSavePointWorld() { return this.world; }
@@ -38,6 +40,8 @@ public class SaveGamePlayerDataHolderClass implements Serializable{
     public Vector2 getSavePointPosition(){ return this.savePointPosition; }
     public ArrayList<PowerUp> getPlayerPowerUpList(){return this.playerPowerUpList; }
 
+    public  String getSavePlayerPowerCrystalInUse(){ return this.powerCrystalInUse; }
+    public void setSavePlayerPoserCrystalInUse(String v) { this.powerCrystalInUse = v; }
 
     public void setPlayerPowerTree(String value){
 

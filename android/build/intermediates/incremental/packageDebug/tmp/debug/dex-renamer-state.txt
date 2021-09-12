@@ -1,4 +1,4 @@
-#Sat Sep 11 11:01:31 CEST 2021
+#Sun Sep 12 11:55:06 CEST 2021
 base.0=G\:\\Programming\\ProsjektFolders\\androidStudioWorkspace\\ProFrameWorkBubbleDragon\\BubbleDragon\\android\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
