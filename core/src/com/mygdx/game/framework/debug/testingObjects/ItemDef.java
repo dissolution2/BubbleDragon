@@ -2,9 +2,7 @@ package com.mygdx.game.framework.debug.testingObjects;
 
 import com.badlogic.gdx.math.Vector2;
 
-/**
- * Created by brentaureli on 9/24/15.
- */
+
 public class ItemDef {
     public Vector2 position;
     public Class<?> type;

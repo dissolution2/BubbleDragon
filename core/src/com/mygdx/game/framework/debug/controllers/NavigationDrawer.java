@@ -10,9 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
 import com.badlogic.gdx.utils.Align;
 
-/**
- * @author Crowni
- */
+
 public class NavigationDrawer extends Table {
 
     // only visual window and using scissor to avoid GPU to draw out of left-edge screen.

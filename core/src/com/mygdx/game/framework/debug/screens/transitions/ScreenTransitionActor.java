@@ -8,10 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-/**
- * eks from Bludourne
- *
- */
+
 public class ScreenTransitionActor extends Image {
     private Color transitionColor = Color.BLACK;
 

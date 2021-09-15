@@ -9,9 +9,7 @@ import com.mygdx.game.framework.debug.screens.PlayScreen;
 import com.mygdx.game.framework.debug.sprites.BubblePlayer;
 import com.mygdx.game.framework.debug.util.GameUtility;
 
-/**
- * Created by brentaureli on 9/24/15.
- */
+
 public abstract class Item extends Sprite {
     protected PlayScreen screen;
     protected World world;

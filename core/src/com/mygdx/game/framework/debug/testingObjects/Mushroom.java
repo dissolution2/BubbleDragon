@@ -8,9 +8,7 @@ import com.mygdx.game.framework.debug.screens.PlayScreen;
 import com.mygdx.game.framework.debug.sprites.BubblePlayer;
 import com.mygdx.game.framework.debug.util.GameUtility;
 
-/**
- * Created by brentaureli on 9/24/15.
- */
+
 public class Mushroom extends Item {
     public Mushroom(PlayScreen screen, float x, float y) {
         super(screen, x, y);

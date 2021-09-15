@@ -11,8 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 /**
  * Representation of the circular cooldown optimized for spell bar component.
- *
- * @author serhiy
  */
 public class CooldownTimer extends Table {
 

@@ -17,7 +17,7 @@ import java.util.Stack;
 
 public class GameSteeringStateManagerEnemy {
 
-    public NameGame app;
+    private NameGame app;
     public enum State {
         // Decision AI
         FSM,

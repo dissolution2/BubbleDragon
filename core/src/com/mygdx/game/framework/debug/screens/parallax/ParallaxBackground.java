@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 
-/** Created by julienvillegas on 20/01/2017. */
+
 
 public class ParallaxBackground extends Actor {
 
