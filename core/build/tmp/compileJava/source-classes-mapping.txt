@@ -11,14 +11,12 @@ com/mygdx/game/framework/debug/ai/utils/EntityLocation.java
  com.mygdx.game.framework.debug.ai.utils.EntityLocation
 com/mygdx/game/framework/debug/sprites/items/KeyGameItem.java
  com.mygdx.game.framework.debug.sprites.items.KeyGameItem
-com/mygdx/game/framework/debug/util/DrawerPauseScreenUtils.java
- com.mygdx.game.framework.debug.util.DrawerPauseScreenUtils
+com/mygdx/game/framework/debug/screens/parallax/ParallaxBackground.java
+ com.mygdx.game.framework.debug.screens.parallax.ParallaxBackground
 com/mygdx/game/framework/debug/ai/utils/B2DSteeringUtils.java
  com.mygdx.game.framework.debug.ai.utils.B2DSteeringUtils
 com/mygdx/game/framework/debug/screens/GameTime.java
  com.mygdx.game.framework.debug.screens.GameTime
-com/mygdx/game/framework/debug/ai/steering/steeringbehavior/FormationState.java
- com.mygdx.game.framework.debug.ai.steering.steeringbehavior.FormationState
 com/mygdx/game/framework/debug/util/FloatingText.java
  com.mygdx.game.framework.debug.util.FloatingText
 com/mygdx/game/framework/debug/audio/AudioManager.java
@@ -26,21 +24,32 @@ com/mygdx/game/framework/debug/audio/AudioManager.java
  com.mygdx.game.framework.debug.audio.AudioManager$1
 com/mygdx/game/framework/debug/managers/GameManagerAITimer.java
  com.mygdx.game.framework.debug.managers.GameManagerAITimer
-com/mygdx/game/framework/debug/util/TextManager.java
- com.mygdx.game.framework.debug.util.TextManager
+com/mygdx/game/framework/debug/ai/steering/steeringbehavior/FormationState.java
+ com.mygdx.game.framework.debug.ai.steering.steeringbehavior.FormationState
+com/mygdx/game/framework/debug/util/DrawerPauseScreenUtils.java
+ com.mygdx.game.framework.debug.util.DrawerPauseScreenUtils
 com/mygdx/game/framework/debug/ai/steering/SteeringEntityEnemy.java
  com.mygdx.game.framework.debug.ai.steering.SteeringEntityEnemy
 com/mygdx/game/framework/debug/util/GameUtility.java
  com.mygdx.game.framework.debug.util.GameUtility
 com/mygdx/game/framework/debug/screens/GameScreen.java
  com.mygdx.game.framework.debug.screens.GameScreen
-com/mygdx/game/framework/debug/managers/RayCastManager.java
- com.mygdx.game.framework.debug.managers.RayCastManager
- com.mygdx.game.framework.debug.managers.RayCastManager$1
- com.mygdx.game.framework.debug.managers.RayCastManager$RayCastRequest
+com/mygdx/game/framework/debug/controllers/CooldownTimer.java
+ com.mygdx.game.framework.debug.controllers.CooldownTimer
 com/mygdx/game/framework/debug/screens/parallax/ParallaxScreen.java
  com.mygdx.game.framework.debug.screens.parallax.ParallaxScreen
  com.mygdx.game.framework.debug.screens.parallax.ParallaxScreen$ParallaxCamera
+com/mygdx/game/framework/debug/util/TextManager.java
+ com.mygdx.game.framework.debug.util.TextManager
+com/mygdx/game/framework/debug/util/FPSLogger.java
+ com.mygdx.game.framework.debug.util.FPSLogger
+com/mygdx/game/framework/debug/audio/AudioSubject.java
+ com.mygdx.game.framework.debug.audio.AudioSubject
+com/mygdx/game/framework/debug/controllers/Button.java
+ com.mygdx.game.framework.debug.controllers.Button
+com/mygdx/game/framework/debug/screens/ParallaxGameScreen.java
+ com.mygdx.game.framework.debug.screens.ParallaxGameScreen
+ com.mygdx.game.framework.debug.screens.ParallaxGameScreen$ParallaxCamera
 com/mygdx/game/framework/debug/SaveGameWorldDataHolderClass.java
  com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass
  com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$DoorSwitchSaveObject
@@ -48,20 +57,25 @@ com/mygdx/game/framework/debug/SaveGameWorldDataHolderClass.java
  com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$KeysSaveObject
  com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$LevelSaveObject
  com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$WorldSaveObject
-com/mygdx/game/framework/debug/util/FPSLogger.java
- com.mygdx.game.framework.debug.util.FPSLogger
-com/mygdx/game/framework/debug/audio/AudioObserver.java
- com.mygdx.game.framework.debug.audio.AudioObserver
- com.mygdx.game.framework.debug.audio.AudioObserver$AudioCommand
- com.mygdx.game.framework.debug.audio.AudioObserver$AudioTypeEvent
-com/mygdx/game/framework/debug/controllers/Button.java
- com.mygdx.game.framework.debug.controllers.Button
 com/mygdx/game/framework/debug/screens/transitions/ScreenTransitionAction.java
  com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionAction
  com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionAction$1
  com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionAction$ScreenTransitionType
-com/mygdx/game/framework/debug/audio/AudioSubject.java
- com.mygdx.game.framework.debug.audio.AudioSubject
+com/mygdx/game/framework/debug/testingObjects/ItemDef.java
+ com.mygdx.game.framework.debug.testingObjects.ItemDef
+com/mygdx/game/framework/debug/audio/AudioObserver.java
+ com.mygdx.game.framework.debug.audio.AudioObserver
+ com.mygdx.game.framework.debug.audio.AudioObserver$AudioCommand
+ com.mygdx.game.framework.debug.audio.AudioObserver$AudioTypeEvent
+com/mygdx/game/framework/debug/managers/RayCastManager.java
+ com.mygdx.game.framework.debug.managers.RayCastManager
+ com.mygdx.game.framework.debug.managers.RayCastManager$1
+ com.mygdx.game.framework.debug.managers.RayCastManager$RayCastRequest
+com/mygdx/game/framework/debug/screens/transitions/ScreenTransitionActor.java
+ com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionActor
+com/mygdx/game/framework/debug/controllers/NavigationDrawer.java
+ com.mygdx.game.framework.debug.controllers.NavigationDrawer
+ com.mygdx.game.framework.debug.controllers.NavigationDrawer$NavigationDrawerListener
 com/mygdx/game/framework/debug/sprites/Enemies/EnemyB.java
  com.mygdx.game.framework.debug.sprites.Enemies.EnemyB
  com.mygdx.game.framework.debug.sprites.Enemies.EnemyB$1
@@ -129,8 +143,6 @@ com/mygdx/game/framework/debug/sprites/Enemies/StationaryEnemies/EnemyVineThorns
  com.mygdx.game.framework.debug.sprites.Enemies.StationaryEnemies.EnemyVineThorns
 com/mygdx/game/framework/debug/sprites/items/SpawnPoint.java
  com.mygdx.game.framework.debug.sprites.items.SpawnPoint
-com/mygdx/game/framework/debug/controllers/CooldownTimer.java
- com.mygdx.game.framework.debug.controllers.CooldownTimer
 com/mygdx/game/framework/debug/sprites/powers/FireBall.java
  com.mygdx.game.framework.debug.sprites.powers.FireBall
 com/mygdx/game/framework/debug/world/gamePfxObject/GamePfxObject.java
@@ -146,9 +158,6 @@ com/mygdx/game/framework/debug/world/MapInfo.java
  com.mygdx.game.framework.debug.world.MapInfo
 com/mygdx/game/framework/debug/sprites/items/SavePoint.java
  com.mygdx.game.framework.debug.sprites.items.SavePoint
-com/mygdx/game/framework/debug/screens/ParallaxGameScreen.java
- com.mygdx.game.framework.debug.screens.ParallaxGameScreen
- com.mygdx.game.framework.debug.screens.ParallaxGameScreen$ParallaxCamera
 com/mygdx/game/framework/debug/sprites/items/DragonEggGameItem.java
  com.mygdx.game.framework.debug.sprites.items.DragonEggGameItem
 com/mygdx/game/framework/debug/sprites/Enemies/SmallEnemyDef.java
@@ -166,20 +175,13 @@ com/mygdx/game/framework/debug/sprites/Enemies/MovingFallingEnemy/EnemyStalactit
  com.mygdx.game.framework.debug.sprites.Enemies.MovingFallingEnemy.EnemyStalactite
  com.mygdx.game.framework.debug.sprites.Enemies.MovingFallingEnemy.EnemyStalactite$1
  com.mygdx.game.framework.debug.sprites.Enemies.MovingFallingEnemy.EnemyStalactite$EnemyState
-com/mygdx/game/framework/debug/screens/transitions/ScreenTransitionActor.java
- com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionActor
 com/mygdx/game/framework/debug/screens/LoadingScreen.java
  com.mygdx.game.framework.debug.screens.LoadingScreen
-com/mygdx/game/framework/debug/controllers/NavigationDrawer.java
- com.mygdx.game.framework.debug.controllers.NavigationDrawer
- com.mygdx.game.framework.debug.controllers.NavigationDrawer$NavigationDrawerListener
 com/mygdx/game/framework/debug/managers/GameManagerAssets.java
  com.mygdx.game.framework.debug.managers.GameManagerAssets
  com.mygdx.game.framework.debug.managers.GameManagerAssets$GameState
 com/mygdx/game/framework/debug/world/gameObjects/GameObjectSwitchHidden.java
  com.mygdx.game.framework.debug.world.gameObjects.GameObjectSwitchHidden
-com/mygdx/game/framework/debug/screens/parallax/ParallaxBackground.java
- com.mygdx.game.framework.debug.screens.parallax.ParallaxBackground
 com/mygdx/game/framework/debug/sprites/Enemies/BossEnemy/EnemyKnightDevil.java
  com.mygdx.game.framework.debug.sprites.Enemies.BossEnemy.EnemyKnightDevil
  com.mygdx.game.framework.debug.sprites.Enemies.BossEnemy.EnemyKnightDevil$1
@@ -228,8 +230,6 @@ com/mygdx/game/framework/debug/ai/steering/steeringbehavior/boss/BaseStateBoss.j
  com.mygdx.game.framework.debug.ai.steering.steeringbehavior.boss.BaseStateBoss
 com/mygdx/game/framework/debug/sprites/GraphicsAnimations/AnimationItemDef.java
  com.mygdx.game.framework.debug.sprites.GraphicsAnimations.AnimationItemDef
-com/mygdx/game/framework/debug/testingObjects/ItemDef.java
- com.mygdx.game.framework.debug.testingObjects.ItemDef
 com/mygdx/game/framework/debug/sprites/items/TreasureChestGameItem.java
  com.mygdx.game.framework.debug.sprites.items.TreasureChestGameItem
 com/mygdx/game/framework/debug/world/gameObjects/GameObjectDef.java

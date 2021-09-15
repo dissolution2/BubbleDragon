@@ -201,7 +201,7 @@ public class BubblePlayer extends Sprite implements Serializable {
 
         /** Set's the player power to Default */
         //ToDo:: Set the player power from last saveGame if it exist
-        this.playerActiveShootingPower = "1";
+        this.playerActiveShootingPower = pwInUse; //"1";
 
 
 

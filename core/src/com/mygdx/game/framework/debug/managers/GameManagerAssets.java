@@ -106,7 +106,7 @@ public class GameManagerAssets {
     private int foPlayerMainLife;
     private BubblePlayer bubblePlayer;
 
-    private int foSavePowerCrystalInUse;
+    private String foSavePowerCrystalInUse;
 
     private int foSaveGreenPowerCrystal;
     private int foSaveBlackPowerCrystal;
@@ -922,7 +922,7 @@ public class GameManagerAssets {
         return Gdx.files.local("world.dat").exists();
     }
 
-
+        /** not in use - old */
     public void setSaveGamePlayerStatsGameOverSpawnLastSavePoint(){
 /*
         Vector2 foPlayerPosition = new Vector2();
@@ -989,6 +989,8 @@ public class GameManagerAssets {
             foSavePointMarker = saveGamePlayerDataHolderClass.getSavePointMarker();
             foSaveHighScores = saveGamePlayerDataHolderClass.getSaveHighScores();
 
+            foSavePowerCrystalInUse = this.bubblePlayer.getPlayerActvieShootingPower();
+
             /** Players Power Pool Crystal's */
             foSaveGreenPowerCrystal = this.bubblePlayer.getBallooneBulletGreen();
             foSaveBlackPowerCrystal = this.bubblePlayer.getBallooneBulletBlack();
@@ -1001,6 +1003,8 @@ public class GameManagerAssets {
             saveGamePlayerDataHolderClass.setSavePointMarker(foSavePointMarker);
             saveGamePlayerDataHolderClass.setSavePointWorld(foSavePointWorld);
             saveGamePlayerDataHolderClass.setSaveHighScores(foSaveHighScores);
+
+            saveGamePlayerDataHolderClass.setSavePlayerPoserCrystalInUse(foSavePowerCrystalInUse);
 
             /** Players Power Pool Crystal's */
             saveGamePlayerDataHolderClass.setSavePointPowerCrystalGreen(foSaveGreenPowerCrystal);

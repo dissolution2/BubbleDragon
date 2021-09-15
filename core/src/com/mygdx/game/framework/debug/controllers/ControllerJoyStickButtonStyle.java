@@ -48,6 +48,10 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
     private boolean power_Change_from_green_pressed = false;
     private boolean power_Change_from_blue_pressed = false;
 
+    /** Add more for each power we bring in to the game!! */
+    private boolean power_IsBlueActive = false; // as default set by GUI.
+    private boolean power_IsGreenActive = true; // as default set by GUI.
+
     private Touchpad touchpad;
     private TouchpadStyle touchpadStyle;
     private Skin touchpadSkin;
@@ -284,7 +288,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
 
                             //System.out.println("ControllJoyStickButtonStyle: power_chose pressed"); // ????
 
-                            System.out.println("ControllJoyStickButtonStyle initButton change fire Blue amo count is " +
+                            System.out.println("ControllJoyStickButtonStyle initButton change fire Blue amo count is: " +
                                     player.getBallooneBulletBlue() + " is blu weapon known " +
                                     player.getPlayerKnownWeaponPowerBlue() );
 
@@ -293,6 +297,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
                                 System.out.println("ControllJoyStickButtonStyle initButton: Power weapon blue is known to player!!");
                                 if(player.getBallooneBulletBlue() > 0 ) {
                                     power_Change_from_green_pressed = true;
+
                                 }
                             }
                         }
@@ -1122,24 +1127,45 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
         //Gdx.gl.glClearColor(0, 0, 0, 1);
         //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+//ToDo: change when we move form world or level last power in use, if that power has bullets left.
 
         //System.out.println("ControllJoyStickButtonStyle change fire Blue amo count is " + player.getBallooneBulletBlue());
-        if(player.getPlayerActvieShootingPower() == "2") {
 
-            if(player.getBallooneBulletBlue() == 0 ) {
+        /**
+         * playerActiveShootingPower - change from active pushing button in game or from moving player world or level = saveGame!!
+         */
+
+
+        if(player.getPlayerActvieShootingPower() == "2" && power_IsGreenActive){
+
+            remove_PowerButton_Green_Add_PowerButton_Blue();
+            power_IsGreenActive = false;
+            power_IsBlueActive = true;
+
+        }else if(player.getPlayerActvieShootingPower() == "1" && power_IsBlueActive){
+
+            remove_PowerButton_Blue_Add_PowerButton_Green();
+            power_IsBlueActive = false;
+            power_IsGreenActive = true;
+        }
+
+        if(player.getPlayerActvieShootingPower() == "2" && player.getBallooneBulletBlue() == 0) {
+
+            //if(player.getBallooneBulletBlue() == 0 ) {
 
                 remove_PowerButton_Blue_Add_PowerButton_Green();
                 player.setPlayerActiveShootingPower("1");
                 power_Change_from_blue_pressed = false;
-            }
+            //}
         }
 
 
-        if(power_Change_from_green_pressed){
+        if(power_Change_from_green_pressed) { // || player.getPlayerActvieShootingPower() == "2" ){
             System.out.println("ControllerJoyStickButton -render: power_Change_from_green_pressed = true!! ");
 
-            //stage.clear();
-            //initJoystick();
+            power_IsBlueActive = true;
+            power_IsGreenActive = false;
+
             remove_PowerButton_Green_Add_PowerButton_Blue();
             player.setPlayerActiveShootingPower("2");
             power_Change_from_green_pressed = false;
@@ -1148,8 +1174,9 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
         if(power_Change_from_blue_pressed){
             System.out.println("ControllerJoyStickButton -render: power_Change_from_blue_pressed = true!! ");
 
-            //stage.clear();
-            //initJoystick();
+            power_IsBlueActive = false;
+            power_IsGreenActive = true;
+
             remove_PowerButton_Blue_Add_PowerButton_Green();
             player.setPlayerActiveShootingPower("1");
             power_Change_from_blue_pressed = false;
