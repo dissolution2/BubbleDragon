@@ -126,6 +126,8 @@ public class PlayScreen extends GameScreen {
 
     //sprites
     private BubblePlayer bubble;
+    private String playerActivePowerInUse;
+    private BubblePlayer netWorkPlayerBubble;
 
     private RayHandler rayHandler;
     private PointLight myLight;
@@ -283,11 +285,15 @@ public class PlayScreen extends GameScreen {
     // if implement drawer fails - updateAllSpawnLifeFromEnemy making this super and invoke render etc in gameScreen to updateAllSpawnLifeFromEnemy with stage there!!!
     public PlayScreen(NameGame game, String mapW, String mapL, GameManagerAssets instance) {
 
+/** network testing */
         connectSocket();
         configSocketEvents();
         friendlyPlayers = new HashMap<String, BubblePlayer>();
-
+/** network testing */
         this.gameManagerAssetsInstance = instance;
+
+        //this.playerActivePowerInUse = this.gameManagerAssetsInstance.getSaveGamePlayerDataHolderClass().getSavePlayerPowerCrystalInUse();
+
         fpsLogger = new FPSLogger();
 
         //effect = new ParticleEffect();
@@ -307,14 +313,23 @@ public class PlayScreen extends GameScreen {
         //Gdx.input.setCatchBackKey(true); // deprecated
         Gdx.input.setCatchKey(Input.Keys.BACK, true);
 
+
+        //System.out.println("PlayScreen Class: player CurrentPower is: " + this.playerActivePowerInUse);
+        // tried with if test on power to change default buttons but if test would not work ???
+
+
+        //ToDo: Might move this to GameManagerAssets as we have default powers 1 and if a save game is active
+        //ToDo: the player power might be different - changing it her if test did not work !!! don't know why it failed.
+
+        //ToDo: the problem is with save game active the power can be different from what actual power in use is !!! Visually
+
         this.main_action_bar_buttons_list = new ArrayList<Button>();
         main_action_bar_buttons_list.add(new Button("jump", 0, new Action()));
         main_action_bar_buttons_list.add(new Button("attack_one", 1.8f, new Action())); // 0.5f attack_two
-        main_action_bar_buttons_list.add(new Button("power_one", 1.5f, new Action()) );
+        main_action_bar_buttons_list.add(new Button("power_one", 1.5f, new Action()));
         //main_action_bar_buttons_list.add(new Button("power_two", 1.5f, new Action()) );
-        main_action_bar_buttons_list.add(new Button("meny_power", 0, new Action()) );
-        main_action_bar_buttons_list.add(new Button("power_chgreen", 0, new Action()) );
-
+        main_action_bar_buttons_list.add(new Button("meny_power", 0, new Action()));
+        main_action_bar_buttons_list.add(new Button("power_chgreen", 0, new Action()));
 
         this.quick_bar_buttons_list = new ArrayList<Button>();
         quick_bar_buttons_list.add(new Button("meny_power", 1.8f, new Action()) );
@@ -468,6 +483,7 @@ public class PlayScreen extends GameScreen {
                 // player died or new load game from menu
                 gamecam.position.set(gameManagerAssetsInstance.getSaveGamePlayerDataHolderClass().getSavePointPosition(),0);
 // 2second this, - removed (its playScreen)
+/** Player Created */
                 bubble = new BubblePlayer(world,
                         gameManagerAssetsInstance.getSaveGamePlayerDataHolderClass().getSavePointPosition(),
                         gameManagerAssetsInstance.getSaveGamePlayerDataHolderClass().getSavePlayerMainLife(),
@@ -609,7 +625,7 @@ public class PlayScreen extends GameScreen {
 
                     //System.out.println("old Level: " + GameManagerAssets.instance.getOldCurrentLevel() );
                     //System.out.println("new Level: " + GameManagerAssets.instance.getNewCurrentLevel() );
-
+/** Player Created */
                     bubble = new BubblePlayer(world,gameManagerAssetsInstance.getMapSpawnStartPosition(),
                             gameManagerAssetsInstance.getSaveGamePlayerDataHolderClass().getSavePlayerMainLife(),
                             gameManagerAssetsInstance.getMaxLifeLostOnHitGameManagerAssets(),
@@ -755,7 +771,7 @@ public class PlayScreen extends GameScreen {
                     //System.out.println("new Level: " + GameManagerAssets.instance.getNewCurrentLevel() );
 
                     gamecam.position.set(gameManagerAssetsInstance.getMapSpawnStartPosition(),0);
-
+/** Player Created */
                     bubble = new BubblePlayer(world,gameManagerAssetsInstance.getMapSpawnStartPosition(),
                             gameManagerAssetsInstance.getSaveGamePlayerDataHolderClass().getSavePlayerMainLife(),
                             gameManagerAssetsInstance.getMaxLifeLostOnHitGameManagerAssets(),
@@ -795,7 +811,7 @@ public class PlayScreen extends GameScreen {
             //}
 
             gamecam.position.set(gameManagerAssetsInstance.getMapSpawnStartPosition(),0);
-
+/** Player Created */
             bubble = new BubblePlayer(world, gameManagerAssetsInstance.getMapSpawnStartPosition(), 1,
                     gameManagerAssetsInstance.getMaxLifeLostOnHitGameManagerAssets(),
                     "1",
@@ -1013,7 +1029,9 @@ public class PlayScreen extends GameScreen {
 
     }
 
-    /** NetWork */
+    /** NetWork MultiPlayer testing with inn the same structure as a basic test!!
+     * might be to simple of a test to make it work - ned a new player to draw and test on !!!
+     * */
     //ToDo:: redo all it, works but not as intended!!
     public void configSocketEvents(){
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
@@ -1027,7 +1045,6 @@ public class PlayScreen extends GameScreen {
             public void call(Object... args) {
                 JSONObject data = (JSONObject) args[0];
                 try {
-
                     id = data.getString("id");
                     Gdx.app.log("SocketIO", "My ID: " + id);
                 } catch (JSONException e) {

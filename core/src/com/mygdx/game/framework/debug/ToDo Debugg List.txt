@@ -1,7 +1,11 @@
 ToDo : Remove MarkerBase and GameMarker
 
-Desktop -: Bug :
+OverAll Bug / Change : if player load from
+    saveGame with power last used higher then 1 the visual power is not sett to the right one.
+    Moving then to another level / world don't change it.
 
+Desktop -: Bug :
+    Steering Bug, player teleports when hits the active sensor - ( Android does not happen )
 
 
 

@@ -23,30 +23,29 @@
 16-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:8:9-30
 17        android:label="@string/app_name"
 17-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:10:9-41
-18        android:testOnly="true"
-19        android:theme="@style/GdxTheme" >
-19-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:11:9-40
-20        <activity
-20-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:12:9-21:20
-21            android:name="com.mygdx.game.framework.debug.AndroidLauncher"
-21-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:13:13-74
-22            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
-22-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:16:13-107
-23            android:label="@string/app_name"
-23-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:14:13-45
-24            android:screenOrientation="landscape" >
-24-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:15:13-50
-25            <intent-filter>
-25-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:17:13-20:29
-26                <action android:name="android.intent.action.MAIN" />
-26-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:18:17-69
-26-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:18:25-66
-27
-28                <category android:name="android.intent.category.LAUNCHER" />
-28-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:19:17-77
-28-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:19:27-74
-29            </intent-filter>
-30        </activity>
-31    </application>
-32
-33</manifest>
+18        android:theme="@style/GdxTheme" >
+18-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:11:9-40
+19        <activity
+19-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:12:9-21:20
+20            android:name="com.mygdx.game.framework.debug.AndroidLauncher"
+20-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:13:13-74
+21            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
+21-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:16:13-107
+22            android:label="@string/app_name"
+22-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:14:13-45
+23            android:screenOrientation="landscape" >
+23-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:15:13-50
+24            <intent-filter>
+24-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:17:13-20:29
+25                <action android:name="android.intent.action.MAIN" />
+25-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:18:17-69
+25-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:18:25-66
+26
+27                <category android:name="android.intent.category.LAUNCHER" />
+27-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:19:17-77
+27-->G:\Programming\ProsjektFolders\androidStudioWorkspace\ProFrameWorkBubbleDragon\BubbleDragon\android\AndroidManifest.xml:19:27-74
+28            </intent-filter>
+29        </activity>
+30    </application>
+31
+32</manifest>

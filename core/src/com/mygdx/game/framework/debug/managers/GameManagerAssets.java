@@ -905,6 +905,17 @@ public class GameManagerAssets {
 
     public TiledMap getCurrentMap() { return this.map; }
 
+    public String getPlayerCurrentActivePower(){
+
+
+        if(this.getSaveGamePlayerDataHolderClass().getSavePlayerPowerCrystalInUse() != ""){
+            return this.getSaveGamePlayerDataHolderClass().getSavePlayerPowerCrystalInUse();
+        }else{
+            return "1";
+        }
+        //return this.bubblePlayer.getPlayerActvieShootingPower(); player might not hava been made /- ups :)
+    }
+
     public void listAssetLoadedDebug() {
 
         for (int i=0; i < GameUtility.assetManager.getAssetNames().size; i++) {

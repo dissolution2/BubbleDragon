@@ -137,8 +137,6 @@ public class LoadSaveGameScreen extends GameScreen{
                     @Override
                     public void run() {
 
-                        //ToDo : save game from file to be loaded!!
-
                         gameManagerAssetsInstance.removeSaveGameFilePlayer();
                         gameManagerAssetsInstance.clearSaveGameObjectPlayer();
 
