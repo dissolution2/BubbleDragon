@@ -1,2 +1,2 @@
 # BubbleDragon
- LibGdx Java Game
+ LibGdx Java Game -BubbleDragon Video Folder -Pre of Game in Debugg Mode-
