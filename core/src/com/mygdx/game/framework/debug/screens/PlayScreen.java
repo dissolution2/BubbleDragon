@@ -63,9 +63,11 @@ import com.mygdx.game.framework.debug.world.gameObstacles.ObstacleDoor;
 import com.mygdx.game.framework.debug.world.gameObjects.GameObjectSwitchDoor;
 import com.mygdx.game.framework.debug.world.gamePfxObject.GamePfxObject;
 
+/*
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+*/
 
 import java.util.HashMap;
 
@@ -82,19 +84,21 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.parallel;
 
 /**Networking*/
+/*
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-
+*/
 
 
 
 public class PlayScreen extends GameScreen {
 
+/*
     private Socket socket;
     String id;
     HashMap<String, BubblePlayer> friendlyPlayers;
-
+*/
     protected static final String TAG = null;
     private NameGame gameName;
     private String mapLevel;
@@ -286,9 +290,7 @@ public class PlayScreen extends GameScreen {
     public PlayScreen(NameGame game, String mapW, String mapL, GameManagerAssets instance) {
 
 /** network testing */
-        connectSocket();
-        configSocketEvents();
-        friendlyPlayers = new HashMap<String, BubblePlayer>();
+       // Removed the testing
 /** network testing */
         this.gameManagerAssetsInstance = instance;
 
@@ -1022,102 +1024,6 @@ public class PlayScreen extends GameScreen {
 
 
 
-    public void connectSocket(){
-
-        try{
-            socket = IO.socket("http://localhost:8080");
-            socket.connect();
-
-        } catch (Exception e){
-            System.out.println("Connection IO: " + e);
-        }
-
-    }
-
-    /** NetWork MultiPlayer testing with inn the same structure as a basic test!!
-     * might be to simple of a test to make it work - ned a new player to draw and test on !!!
-     * */
-    //ToDo:: redo all it, works but not as intended!!
-    public void configSocketEvents(){
-        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                Gdx.app.log("SocketIO", "Connected");
-                //bubble = new BubblePlayer(playerShip);
-            }
-        }).on("socketID", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                JSONObject data = (JSONObject) args[0];
-                try {
-                    id = data.getString("id");
-                    Gdx.app.log("SocketIO", "My ID: " + id);
-                } catch (JSONException e) {
-                    Gdx.app.log("SocketIO", "Error getting ID");
-                }
-            }
-        }).on("newPlayer", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                JSONObject data = (JSONObject) args[0];
-                try {
-                    id = data.getString("id");
-                    Gdx.app.log("SocketIO", "New Player Connect: " + id);
-                    friendlyPlayers.put(id, bubble);
-                }catch(JSONException e){
-                    Gdx.app.log("SocketIO", "Error getting New PlayerID");
-                }
-            }
-        }).on("playerDisconnected", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                JSONObject data = (JSONObject) args[0];
-                try {
-                    id = data.getString("id");
-                    friendlyPlayers.remove(id);
-                }catch(JSONException e){
-                    Gdx.app.log("SocketIO", "Error getting disconnected PlayerID");
-                }
-            }
-        }).on("getPlayers", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                JSONArray objects = (JSONArray) args[0];
-
-                try {
-                    for(int i = 0; i < objects.length(); i++){
-
-
-
-                        BubblePlayer coopPlayer = bubble;
-                                /*
-                                new BubblePlayer(world,gameManagerAssetsInstance.getSaveGamePlayerDataHolderClass().getSavePointPosition(),
-                                gameManagerAssetsInstance.getSaveGamePlayerDataHolderClass().getSavePlayerMainLife(),
-                                gameManagerAssetsInstance.getMaxLifeLostOnHitGameManagerAssets(),
-                                gameManagerAssetsInstance.getSaveGamePlayerDataHolderClass().getPowerCrystalGreen(),
-                                gameManagerAssetsInstance.getSaveGamePlayerDataHolderClass().getPowerCrystalBlack(),
-                                gameManagerAssetsInstance.getSaveGamePlayerDataHolderClass().getPowerCrystalBlue(),
-                                gameManagerAssetsInstance.getSaveGamePlayerDataHolderClass().getPowerCrystalRed(),
-                                false, false, gameManagerAssetsInstance );
-                                */
-                        Vector2 position = new Vector2();
-                        position.x = ((Double) objects.getJSONObject(i).getDouble("x")).floatValue();
-                        position.y = ((Double) objects.getJSONObject(i).getDouble("y")).floatValue();
-                        coopPlayer.setPosition(position.x, position.y);
-
-                        friendlyPlayers.put(objects.getJSONObject(i).getString("id"), coopPlayer);
-                    }
-                } catch(JSONException e){
-
-                }
-
-
-
-
-
-            }
-        });
-    }
 
     @Override
     public void show() {

@@ -1,94 +1,5 @@
-com/mygdx/game/framework/debug/managers/util/CameraStyle.java
- com.mygdx.game.framework.debug.managers.util.CameraStyle
-com/mygdx/game/framework/debug/SaveGamePlayerDataHolderClass.java
- com.mygdx.game.framework.debug.SaveGamePlayerDataHolderClass
- com.mygdx.game.framework.debug.SaveGamePlayerDataHolderClass$PowerUp
-com/mygdx/game/framework/debug/ai/steering/steeringbehavior/Steerable.java
- com.mygdx.game.framework.debug.ai.steering.steeringbehavior.Steerable
-com/mygdx/game/framework/debug/controllers/Action.java
- com.mygdx.game.framework.debug.controllers.Action
-com/mygdx/game/framework/debug/ai/utils/EntityLocation.java
- com.mygdx.game.framework.debug.ai.utils.EntityLocation
-com/mygdx/game/framework/debug/sprites/items/KeyGameItem.java
- com.mygdx.game.framework.debug.sprites.items.KeyGameItem
-com/mygdx/game/framework/debug/screens/parallax/ParallaxBackground.java
- com.mygdx.game.framework.debug.screens.parallax.ParallaxBackground
-com/mygdx/game/framework/debug/ai/utils/B2DSteeringUtils.java
- com.mygdx.game.framework.debug.ai.utils.B2DSteeringUtils
-com/mygdx/game/framework/debug/screens/GameTime.java
- com.mygdx.game.framework.debug.screens.GameTime
-com/mygdx/game/framework/debug/util/FloatingText.java
- com.mygdx.game.framework.debug.util.FloatingText
-com/mygdx/game/framework/debug/audio/AudioManager.java
- com.mygdx.game.framework.debug.audio.AudioManager
- com.mygdx.game.framework.debug.audio.AudioManager$1
-com/mygdx/game/framework/debug/managers/GameManagerAITimer.java
- com.mygdx.game.framework.debug.managers.GameManagerAITimer
-com/mygdx/game/framework/debug/ai/steering/steeringbehavior/FormationState.java
- com.mygdx.game.framework.debug.ai.steering.steeringbehavior.FormationState
-com/mygdx/game/framework/debug/util/DrawerPauseScreenUtils.java
- com.mygdx.game.framework.debug.util.DrawerPauseScreenUtils
-com/mygdx/game/framework/debug/ai/steering/SteeringEntityEnemy.java
- com.mygdx.game.framework.debug.ai.steering.SteeringEntityEnemy
-com/mygdx/game/framework/debug/util/GameUtility.java
- com.mygdx.game.framework.debug.util.GameUtility
-com/mygdx/game/framework/debug/screens/GameScreen.java
- com.mygdx.game.framework.debug.screens.GameScreen
-com/mygdx/game/framework/debug/controllers/CooldownTimer.java
- com.mygdx.game.framework.debug.controllers.CooldownTimer
-com/mygdx/game/framework/debug/screens/parallax/ParallaxScreen.java
- com.mygdx.game.framework.debug.screens.parallax.ParallaxScreen
- com.mygdx.game.framework.debug.screens.parallax.ParallaxScreen$ParallaxCamera
-com/mygdx/game/framework/debug/util/TextManager.java
- com.mygdx.game.framework.debug.util.TextManager
-com/mygdx/game/framework/debug/controllers/Button.java
- com.mygdx.game.framework.debug.controllers.Button
-com/mygdx/game/framework/debug/util/FPSLogger.java
- com.mygdx.game.framework.debug.util.FPSLogger
-com/mygdx/game/framework/debug/audio/AudioSubject.java
- com.mygdx.game.framework.debug.audio.AudioSubject
-com/mygdx/game/framework/debug/screens/ParallaxGameScreen.java
- com.mygdx.game.framework.debug.screens.ParallaxGameScreen
- com.mygdx.game.framework.debug.screens.ParallaxGameScreen$ParallaxCamera
-com/mygdx/game/framework/debug/SaveGameWorldDataHolderClass.java
- com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass
- com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$DoorSwitchSaveObject
- com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$ItemSaveObject
- com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$KeysSaveObject
- com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$LevelSaveObject
- com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$WorldSaveObject
-com/mygdx/game/framework/debug/screens/transitions/ScreenTransitionAction.java
- com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionAction
- com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionAction$1
- com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionAction$ScreenTransitionType
-com/mygdx/game/framework/debug/testingObjects/ItemDef.java
- com.mygdx.game.framework.debug.testingObjects.ItemDef
-com/mygdx/game/framework/debug/audio/AudioObserver.java
- com.mygdx.game.framework.debug.audio.AudioObserver
- com.mygdx.game.framework.debug.audio.AudioObserver$AudioCommand
- com.mygdx.game.framework.debug.audio.AudioObserver$AudioTypeEvent
-com/mygdx/game/framework/debug/managers/RayCastManager.java
- com.mygdx.game.framework.debug.managers.RayCastManager
- com.mygdx.game.framework.debug.managers.RayCastManager$1
- com.mygdx.game.framework.debug.managers.RayCastManager$RayCastRequest
-com/mygdx/game/framework/debug/screens/transitions/ScreenTransitionActor.java
- com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionActor
-com/mygdx/game/framework/debug/controllers/NavigationDrawer.java
- com.mygdx.game.framework.debug.controllers.NavigationDrawer
- com.mygdx.game.framework.debug.controllers.NavigationDrawer$NavigationDrawerListener
-com/mygdx/game/framework/debug/sprites/Enemies/EnemyB.java
- com.mygdx.game.framework.debug.sprites.Enemies.EnemyB
- com.mygdx.game.framework.debug.sprites.Enemies.EnemyB$1
- com.mygdx.game.framework.debug.sprites.Enemies.EnemyB$2
- com.mygdx.game.framework.debug.sprites.Enemies.EnemyB$EnemyState
 com/mygdx/game/framework/debug/sprites/items/ExtraLifeGameItem.java
  com.mygdx.game.framework.debug.sprites.items.ExtraLifeGameItem
-com/mygdx/game/framework/debug/managers/GameSteeringStateManagerEnemy.java
- com.mygdx.game.framework.debug.managers.GameSteeringStateManagerEnemy
- com.mygdx.game.framework.debug.managers.GameSteeringStateManagerEnemy$1
- com.mygdx.game.framework.debug.managers.GameSteeringStateManagerEnemy$State
-com/mygdx/game/framework/debug/world/objects/InteractiveTileObject.java
- com.mygdx.game.framework.debug.world.objects.InteractiveTileObject
 com/mygdx/game/framework/debug/sprites/Enemies/BossEnemy/BossEnemyDef.java
  com.mygdx.game.framework.debug.sprites.Enemies.BossEnemy.BossEnemyDef
 com/mygdx/game/framework/debug/sprites/powers/EnemyBullet.java
@@ -111,61 +22,39 @@ com/mygdx/game/framework/debug/world/gameAiObjects/AiObjectDef.java
  com.mygdx.game.framework.debug.world.gameAiObjects.AiObjectDef
 com/mygdx/game/framework/debug/ai/steering/steeringbehavior/smallEnemy/BaseStateEnemy.java
  com.mygdx.game.framework.debug.ai.steering.steeringbehavior.smallEnemy.BaseStateEnemy
-com/mygdx/game/framework/debug/managers/GameSteeringStateManagerBoss.java
- com.mygdx.game.framework.debug.managers.GameSteeringStateManagerBoss
- com.mygdx.game.framework.debug.managers.GameSteeringStateManagerBoss$1
- com.mygdx.game.framework.debug.managers.GameSteeringStateManagerBoss$State
-com/mygdx/game/framework/debug/NameGame.java
- com.mygdx.game.framework.debug.NameGame
-com/mygdx/game/framework/debug/controllers/NavigationDrawerScreen.java
- com.mygdx.game.framework.debug.controllers.NavigationDrawerScreen
- com.mygdx.game.framework.debug.controllers.NavigationDrawerScreen$1
- com.mygdx.game.framework.debug.controllers.NavigationDrawerScreen$2
- com.mygdx.game.framework.debug.controllers.NavigationDrawerScreen$3
- com.mygdx.game.framework.debug.controllers.NavigationDrawerScreen$4
 com/mygdx/game/framework/debug/sprites/Enemies/BossEnemy/SpringRobotBoss.java
  com.mygdx.game.framework.debug.sprites.Enemies.BossEnemy.SpringRobotBoss
-com/mygdx/game/framework/debug/ai/steering/steeringbehavior/smallEnemy/WanderStateSmallenemy.java
- com.mygdx.game.framework.debug.ai.steering.steeringbehavior.smallEnemy.WanderStateSmallenemy
 com/mygdx/game/framework/debug/screens/PlayScreen.java
  com.mygdx.game.framework.debug.screens.PlayScreen
- com.mygdx.game.framework.debug.screens.PlayScreen$1
- com.mygdx.game.framework.debug.screens.PlayScreen$2
- com.mygdx.game.framework.debug.screens.PlayScreen$3
- com.mygdx.game.framework.debug.screens.PlayScreen$4
- com.mygdx.game.framework.debug.screens.PlayScreen$5
 com/mygdx/game/framework/debug/world/gameObstacles/Obstacle.java
  com.mygdx.game.framework.debug.world.gameObstacles.Obstacle
 com/mygdx/game/framework/debug/world/gameObstacles/ObstacleDoor.java
  com.mygdx.game.framework.debug.world.gameObstacles.ObstacleDoor
  com.mygdx.game.framework.debug.world.gameObstacles.ObstacleDoor$DoorState
-com/mygdx/game/framework/debug/sprites/Enemies/StationaryEnemies/EnemyVineThorns.java
- com.mygdx.game.framework.debug.sprites.Enemies.StationaryEnemies.EnemyVineThorns
+com/mygdx/game/framework/debug/util/GameUtility.java
+ com.mygdx.game.framework.debug.util.GameUtility
 com/mygdx/game/framework/debug/sprites/items/SpawnPoint.java
  com.mygdx.game.framework.debug.sprites.items.SpawnPoint
-com/mygdx/game/framework/debug/sprites/powers/FireBall.java
- com.mygdx.game.framework.debug.sprites.powers.FireBall
+com/mygdx/game/framework/debug/controllers/CooldownTimer.java
+ com.mygdx.game.framework.debug.controllers.CooldownTimer
+com/mygdx/game/framework/debug/screens/parallax/ParallaxScreen.java
+ com.mygdx.game.framework.debug.screens.parallax.ParallaxScreen
+ com.mygdx.game.framework.debug.screens.parallax.ParallaxScreen$ParallaxCamera
 com/mygdx/game/framework/debug/world/gamePfxObject/GamePfxObject.java
  com.mygdx.game.framework.debug.world.gamePfxObject.GamePfxObject
-com/mygdx/game/framework/debug/world/gamePfxObject/PfxObjectDef.java
- com.mygdx.game.framework.debug.world.gamePfxObject.PfxObjectDef
-com/mygdx/game/framework/debug/sprites/Enemies/EnemyA.java
- com.mygdx.game.framework.debug.sprites.Enemies.EnemyA
- com.mygdx.game.framework.debug.sprites.Enemies.EnemyA$1
- com.mygdx.game.framework.debug.sprites.Enemies.EnemyA$2
- com.mygdx.game.framework.debug.sprites.Enemies.EnemyA$EnemyState
+com/mygdx/game/framework/debug/controllers/Button.java
+ com.mygdx.game.framework.debug.controllers.Button
 com/mygdx/game/framework/debug/world/MapInfo.java
  com.mygdx.game.framework.debug.world.MapInfo
 com/mygdx/game/framework/debug/sprites/items/SavePoint.java
  com.mygdx.game.framework.debug.sprites.items.SavePoint
+com/mygdx/game/framework/debug/screens/ParallaxGameScreen.java
+ com.mygdx.game.framework.debug.screens.ParallaxGameScreen
+ com.mygdx.game.framework.debug.screens.ParallaxGameScreen$ParallaxCamera
 com/mygdx/game/framework/debug/sprites/items/DragonEggGameItem.java
  com.mygdx.game.framework.debug.sprites.items.DragonEggGameItem
 com/mygdx/game/framework/debug/sprites/Enemies/SmallEnemyDef.java
  com.mygdx.game.framework.debug.sprites.Enemies.SmallEnemyDef
-com/mygdx/game/framework/debug/testingObjects/Mushroom.java
- com.mygdx.game.framework.debug.testingObjects.Mushroom
-com/mygdx/game/framework/debug/screens/GameOverScreen.java
- com.mygdx.game.framework.debug.screens.GameOverScreen
 com/mygdx/game/framework/debug/testingObjects/Item.java
  com.mygdx.game.framework.debug.testingObjects.Item
 com/mygdx/game/framework/debug/managers/GameManagerAI.java
@@ -175,13 +64,20 @@ com/mygdx/game/framework/debug/sprites/Enemies/MovingFallingEnemy/EnemyStalactit
  com.mygdx.game.framework.debug.sprites.Enemies.MovingFallingEnemy.EnemyStalactite
  com.mygdx.game.framework.debug.sprites.Enemies.MovingFallingEnemy.EnemyStalactite$1
  com.mygdx.game.framework.debug.sprites.Enemies.MovingFallingEnemy.EnemyStalactite$EnemyState
-com/mygdx/game/framework/debug/screens/LoadingScreen.java
- com.mygdx.game.framework.debug.screens.LoadingScreen
+com/mygdx/game/framework/debug/screens/transitions/ScreenTransitionActor.java
+ com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionActor
+com/mygdx/game/framework/debug/controllers/NavigationDrawer.java
+ com.mygdx.game.framework.debug.controllers.NavigationDrawer
+ com.mygdx.game.framework.debug.controllers.NavigationDrawer$NavigationDrawerListener
 com/mygdx/game/framework/debug/managers/GameManagerAssets.java
  com.mygdx.game.framework.debug.managers.GameManagerAssets
  com.mygdx.game.framework.debug.managers.GameManagerAssets$GameState
 com/mygdx/game/framework/debug/world/gameObjects/GameObjectSwitchHidden.java
  com.mygdx.game.framework.debug.world.gameObjects.GameObjectSwitchHidden
+com/mygdx/game/framework/debug/screens/parallax/ParallaxBackground.java
+ com.mygdx.game.framework.debug.screens.parallax.ParallaxBackground
+com/mygdx/game/framework/debug/util/DrawerPauseScreenUtils.java
+ com.mygdx.game.framework.debug.util.DrawerPauseScreenUtils
 com/mygdx/game/framework/debug/sprites/Enemies/BossEnemy/EnemyKnightDevil.java
  com.mygdx.game.framework.debug.sprites.Enemies.BossEnemy.EnemyKnightDevil
  com.mygdx.game.framework.debug.sprites.Enemies.BossEnemy.EnemyKnightDevil$1
@@ -201,14 +97,10 @@ com/mygdx/game/framework/debug/sprites/Enemies/StationaryEnemies/EnemyGraphicSen
  com.mygdx.game.framework.debug.sprites.Enemies.StationaryEnemies.EnemyGraphicSensor
 com/mygdx/game/framework/debug/world/gameObjects/GameObjectSwitchDoor.java
  com.mygdx.game.framework.debug.world.gameObjects.GameObjectSwitchDoor
-com/mygdx/game/framework/debug/ai/steering/steeringbehavior/boss/FlockStateBoss.java
- com.mygdx.game.framework.debug.ai.steering.steeringbehavior.boss.FlockStateBoss
 com/mygdx/game/framework/debug/sprites/Enemies/state/EnemyAState.java
  com.mygdx.game.framework.debug.sprites.Enemies.state.EnemyAState
  com.mygdx.game.framework.debug.sprites.Enemies.state.EnemyAState$1
  com.mygdx.game.framework.debug.sprites.Enemies.state.EnemyAState$2
-com/mygdx/game/framework/debug/ai/steering/steeringbehavior/smallEnemy/PursueStateEnemy.java
- com.mygdx.game.framework.debug.ai.steering.steeringbehavior.smallEnemy.PursueStateEnemy
 com/mygdx/game/framework/debug/ai/steering/steeringbehavior/boss/PursueStateBoss.java
  com.mygdx.game.framework.debug.ai.steering.steeringbehavior.boss.PursueStateBoss
 com/mygdx/game/framework/debug/world/gameAiObjects/GameAIObject.java
@@ -230,26 +122,139 @@ com/mygdx/game/framework/debug/ai/steering/steeringbehavior/boss/BaseStateBoss.j
  com.mygdx.game.framework.debug.ai.steering.steeringbehavior.boss.BaseStateBoss
 com/mygdx/game/framework/debug/sprites/GraphicsAnimations/AnimationItemDef.java
  com.mygdx.game.framework.debug.sprites.GraphicsAnimations.AnimationItemDef
+com/mygdx/game/framework/debug/testingObjects/ItemDef.java
+ com.mygdx.game.framework.debug.testingObjects.ItemDef
+com/mygdx/game/framework/debug/managers/GameManagerAITimer.java
+ com.mygdx.game.framework.debug.managers.GameManagerAITimer
 com/mygdx/game/framework/debug/sprites/items/TreasureChestGameItem.java
  com.mygdx.game.framework.debug.sprites.items.TreasureChestGameItem
+com/mygdx/game/framework/debug/audio/AudioManager.java
+ com.mygdx.game.framework.debug.audio.AudioManager
+ com.mygdx.game.framework.debug.audio.AudioManager$1
+com/mygdx/game/framework/debug/hud/PlayerHUD.java
+ com.mygdx.game.framework.debug.hud.PlayerHUD
+com/mygdx/game/framework/debug/sprites/Enemies/MovingFallingEnemy/MovingFallingEnemyDef.java
+ com.mygdx.game.framework.debug.sprites.Enemies.MovingFallingEnemy.MovingFallingEnemyDef
+com/mygdx/game/framework/debug/util/FloatingText.java
+ com.mygdx.game.framework.debug.util.FloatingText
+com/mygdx/game/framework/debug/ai/steering/steeringbehavior/FormationState.java
+ com.mygdx.game.framework.debug.ai.steering.steeringbehavior.FormationState
+com/mygdx/game/framework/debug/controllers/ControllerJoyStickButtonStyle.java
+ com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle
+ com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$1
+ com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$2
+ com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$3
+ com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$4
+ com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$5
+ com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$6
+ com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$QuickSpellBarImageButton
+ com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$SpellBarImageButton
+com/mygdx/game/framework/debug/sprites/Enemies/StationaryEnemies/StationaryEnemyWithAnimationDef.java
+ com.mygdx.game.framework.debug.sprites.Enemies.StationaryEnemies.StationaryEnemyWithAnimationDef
+com/mygdx/game/framework/debug/sprites/BubblePlayer.java
+ com.mygdx.game.framework.debug.sprites.BubblePlayer
+ com.mygdx.game.framework.debug.sprites.BubblePlayer$1
+ com.mygdx.game.framework.debug.sprites.BubblePlayer$PlayerState
+com/mygdx/game/framework/debug/sprites/items/KeyGameItem.java
+ com.mygdx.game.framework.debug.sprites.items.KeyGameItem
+com/mygdx/game/framework/debug/SaveGamePlayerDataHolderClass.java
+ com.mygdx.game.framework.debug.SaveGamePlayerDataHolderClass
+ com.mygdx.game.framework.debug.SaveGamePlayerDataHolderClass$PowerUp
+com/mygdx/game/framework/debug/ai/utils/B2DSteeringUtils.java
+ com.mygdx.game.framework.debug.ai.utils.B2DSteeringUtils
+com/mygdx/game/framework/debug/ai/steering/steeringbehavior/boss/HomeStateBoss.java
+ com.mygdx.game.framework.debug.ai.steering.steeringbehavior.boss.HomeStateBoss
+com/mygdx/game/framework/debug/sprites/Enemies/EnemyB.java
+ com.mygdx.game.framework.debug.sprites.Enemies.EnemyB
+ com.mygdx.game.framework.debug.sprites.Enemies.EnemyB$1
+ com.mygdx.game.framework.debug.sprites.Enemies.EnemyB$2
+ com.mygdx.game.framework.debug.sprites.Enemies.EnemyB$EnemyState
+com/mygdx/game/framework/debug/managers/GameSteeringStateManagerEnemy.java
+ com.mygdx.game.framework.debug.managers.GameSteeringStateManagerEnemy
+ com.mygdx.game.framework.debug.managers.GameSteeringStateManagerEnemy$1
+ com.mygdx.game.framework.debug.managers.GameSteeringStateManagerEnemy$State
+com/mygdx/game/framework/debug/world/objects/InteractiveTileObject.java
+ com.mygdx.game.framework.debug.world.objects.InteractiveTileObject
+com/mygdx/game/framework/debug/managers/GameSteeringStateManagerBoss.java
+ com.mygdx.game.framework.debug.managers.GameSteeringStateManagerBoss
+ com.mygdx.game.framework.debug.managers.GameSteeringStateManagerBoss$1
+ com.mygdx.game.framework.debug.managers.GameSteeringStateManagerBoss$State
+com/mygdx/game/framework/debug/NameGame.java
+ com.mygdx.game.framework.debug.NameGame
+com/mygdx/game/framework/debug/audio/AudioObserver.java
+ com.mygdx.game.framework.debug.audio.AudioObserver
+ com.mygdx.game.framework.debug.audio.AudioObserver$AudioCommand
+ com.mygdx.game.framework.debug.audio.AudioObserver$AudioTypeEvent
+com/mygdx/game/framework/debug/controllers/NavigationDrawerScreen.java
+ com.mygdx.game.framework.debug.controllers.NavigationDrawerScreen
+ com.mygdx.game.framework.debug.controllers.NavigationDrawerScreen$1
+ com.mygdx.game.framework.debug.controllers.NavigationDrawerScreen$2
+ com.mygdx.game.framework.debug.controllers.NavigationDrawerScreen$3
+ com.mygdx.game.framework.debug.controllers.NavigationDrawerScreen$4
+com/mygdx/game/framework/debug/util/TextManager.java
+ com.mygdx.game.framework.debug.util.TextManager
+com/mygdx/game/framework/debug/ai/steering/steeringbehavior/smallEnemy/WanderStateSmallenemy.java
+ com.mygdx.game.framework.debug.ai.steering.steeringbehavior.smallEnemy.WanderStateSmallenemy
+com/mygdx/game/framework/debug/sprites/Enemies/StationaryEnemies/EnemyVineThorns.java
+ com.mygdx.game.framework.debug.sprites.Enemies.StationaryEnemies.EnemyVineThorns
+com/mygdx/game/framework/debug/sprites/powers/FireBall.java
+ com.mygdx.game.framework.debug.sprites.powers.FireBall
+com/mygdx/game/framework/debug/world/gamePfxObject/PfxObjectDef.java
+ com.mygdx.game.framework.debug.world.gamePfxObject.PfxObjectDef
+com/mygdx/game/framework/debug/sprites/Enemies/EnemyA.java
+ com.mygdx.game.framework.debug.sprites.Enemies.EnemyA
+ com.mygdx.game.framework.debug.sprites.Enemies.EnemyA$1
+ com.mygdx.game.framework.debug.sprites.Enemies.EnemyA$2
+ com.mygdx.game.framework.debug.sprites.Enemies.EnemyA$EnemyState
+com/mygdx/game/framework/debug/util/FPSLogger.java
+ com.mygdx.game.framework.debug.util.FPSLogger
+com/mygdx/game/framework/debug/testingObjects/Mushroom.java
+ com.mygdx.game.framework.debug.testingObjects.Mushroom
+com/mygdx/game/framework/debug/screens/GameOverScreen.java
+ com.mygdx.game.framework.debug.screens.GameOverScreen
+com/mygdx/game/framework/debug/screens/LoadingScreen.java
+ com.mygdx.game.framework.debug.screens.LoadingScreen
+com/mygdx/game/framework/debug/screens/GameScreen.java
+ com.mygdx.game.framework.debug.screens.GameScreen
+com/mygdx/game/framework/debug/screens/transitions/ScreenTransitionAction.java
+ com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionAction
+ com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionAction$1
+ com.mygdx.game.framework.debug.screens.transitions.ScreenTransitionAction$ScreenTransitionType
+com/mygdx/game/framework/debug/ai/steering/SteeringEntityEnemy.java
+ com.mygdx.game.framework.debug.ai.steering.SteeringEntityEnemy
+com/mygdx/game/framework/debug/ai/steering/steeringbehavior/boss/FlockStateBoss.java
+ com.mygdx.game.framework.debug.ai.steering.steeringbehavior.boss.FlockStateBoss
+com/mygdx/game/framework/debug/ai/steering/steeringbehavior/smallEnemy/PursueStateEnemy.java
+ com.mygdx.game.framework.debug.ai.steering.steeringbehavior.smallEnemy.PursueStateEnemy
+com/mygdx/game/framework/debug/audio/AudioSubject.java
+ com.mygdx.game.framework.debug.audio.AudioSubject
 com/mygdx/game/framework/debug/world/gameObjects/GameObjectDef.java
  com.mygdx.game.framework.debug.world.gameObjects.GameObjectDef
 com/mygdx/game/framework/debug/world/gameLightObjcets/GameLightObject.java
  com.mygdx.game.framework.debug.world.gameLightObjcets.GameLightObject
+com/mygdx/game/framework/debug/managers/RayCastManager.java
+ com.mygdx.game.framework.debug.managers.RayCastManager
+ com.mygdx.game.framework.debug.managers.RayCastManager$1
+ com.mygdx.game.framework.debug.managers.RayCastManager$RayCastRequest
+com/mygdx/game/framework/debug/SaveGameWorldDataHolderClass.java
+ com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass
+ com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$DoorSwitchSaveObject
+ com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$ItemSaveObject
+ com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$KeysSaveObject
+ com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$LevelSaveObject
+ com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass$WorldSaveObject
 com/mygdx/game/framework/debug/world/B2WorldCreator.java
  com.mygdx.game.framework.debug.world.B2WorldCreator
 com/mygdx/game/framework/debug/sprites/items/Portal.java
  com.mygdx.game.framework.debug.sprites.items.Portal
+com/mygdx/game/framework/debug/screens/GameTime.java
+ com.mygdx.game.framework.debug.screens.GameTime
 com/mygdx/game/framework/debug/screens/LoadSaveGameScreen.java
  com.mygdx.game.framework.debug.screens.LoadSaveGameScreen
  com.mygdx.game.framework.debug.screens.LoadSaveGameScreen$1
  com.mygdx.game.framework.debug.screens.LoadSaveGameScreen$1$1
  com.mygdx.game.framework.debug.screens.LoadSaveGameScreen$2
  com.mygdx.game.framework.debug.screens.LoadSaveGameScreen$2$1
-com/mygdx/game/framework/debug/hud/PlayerHUD.java
- com.mygdx.game.framework.debug.hud.PlayerHUD
-com/mygdx/game/framework/debug/sprites/Enemies/MovingFallingEnemy/MovingFallingEnemyDef.java
- com.mygdx.game.framework.debug.sprites.Enemies.MovingFallingEnemy.MovingFallingEnemyDef
 com/mygdx/game/framework/debug/sprites/powers/EnemyKnightPowerSword.java
  com.mygdx.game.framework.debug.sprites.powers.EnemyKnightPowerSword
 com/mygdx/game/framework/debug/screens/GameMapScreen.java
@@ -270,30 +275,20 @@ com/mygdx/game/framework/debug/screens/GameMapScreen.java
  com.mygdx.game.framework.debug.screens.GameMapScreen$7
  com.mygdx.game.framework.debug.screens.GameMapScreen$8
  com.mygdx.game.framework.debug.screens.GameMapScreen$9
+com/mygdx/game/framework/debug/ai/utils/EntityLocation.java
+ com.mygdx.game.framework.debug.ai.utils.EntityLocation
+com/mygdx/game/framework/debug/controllers/Action.java
+ com.mygdx.game.framework.debug.controllers.Action
+com/mygdx/game/framework/debug/ai/steering/steeringbehavior/Steerable.java
+ com.mygdx.game.framework.debug.ai.steering.steeringbehavior.Steerable
 com/mygdx/game/framework/debug/sprites/powers/BalloneBullet.java
  com.mygdx.game.framework.debug.sprites.powers.BalloneBullet
  com.mygdx.game.framework.debug.sprites.powers.BalloneBullet$StateBulletAnimation
-com/mygdx/game/framework/debug/controllers/ControllerJoyStickButtonStyle.java
- com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle
- com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$1
- com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$2
- com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$3
- com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$4
- com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$5
- com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$6
- com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$QuickSpellBarImageButton
- com.mygdx.game.framework.debug.controllers.ControllerJoyStickButtonStyle$SpellBarImageButton
-com/mygdx/game/framework/debug/sprites/Enemies/StationaryEnemies/StationaryEnemyWithAnimationDef.java
- com.mygdx.game.framework.debug.sprites.Enemies.StationaryEnemies.StationaryEnemyWithAnimationDef
 com/mygdx/game/framework/debug/ai/steering/steeringbehavior/boss/WanderStateBoss.java
  com.mygdx.game.framework.debug.ai.steering.steeringbehavior.boss.WanderStateBoss
 com/mygdx/game/framework/debug/screens/transitions/PortalMapTransition.java
  com.mygdx.game.framework.debug.screens.transitions.PortalMapTransition
-com/mygdx/game/framework/debug/sprites/BubblePlayer.java
- com.mygdx.game.framework.debug.sprites.BubblePlayer
- com.mygdx.game.framework.debug.sprites.BubblePlayer$1
- com.mygdx.game.framework.debug.sprites.BubblePlayer$PlayerState
+com/mygdx/game/framework/debug/managers/util/CameraStyle.java
+ com.mygdx.game.framework.debug.managers.util.CameraStyle
 com/mygdx/game/framework/debug/sprites/powers/EnemyKnightRangeAttack.java
  com.mygdx.game.framework.debug.sprites.powers.EnemyKnightRangeAttack
-com/mygdx/game/framework/debug/ai/steering/steeringbehavior/boss/HomeStateBoss.java
- com.mygdx.game.framework.debug.ai.steering.steeringbehavior.boss.HomeStateBoss
