@@ -323,14 +323,19 @@ public class PlayScreen extends GameScreen {
 
         //ToDo: the problem is with save game active the power can be different from what actual power in use is !!! Visually
 
+        /** Refactoring */
+        //ToDo: moving to GAmeManagerAssets class -Test Ongoing!!
         this.main_action_bar_buttons_list = new ArrayList<Button>();
+        this.main_action_bar_buttons_list = gameManagerAssetsInstance.getMain_action_bar_game_ui_list();
+
+/*
         main_action_bar_buttons_list.add(new Button("jump", 0, new Action()));
         main_action_bar_buttons_list.add(new Button("attack_one", 1.8f, new Action())); // 0.5f attack_two
         main_action_bar_buttons_list.add(new Button("power_one", 1.5f, new Action()));
         //main_action_bar_buttons_list.add(new Button("power_two", 1.5f, new Action()) );
         main_action_bar_buttons_list.add(new Button("meny_power", 0, new Action()));
         main_action_bar_buttons_list.add(new Button("power_chgreen", 0, new Action()));
-
+*/
         this.quick_bar_buttons_list = new ArrayList<Button>();
         quick_bar_buttons_list.add(new Button("meny_power", 1.8f, new Action()) );
 

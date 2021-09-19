@@ -243,7 +243,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
 
                         if( button.getName().equals("attack_one")) {
 
-                            player.setPlayerIsShooting(true);
+                            player.setPlayerIsShooting(true); /** Floating text with inn player class "die monster die" etc */
                             player.fire(  Integer.parseInt(player.getPlayerActvieShootingPower() ) ); //1 or 2
                             // message = "fire weapon 1";
                             //float x;
@@ -255,7 +255,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
                         }
 
                         if( button.getName().equals("attack_two")) {
-
+                            player.setPlayerIsShooting(true); /** Floating text with inn player class "die monster die" etc */
                             player.fire(  Integer.parseInt(player.getPlayerActvieShootingPower() ) ); //1 or 2
                             //message = "fire weapon 2";
                         }
@@ -287,9 +287,16 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
                             //boolPowerChangeButtonPressedTrue = true; // can't remember this one !!!???
                         }
 
+                        if( button.getName().equals("power_chblue")) { // power_change
+                            System.out.println("power is blue");
+
+                            power_Change_from_blue_pressed = true;
+
+                        }
+
                         if( button.getName().equals("power_chgreen")) { // power_change
 
-                            //System.out.println("ControllJoyStickButtonStyle: power_chose pressed"); // ????
+  System.out.println("ControllJoyStickButtonStyle: power_chose pressed"); // ????
 
                             System.out.println("ControllJoyStickButtonStyle initButton change fire Blue amo count is: " +
                                     player.getBallooneBulletBlue() + " is blu weapon known " +
@@ -430,7 +437,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
 
                         if( button.getName().equals("power_chgreen")) { // power_change
 
-                            //System.out.println("ControllJoyStickButtonStyle: Quick bar -power_chose pressed!!"); // ????
+System.out.println("ControllJoyStickButtonStyle: Quick bar -power_chose pressed!!"); // ????
 
                             //System.out.println("ControllJoyStickButtonStyle initButton change fire Blue amo count is " +
                             //        player.getBallooneBulletBlue() + " is blu weapon known " +
@@ -848,7 +855,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
 
     public void remove_PowerButton_Green_Add_PowerButton_Blue() {
 
-        System.out.println("remove_Green add Blue weaponPower!! ");
+        //System.out.println("ControllerJoyStickButtonStyle Class: Void: - Remove_Green add Blue weaponPower!! ");
 
         this.spellBarButtons.clear();
         this.button_list.clear();
@@ -968,7 +975,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
                         }
 
                         if( button.getName().equals("power_chblue")) { // power_change
-
+//System.out.println("test -power chblue, with inn remove_PowerButton_Green_Add_PowerButton_Blue() !! ");
                             power_Change_from_blue_pressed = true;
 
                         }
@@ -988,7 +995,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
 
     public void remove_PowerButton_Blue_Add_PowerButton_Green() {
 
-        System.out.println("remove_Blue add Green weaponPower!! ");
+        //System.out.println("ControllerJoyStickButtonStyle Class: Void: remove_PowerButton... - Remove_Blue add Green weaponPower!! ");
 
         this.spellBarButtons.clear();
         this.button_list.clear();
@@ -1108,7 +1115,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
                         }
 
                         if( button.getName().equals("power_chgreen")) { // power_change
-
+//System.out.println("test -power chgreen, with inn remove_PowerButton_Blue_Add_PowerButton_Green()!! ");
                             System.out.println("ControllJoyStickButtonStyle change fire Blue amo count is " + player.getBallooneBulletBlue());
                             if(player.getBallooneBulletBlue() > 0) {
                                 power_Change_from_green_pressed = true;
@@ -1140,7 +1147,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
          * playerActiveShootingPower - change from active pushing button in game or from moving player world or level = saveGame!!
          */
 
-
+/*
         if(player.getPlayerActvieShootingPower() == "2" && power_IsGreenActive){
 
             remove_PowerButton_Green_Add_PowerButton_Blue();
@@ -1153,20 +1160,20 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
             power_IsBlueActive = false;
             power_IsGreenActive = true;
         }
+*/
+  //      if(player.getPlayerActvieShootingPower() == "2" && player.getBallooneBulletBlue() == 0) {
 
-        if(player.getPlayerActvieShootingPower() == "2" && player.getBallooneBulletBlue() == 0) {
-
-            //if(player.getBallooneBulletBlue() == 0 ) {
+            if(player.getBallooneBulletBlue() == 0 ) {
 
                 remove_PowerButton_Blue_Add_PowerButton_Green();
                 player.setPlayerActiveShootingPower("1");
                 power_Change_from_blue_pressed = false;
-            //}
-        }
+            }
+    //    }
 
 
         if(power_Change_from_green_pressed) { // || player.getPlayerActvieShootingPower() == "2" ){
-//System.out.println("ControllerJoyStickButton -render: power_Change_from_green_pressed = true!! ");
+System.out.println("ControllerJoyStickButton -render: power_Change_from_green_pressed = true!! ");
 
             power_IsBlueActive = true;
             power_IsGreenActive = false;
@@ -1177,7 +1184,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
         }
 
         if(power_Change_from_blue_pressed){
-//System.out.println("ControllerJoyStickButton -render: power_Change_from_blue_pressed = true!! ");
+System.out.println("ControllerJoyStickButton -render: power_Change_from_blue_pressed = true!! ");
 
             power_IsBlueActive = false;
             power_IsGreenActive = true;

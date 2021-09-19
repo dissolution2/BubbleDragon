@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 import com.badlogic.gdx.files.FileHandle;
 
@@ -19,9 +20,14 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.framework.debug.SaveGamePlayerDataHolderClass;
 import com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass;
+import com.mygdx.game.framework.debug.controllers.Button;
 import com.mygdx.game.framework.debug.sprites.BubblePlayer;
 import com.mygdx.game.framework.debug.util.GameUtility;
 import com.mygdx.game.framework.debug.world.B2WorldCreator;
+
+/** testing if we get better response in changing gui action bars pre load then inn PlayScreen Class */
+import com.mygdx.game.framework.debug.controllers.Action;
+import com.mygdx.game.framework.debug.controllers.Button;
 
 
 public class GameManagerAssets {
@@ -113,6 +119,8 @@ public class GameManagerAssets {
     private int foSaveBluePowerCrystal;
     private int foSaveRedPowerCrystal;
 
+    private ArrayList<Button> main_action_bar_game_ui_list;
+
 
     private B2WorldCreator worldB2VarsCreate;
     private World world;
@@ -124,6 +132,11 @@ public class GameManagerAssets {
     public void init() { // String w, String l) {
 
         preGameState = gameState = GameState.GAME_LOADING_ASSETS;
+
+        main_action_bar_game_ui_list = new ArrayList<Button>();
+
+
+
 
         // Set list of asset, will change depending on level debug list!!!
         gameAssetsGameReqList = new Array<String>();
@@ -234,6 +247,42 @@ public class GameManagerAssets {
             }
         }
  */
+
+
+        if(gameManagerSaveFilePlayerExists()){
+
+            readFromSaveGamePlayer();
+
+            if(getSaveGamePlayerDataHolderClass().getSavePlayerPowerCrystalInUse() != null) {
+                if (getSaveGamePlayerDataHolderClass().getSavePlayerPowerCrystalInUse() == "1") {
+
+                    /** We sett the default action bare buttons for the player in gui */
+
+                    /**
+                     * Metod: getMainActionBarGui - get from instance with in PlayerScreen Class etc.
+                     * */
+
+                    main_action_bar_game_ui_list.add(new Button("jump", 0, new Action()));
+                    main_action_bar_game_ui_list.add(new Button("attack_one", 1.8f, new Action())); // 0.5f attack_two
+                    main_action_bar_game_ui_list.add(new Button("power_one", 1.5f, new Action()));
+                    //main_action_bar_game_ui_list.add(new Button("power_two", 1.5f, new Action()) );
+                    main_action_bar_game_ui_list.add(new Button("meny_power", 0, new Action()));
+                    main_action_bar_game_ui_list.add(new Button("power_chgreen", 0, new Action()));
+                }else{
+                    main_action_bar_game_ui_list.add(new Button("jump", 0, new Action()));
+                    main_action_bar_game_ui_list.add(new Button("attack_two", 1.8f, new Action())); // 0.5f attack_two
+                    main_action_bar_game_ui_list.add(new Button("power_one", 1.5f, new Action()));
+                    //main_action_bar_game_ui_list.add(new Button("power_two", 1.5f, new Action()) );
+                    main_action_bar_game_ui_list.add(new Button("meny_power", 0, new Action()));
+                    main_action_bar_game_ui_list.add(new Button("power_chblue", 0, new Action()));
+                }
+            }
+        }
+
+    }
+
+    public ArrayList<Button> getMain_action_bar_game_ui_list(){
+       return this.main_action_bar_game_ui_list;
     }
 
     //public GameManagerAssets getGameManagerAssetsInstance(){ return this.instance; }

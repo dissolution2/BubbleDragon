@@ -143,7 +143,7 @@ public class LoadSaveGameScreen extends GameScreen{
                         gameManagerAssetsInstance.removeSaveGameFileWorld();
                         gameManagerAssetsInstance.clearSaveGameObjectWorld();
 
-                        System.out.println("LoadSaveGameScreen Class updateAllSpawnLifeFromEnemy button delete for now!! updateAllSpawnLifeFromEnemy");
+                        System.out.println("LoadSaveGameScreen Class: updateAllSpawnLifeFromEnemy button delete for now!! updateAllSpawnLifeFromEnemy");
                         gameName.setScreen( new MainMenuScreen((NameGame)gameName,
                                 gameManagerAssetsInstance.getCurrentWorld(), gameManagerAssetsInstance ));
                     }
