@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.mygdx.game.framework.debug.audio.AudioObserver;
 import com.mygdx.game.framework.debug.managers.GameManagerAssets;
 import com.mygdx.game.framework.debug.screens.LoadingScreen;
 import com.mygdx.game.framework.debug.screens.MainMenuScreen;

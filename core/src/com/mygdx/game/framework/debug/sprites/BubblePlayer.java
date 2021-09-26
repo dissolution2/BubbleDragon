@@ -1246,6 +1246,7 @@ public class BubblePlayer extends Sprite implements Serializable {
         }
     }
 
+    //ToDo: set up a shoot timer so we cant mass shoot - to easy !!!
     public void fire(int power){
         //isShooting = true;
 

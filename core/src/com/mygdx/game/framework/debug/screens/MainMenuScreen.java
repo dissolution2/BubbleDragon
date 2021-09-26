@@ -52,7 +52,10 @@ public class MainMenuScreen extends GameScreen{
         this.stage = new Stage(new FitViewport(GameUtility.V_WIDTH, GameUtility.V_HEIGHT )); //, app.camera));
         this.shapeRenderer = new ShapeRenderer();
 
-        //notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
+
+        /** Move to GUI Main - !! need to be loaded directly from GameUtility or GameAssetManager !! */
+        notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
+        notify(AudioObserver.AudioCommand.MUSIC_PLAY_LOOP, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
 
         // Parallax testing
         parallaxGameScreen = new ParallaxGameScreen(this.gameName);

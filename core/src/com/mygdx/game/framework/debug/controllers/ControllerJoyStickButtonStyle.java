@@ -83,6 +83,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
     private TextureAtlas textureAtlas;
 
     private boolean jumpButtonIsPressed;
+    private boolean  shotButtonIsPressed;
 
 
     private FloatingText floatingText;
@@ -245,6 +246,8 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
 
                             player.setPlayerIsShooting(true); /** Floating text with inn player class "die monster die" etc */
                             player.fire(  Integer.parseInt(player.getPlayerActvieShootingPower() ) ); //1 or 2
+                            shotButtonIsPressed = true;
+
                             // message = "fire weapon 1";
                             //float x;
                             //float y;
@@ -257,6 +260,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
                         if( button.getName().equals("attack_two")) {
                             player.setPlayerIsShooting(true); /** Floating text with inn player class "die monster die" etc */
                             player.fire(  Integer.parseInt(player.getPlayerActvieShootingPower() ) ); //1 or 2
+                            shotButtonIsPressed = true;
                             //message = "fire weapon 2";
                         }
 
@@ -399,12 +403,14 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
                         if( button.getName().equals("attack_one")) {
 
                             player.fire(  Integer.parseInt(player.getPlayerActvieShootingPower() ) ); //1 or 2
+                            shotButtonIsPressed = true;
                             // message = "fire weapon 1";
                         }
 
                         if( button.getName().equals("attack_two")) {
 
                             player.fire(  Integer.parseInt(player.getPlayerActvieShootingPower() ) ); //1 or 2
+                            shotButtonIsPressed = true;
                             //message = "fire weapon 2";
                         }
 
@@ -853,6 +859,9 @@ System.out.println("ControllJoyStickButtonStyle: Quick bar -power_chose pressed!
     public boolean getJumpButtonHudPressed(){ return this.jumpButtonIsPressed; }
     public void setJumpButtonIsPressedFalse(){this.jumpButtonIsPressed = false;}
 
+    public boolean getShotButtonHudPressed(){ return this.shotButtonIsPressed; }
+    public void setShotButtonHudPressedFalse(){this.shotButtonIsPressed = false; }
+
     public void remove_PowerButton_Green_Add_PowerButton_Blue() {
 
         //System.out.println("ControllerJoyStickButtonStyle Class: Void: - Remove_Green add Blue weaponPower!! ");
@@ -938,12 +947,14 @@ System.out.println("ControllJoyStickButtonStyle: Quick bar -power_chose pressed!
                         if( button.getName().equals("attack_one")) {
 
                             player.fire(  Integer.parseInt(player.getPlayerActvieShootingPower() ) ); //1 or 2
+                            shotButtonIsPressed = true;
                             // message = "fire weapon 1";
                         }
 
                         if( button.getName().equals("attack_two")) {
 
                             player.fire(  Integer.parseInt(player.getPlayerActvieShootingPower() ) ); //1 or 2
+                            shotButtonIsPressed = true;
                             //message = "fire weapon 2";
                         }
 
@@ -1078,12 +1089,14 @@ System.out.println("ControllJoyStickButtonStyle: Quick bar -power_chose pressed!
                         if( button.getName().equals("attack_one")) {
 
                             player.fire(  Integer.parseInt(player.getPlayerActvieShootingPower() ) ); //1 or 2
+                            shotButtonIsPressed = true;
                             // message = "fire weapon 1";
                         }
 
                         if( button.getName().equals("attack_two")) {
 
                             player.fire(  Integer.parseInt(player.getPlayerActvieShootingPower() ) ); //1 or 2
+                            shotButtonIsPressed = true;
                             //message = "fire weapon 2";
                         }
 

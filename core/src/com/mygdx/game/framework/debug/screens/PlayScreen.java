@@ -945,18 +945,16 @@ public class PlayScreen extends GameScreen {
         //myLightCone4.setXray(true);
 */
 
-//////////// test //////////////
+        /**  ///////////// test //////////////// */
+        /** ///////////// end test //////////// */
         gameMapScreen = new GameMapScreen(this.gameName, bubble);
 
-
-        // Controllers menu etc
+        /** Controllers menu etc */
         inputMultiplexer = new InputMultiplexer();
         navigationDrawerScreen = new NavigationDrawerScreen(gameName, 280 , 525, gameManagerAssetsInstance ); // 280 , 420
+        /** Old */
         //controllerJoyStickButtonStyle = new ControllerJoyStickButtonStyle( gameName, main_action_bar_buttons_list);
         controllerJoyStickButtonStyle = new ControllerJoyStickButtonStyle( gameName, this.main_action_bar_buttons_list, this.quick_bar_buttons_list, bubble, map);
-
-////////////// end test ////////////
-
 
         /** AI - Manager*/
         gameManagerAI = new GameManagerAI(gameName, bubble, this.worldB2VarsCreate, mapWorld, gameManagerAssetsInstance, world, controllerJoyStickButtonStyle, gamecam, map);
@@ -966,7 +964,7 @@ public class PlayScreen extends GameScreen {
         world.setContactListener(new WorldContactListener(worldB2VarsCreate, gameManagerAssetsInstance, gameManagerAI));
 
 
-        // Parallax testing
+        /** Parallax testing */ //ToDo: Change
         parallaxGameScreen = new ParallaxGameScreen(this.gameName);
 
 
@@ -986,10 +984,18 @@ public class PlayScreen extends GameScreen {
         //controllerJoyStickButtonStyle = new ControllerJoyStickButtonStyle( gameName, main_action_bar_buttons_list);
         controllerJoyStickButtonStyle = new ControllerJoyStickButtonStyle( gameName, this.main_action_bar_buttons_list, this.quick_bar_buttons_list, bubble);
 */
-        //Sound Effect Load Call
+        /** Could be moved to GameAssetManager -Sound Effect
+         * Load Call Need to be loaded every time we jump play world/level ore when we die */
+        /** Because playScreen  get disposed
+         * */
         notify(AudioObserver.AudioCommand.SOUND_LOAD, AudioObserver.AudioTypeEvent.SOUND_JUMP);
         notify(AudioObserver.AudioCommand.SOUND_LOAD, AudioObserver.AudioTypeEvent.SOUND_DROP);
 
+        notify(AudioObserver.AudioCommand.MUSIC_STOP, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
+
+        /** Move to GUI Main - !! need to be loaded directly from GameUtility or GameAssetManager !! */
+        //notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
+        //notify(AudioObserver.AudioCommand.MUSIC_PLAY_ONCE, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
 
 
         inputMultiplexer.addProcessor(navigationDrawerScreen.getStage() );
@@ -1065,6 +1071,12 @@ public class PlayScreen extends GameScreen {
                     bubble.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), bubble.b2body.getWorldCenter(), true);
                     bubble.setPlayerControllDirectionRunningRightFalse();
                 }
+            }
+
+            if(controllerJoyStickButtonStyle.getShotButtonHudPressed()){
+                System.out.println("PlayScreenClass Input: ControllerJoystick getShot: true" );
+                notify(AudioObserver.AudioCommand.SOUND_PLAY_ONCE, AudioObserver.AudioTypeEvent.SOUND_DROP);
+                controllerJoyStickButtonStyle.setShotButtonHudPressedFalse();
             }
 
             /** Jump Sound Normal jump - need falling test -Or sound will play if a sound is stored and we fall down a platform */

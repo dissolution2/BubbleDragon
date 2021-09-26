@@ -9,7 +9,7 @@ import com.mygdx.game.framework.debug.audio.AudioSubject;
 public abstract class GameScreen implements Screen , AudioSubject {
 
     /**
-     * implement observer functjion - AudioSubject !!
+     * implement observer function - AudioSubject !!
      */
     private Array<AudioObserver> _observers;
 
