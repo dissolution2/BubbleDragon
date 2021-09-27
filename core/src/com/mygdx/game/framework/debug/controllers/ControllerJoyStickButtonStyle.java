@@ -244,7 +244,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
             imageButton_Two.addListener(new ChangeListener() {
                 public void changed (ChangeEvent event, Actor actor) {
 
-                    if (!((SpellBarImageButton)actor).isOnCooldown()) {
+                    if (!((QuickSpellBarImageButton)actor).isOnCooldown()) {
 
                         if( button.getName().equals("attack_one")) {
 
@@ -322,7 +322,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
 
 
                         button.getAction().execute( button.getName() );
-                        ((SpellBarImageButton)actor).setCooldownTriggerTime(GameTime.getCurrentTime());
+                        ((QuickSpellBarImageButton)actor).setCooldownTriggerTime(GameTime.getCurrentTime());
                     }
                 }
             });
