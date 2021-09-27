@@ -45,6 +45,8 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
     private Map<Button, SpellBarImageButton> spellBarButtons;
     private Map<Button, QuickSpellBarImageButton> quickBarButtons;
 
+    private Map<Button, QuickSpellBarImageButton> imageButton_Two;
+
     private boolean power_Change_from_green_pressed = false;
     private boolean power_Change_from_blue_pressed = false;
 
@@ -194,8 +196,10 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
 
 
             //final SpellBarImageButton imageButton = new SpellBarImageButton(imageButtonStyle, button.getCooldown());
-            final SpellBarImageButton imageButton = new SpellBarImageButton(imageButtonStyle, button.getCooldown());
 
+            //final SpellBarImageButton imageButton = new SpellBarImageButton(imageButtonStyle, button.getCooldown()); // old testing something !!
+
+            final QuickSpellBarImageButton imageButton_Two = new QuickSpellBarImageButton(imageButtonStyle, button.getCooldown());
             // TODO button lay out and position Jump Position is Correct :)
 //System.out.println("ControllerStickButtonStyle Class: Test Position Extra button : " + count);
 
@@ -204,22 +208,22 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
 
             switch (count){
                 case 0:
-                    imageButton.setPosition( (GameUtility.V_WIDTH / 2) + 150 + 0 * 90, 54); // jump
+                    imageButton_Two.setPosition( (GameUtility.V_WIDTH / 2) + 150 + 0 * 90, 54); // jump
                     break;
                 case 1:
-                    imageButton.setPosition( (GameUtility.V_WIDTH / 2) + 150 + 1 * 167, 54); // Shoot
+                    imageButton_Two.setPosition( (GameUtility.V_WIDTH / 2) + 150 + 1 * 167, 54); // Shoot
                     break;
                 case 2:
-                    imageButton.setPosition( (GameUtility.V_WIDTH / 2) + 150 + 1 * 167, 170); // dash 230
+                    imageButton_Two.setPosition( (GameUtility.V_WIDTH / 2) + 150 + 1 * 167, 170); // dash 230
                     break;
                 //case 3:
                 //    //imageButton.setPosition( (GameUtility.V_WIDTH / 2) + 150 + 0 * 90, 170); // 230 should be shiled is now dash
                 //    break;
                 case 3:
-                    imageButton.setPosition( (GameUtility.V_WIDTH / 2) + 150 + 1 * 97, 140); // meny button
+                    imageButton_Two.setPosition( (GameUtility.V_WIDTH / 2) + 150 + 1 * 97, 140); // meny button
                     break;
                 case 4:
-                    imageButton.setPosition( (GameUtility.V_WIDTH / 2) - 150 - 1 * 240, 190); // power_chose button
+                    imageButton_Two.setPosition( (GameUtility.V_WIDTH / 2) - 150 - 1 * 240, 190); // power_chose button
                     break;
 
             }
@@ -235,9 +239,9 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
             //imageButton.setPosition( GameUtility.V_WIDTH / 2 + 150 + 1 * 90, 120);
             //imageButton.setPosition( GameUtility.V_WIDTH / 2 + 150 + 2 * 90, 8);
 
-            stage.addActor(imageButton);
+            stage.addActor(imageButton_Two);
 
-            imageButton.addListener(new ChangeListener() {
+            imageButton_Two.addListener(new ChangeListener() {
                 public void changed (ChangeEvent event, Actor actor) {
 
                     if (!((SpellBarImageButton)actor).isOnCooldown()) {
@@ -323,7 +327,7 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
                 }
             });
             // HashMap ( button, imageButton )
-            spellBarButtons.put(button, imageButton);
+            quickBarButtons.put(button, imageButton_Two); //spellBarButtons
 //System.out.println("ControllJoyStickButtonStyle Class: spellBarButtons " + spellBarButtons. );
         }
 
@@ -435,6 +439,8 @@ public class ControllerJoyStickButtonStyle extends Table implements GestureDetec
                         }
 
                         if( button.getName().equals("meny_power")) {
+
+
 
                             //player.dash(1);
                            // gameMapShow = true;
@@ -656,10 +662,11 @@ System.out.println("ControllJoyStickButtonStyle: Quick bar -power_chose pressed!
                 floatingText.animate();
             }
         }
+/*
         for (SpellBarImageButton spellBarButton : spellBarButtons.values()) {
             spellBarButton.update();
         }
-
+*/
         for (QuickSpellBarImageButton quickSpellBarButton : quickBarButtons.values()) {
             quickSpellBarButton.update();
         }
@@ -700,11 +707,11 @@ System.out.println("ControllJoyStickButtonStyle: Quick bar -power_chose pressed!
             if(velocityY > 0) {
                 //System.out.println("ControllJoyStickButtonStyle Class fling Down");
                 message = "fling Down: " + Float.toString(velocityX) + "," + Float.toString(velocityY);
-                newButtonBarDownFling();
+                //newButtonBarDownFling();
             }else{
                 //System.out.println("ControllJoyStickButtonStyle Class fling Up");
                 message = "fling Up: " + Float.toString(velocityX) + "," + Float.toString(velocityY);
-                newButtonBarUpFling();
+                //newButtonBarUpFling();
             }
         }
 
@@ -766,7 +773,8 @@ System.out.println("ControllJoyStickButtonStyle: Quick bar -power_chose pressed!
             cooldownTimer.setColor(Color.BLACK);// WHITE);
 
             /** implement this later on Higher Difficulty for now we sett zero time*/
-            //addActor(this.cooldownTimer);
+            //System.out.println("ColdownTimer Spellbare : " + this.cooldownTimer);
+            addActor(this.cooldownTimer);
         }
 
         public boolean isOnCooldown() {
@@ -794,9 +802,9 @@ System.out.println("ControllJoyStickButtonStyle: Quick bar -power_chose pressed!
 
         public void update() {
             if (getRemainingCooldownPercentage() - GameManagerAssets.EPSILON >= 0.0f) {
-                //cooldownTimer.setVisible(true);
-                //cooldownTimer.update(getRemainingCooldownPercentage());
-                //System.out.println("coolTime: " + getRemainingCooldownPercentage() );
+                cooldownTimer.setVisible(true);
+                cooldownTimer.update(getRemainingCooldownPercentage());
+                System.out.println("coolTime: " + getRemainingCooldownPercentage() );
             } else {
                 cooldownTimer.setVisible(false);
             }
@@ -819,6 +827,7 @@ System.out.println("ControllJoyStickButtonStyle: Quick bar -power_chose pressed!
             cooldownTimer.setPosition(0, 0);
             cooldownTimer.setColor(Color.WHITE);
 
+            System.out.println("ColdownTimer QuickSpellbar : " + this.cooldownTimer);
             addActor(this.cooldownTimer);
         }
 
