@@ -1187,7 +1187,7 @@ System.out.println("ControllJoyStickButtonStyle: Quick bar -power_chose pressed!
 
             if(player.getBallooneBulletBlue() == 0 ) {
 
-                remove_PowerButton_Blue_Add_PowerButton_Green();
+                //remove_PowerButton_Blue_Add_PowerButton_Green();
                 player.setPlayerActiveShootingPower("1");
                 power_Change_from_blue_pressed = false;
             }
@@ -1200,7 +1200,7 @@ System.out.println("ControllerJoyStickButton -render: power_Change_from_green_pr
             power_IsBlueActive = true;
             power_IsGreenActive = false;
 
-            remove_PowerButton_Green_Add_PowerButton_Blue();
+            //remove_PowerButton_Green_Add_PowerButton_Blue();
             player.setPlayerActiveShootingPower("2");
             power_Change_from_green_pressed = false;
         }
@@ -1211,7 +1211,7 @@ System.out.println("ControllerJoyStickButton -render: power_Change_from_blue_pre
             power_IsBlueActive = false;
             power_IsGreenActive = true;
 
-            remove_PowerButton_Blue_Add_PowerButton_Green();
+            //remove_PowerButton_Blue_Add_PowerButton_Green();
             player.setPlayerActiveShootingPower("1");
             power_Change_from_blue_pressed = false;
 

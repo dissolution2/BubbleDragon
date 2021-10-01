@@ -38,10 +38,12 @@ public interface AudioObserver {
         MUSIC_PLAY_LOOP,
         MUSIC_STOP,
         MUSIC_STOP_ALL,
+        MUSIC_FADE,
         SOUND_LOAD,
         SOUND_PLAY_ONCE,
         SOUND_PLAY_LOOP,
-        SOUND_STOP
+        SOUND_STOP,
+        SOUND_FADE
     }
 
     void onNotify(AudioCommand command, AudioTypeEvent event);
