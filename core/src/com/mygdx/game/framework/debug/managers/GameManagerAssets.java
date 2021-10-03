@@ -128,6 +128,13 @@ public class GameManagerAssets {
     Array<String> gameAssetsGameReqList;
     Array<String> gameAssetGameReqListWorld01, gameAssetGameReqListWorld02, gameAssetGameReqListWorld03;
 
+    public static GameManagerAssets getInstance() {
+        if (instance == null) {
+            instance = new GameManagerAssets();
+        }
+
+        return instance;
+    }
 
     public void init() { // String w, String l) {
 
