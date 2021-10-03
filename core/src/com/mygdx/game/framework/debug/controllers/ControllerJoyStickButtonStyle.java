@@ -745,8 +745,6 @@ System.out.println("ControllJoyStickButtonStyle: Quick bar -power_chose pressed!
 
     /**
      * Represents a button of the spell bar component.
-     *
-     * @author serhiy
      */
 
     /** cool down timer but not visual */
