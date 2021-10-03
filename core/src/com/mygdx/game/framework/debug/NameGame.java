@@ -27,8 +27,9 @@ public class NameGame extends Game {
 		batch = new SpriteBatch();
 		initFonts();
 
-		gameManagerAssetsInstance = new GameManagerAssets();
-
+		//gameManagerAssetsInstance = new GameManagerAssets();
+		gameManagerAssetsInstance = GameManagerAssets.getInstance();
+		
 		System.out.println("[AssetManager Cleared]");
 		GameUtility.assetManager.clear();
 
