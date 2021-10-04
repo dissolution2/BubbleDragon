@@ -30,6 +30,16 @@ import com.badlogic.gdx.ai.DefaultTimepiece;
 import com.mygdx.game.framework.debug.world.gameObjects.GameObjectSwitchHidden;
 import com.mygdx.game.framework.debug.world.gameObjects.ItemObjectDef;
 
+//ToDo: Refactoring into smaller Classe's with this as it main core
+/**
+ * learn from java Microservices , split as we do in AI ( steering )
+ *
+ * GameManagerAI - Main - GameManagerBossAI - GameManagerTypeOfEnemyAI ( this one split into more )
+ *
+ * this class even with all its test and not used functions are way to large  2840 Lines !!
+ *
+ * */
+
 public class GameManagerAI {
 
     private enum EnemyAIBossState {
