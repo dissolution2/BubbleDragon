@@ -1,4 +1,5 @@
 # BubbleDragon
+ Class Diagram - https://github.com/dissolution2/BubbleDragon/blob/main/BubbleDragonGameClassDiagram.pdf
  LibGdx Java Game -BubbleDragon Video Folder -Pre of Game in Debugg Mode-
 
 
