@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<template>
- <object name="MAP_SPAWN_POINT" width="17" height="19">
-  <properties>
-   <property name="ID" value="1"/>
-  </properties>
- </object>
-</template>
