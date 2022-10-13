@@ -330,16 +330,16 @@ public class PlayScreen extends GameScreen {
         this.main_action_bar_buttons_list = new ArrayList<Button>();
         this.main_action_bar_buttons_list = gameManagerAssetsInstance.getMain_action_bar_game_ui_list();
 
-/*
+
         main_action_bar_buttons_list.add(new Button("jump", 0, new Action()));
-        main_action_bar_buttons_list.add(new Button("attack_one", 1.8f, new Action())); // 0.5f attack_two
-        main_action_bar_buttons_list.add(new Button("power_one", 1.5f, new Action()));
+        main_action_bar_buttons_list.add(new Button("attack_one", 5f, new Action())); // 0.5f attack_two // 1.8f
+        main_action_bar_buttons_list.add(new Button("power_one", 0, new Action())); // 1.5f
         //main_action_bar_buttons_list.add(new Button("power_two", 1.5f, new Action()) );
         main_action_bar_buttons_list.add(new Button("meny_power", 0, new Action()));
-        main_action_bar_buttons_list.add(new Button("power_chgreen", 0, new Action()));
-*/
+        main_action_bar_buttons_list.add(new Button("power_chgreen", 0, new Action())); // 1.5f
+
         this.quick_bar_buttons_list = new ArrayList<Button>();
-        quick_bar_buttons_list.add(new Button("meny_power", 1.8f, new Action()) );
+        quick_bar_buttons_list.add(new Button("meny_power", 0, new Action()) ); // 1.8f
 
 
         /** font for Buttons Counter How many Bullets left and FSP debug Counter etc*/
@@ -991,7 +991,8 @@ public class PlayScreen extends GameScreen {
         notify(AudioObserver.AudioCommand.SOUND_LOAD, AudioObserver.AudioTypeEvent.SOUND_JUMP);
         notify(AudioObserver.AudioCommand.SOUND_LOAD, AudioObserver.AudioTypeEvent.SOUND_DROP);
 
-        notify(AudioObserver.AudioCommand.MUSIC_STOP, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
+        /** Change To fade out - Volume decrease might work !! */
+        notify(AudioObserver.AudioCommand.MUSIC_FADE, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
 
         /** Move to GUI Main - !! need to be loaded directly from GameUtility or GameAssetManager !! */
         //notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.MUSIC_TITLE);

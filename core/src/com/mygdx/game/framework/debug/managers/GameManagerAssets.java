@@ -255,7 +255,7 @@ public class GameManagerAssets {
         }
  */
 
-
+/*
         if(gameManagerSaveFilePlayerExists()){
 
             readFromSaveGamePlayer();
@@ -263,18 +263,18 @@ public class GameManagerAssets {
             if(getSaveGamePlayerDataHolderClass().getSavePlayerPowerCrystalInUse() != null) {
                 if (getSaveGamePlayerDataHolderClass().getSavePlayerPowerCrystalInUse() == "1") {
 
-                    /** We sett the default action bare buttons for the player in gui */
+                    // We sett the default action bare buttons for the player in gui
 
-                    /**
-                     * Metod: getMainActionBarGui - get from instance with in PlayerScreen Class etc.
-                     * */
+
+                     // Metod: getMainActionBarGui - get from instance with in PlayerScreen Class etc.
+
 
                     main_action_bar_game_ui_list.add(new Button("jump", 0, new Action()));
                     main_action_bar_game_ui_list.add(new Button("attack_one", 1.8f, new Action())); // 0.5f attack_two
                     main_action_bar_game_ui_list.add(new Button("power_one", 1.5f, new Action()));
                     //main_action_bar_game_ui_list.add(new Button("power_two", 1.5f, new Action()) );
                     main_action_bar_game_ui_list.add(new Button("meny_power", 0, new Action()));
-                    main_action_bar_game_ui_list.add(new Button("power_chgreen", 0, new Action()));
+                    main_action_bar_game_ui_list.add(new Button("power_chgreen", 3.5f, new Action()));
                 }else{
                     main_action_bar_game_ui_list.add(new Button("jump", 0, new Action()));
                     main_action_bar_game_ui_list.add(new Button("attack_two", 1.8f, new Action())); // 0.5f attack_two
@@ -285,7 +285,7 @@ public class GameManagerAssets {
                 }
             }
         }
-
+*/
     }
 
     public ArrayList<Button> getMain_action_bar_game_ui_list(){
@@ -378,11 +378,6 @@ public class GameManagerAssets {
           System.out.println("\tName: " + saveGamePlayerDataHolderClass.getPlayerPowerUpList().get(a).getPowerName()
                   );
       }
-
-
-
-
-
     }
 
     /** Debug */

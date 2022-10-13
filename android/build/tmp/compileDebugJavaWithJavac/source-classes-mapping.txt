@@ -1,4 +1,0 @@
-com/mygdx/game/framework/debug/BuildConfig.java
- com.mygdx.game.framework.debug.BuildConfig
-com/mygdx/game/framework/debug/AndroidLauncher.java
- com.mygdx.game.framework.debug.AndroidLauncher

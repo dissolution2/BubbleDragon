@@ -54,8 +54,8 @@ public class MainMenuScreen extends GameScreen{
 
 
         /** Move to GUI Main - !! need to be loaded directly from GameUtility or GameAssetManager !! */
-        notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
-        notify(AudioObserver.AudioCommand.MUSIC_PLAY_LOOP, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
+        //notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
+        //notify(AudioObserver.AudioCommand.MUSIC_PLAY_LOOP, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
 
         // Parallax testing
         parallaxGameScreen = new ParallaxGameScreen(this.gameName);
@@ -65,7 +65,10 @@ public class MainMenuScreen extends GameScreen{
     public void show() {
         //System.out.println("MAIN MENU");
         //check();
-        //notify(AudioObserver.AudioCommand.MUSIC_PLAY_LOOP, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
+        notify(AudioObserver.AudioCommand.MUSIC_LOAD, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
+        notify(AudioObserver.AudioCommand.MUSIC_PLAY_LOOP, AudioObserver.AudioTypeEvent.MUSIC_TITLE);
+
+        System.out.println("MainMenu Class Show: calling play music ");
         Gdx.input.setInputProcessor(stage);
         stage.clear();
 
@@ -261,7 +264,7 @@ public class MainMenuScreen extends GameScreen{
 
         buttonSettings.setSize(280, 60);
         buttonSettings.addAction(sequence(alpha(0), parallel(fadeIn(.5f), moveBy(0, -20, .5f, Interpolation.pow5Out))));
-/*
+
         buttonSettings.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -272,12 +275,13 @@ public class MainMenuScreen extends GameScreen{
                     public void run() {
 
                     	System.out.println("have to implement new Screen Settings and back to Main Menu!!" );
+                        gameName.setScreen( new LoadSettingsGameScreen((NameGame)gameName, gameManagerAssetsInstance ));
                     }
                 };
                 stage.addAction( parallel(fadeOut(.8f), delay(2f, run(transitionRunnable)) ));
             }
         });
-*/
+
         buttonExit = new TextButton("Exit", skin, "default");
         //buttonExit.setPosition(110, 190);
         buttonExit.setPosition(GameUtility.V_WIDTH / 2 - 140, GameUtility.V_HEIGHT / 2 - 150 );

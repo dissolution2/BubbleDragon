@@ -1,2 +1,0 @@
-com/mygdx/game/framework/debug/IOSLauncher.java
- com.mygdx.game.framework.debug.IOSLauncher
