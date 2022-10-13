@@ -4,6 +4,10 @@ OverAll Bug / Change : if player load from
     saveGame with power last used higher then 1 the visual power is not sett to the right one.
     Moving then to another level / world don't change it.
 
+
+    * GUI - Change shooting / changing Weapon time and visual lay out * work on last time *
+
+
 Desktop -: Bug :
     Steering Bug, player teleports when hits the active sensor - ( Android does not happen )
 
@@ -13,3 +17,8 @@ Android -: Bug :
 
 Spawn Point -> First one, smallEnemyDef attack while falling, and after falling very slow !!
 This dose not happen on Desktop !!
+
+Try to check your logcat if the Garbage collector is called. If so than try to use
+finalize method of object class to find which class object are collected as garbage and try to
+improve on it.
+

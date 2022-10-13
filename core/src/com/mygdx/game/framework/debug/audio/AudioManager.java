@@ -46,23 +46,21 @@ public class AudioManager implements AudioObserver{
                 GameUtility.loadMusicAsset(event.getValue());
                 break;
             case MUSIC_PLAY_ONCE:
-                playMusic(false, event.getValue());
+                playMusic(false, event.getValue()); // ? add fade volume change ?
                 break;
             case MUSIC_PLAY_LOOP:
                 playMusic(true, event.getValue());
                 Music musicV = queuedMusic.get(event.getValue());
-
+                /** check the volume if its been faded - sett volume up. */
                 if(musicV.getVolume() < 0.2f){
                     musicV.setVolume(2f);
                 }
-
                 break;
             case MUSIC_FADE:
                 Music music_to_fade = queuedMusic.get(event.getValue());
                 if( music_to_fade != null ){
-                    // lower the wolume, then stop the music. after the a time frame !!
+                    /** lower the volume, then stop the music. after the a time frame !! */
                     fadeSound(event);
-                    //music_to_fade.getVolume()
                 }
                 break;
             case MUSIC_STOP:
@@ -115,8 +113,7 @@ public class AudioManager implements AudioObserver{
                 }
             }
         }, 0f, fadeRate);
-
-        //music_to_fade.setVolume(2f); // did not exit right away, felt like it faded to times... moved to when we load Music, check volume.
+// Debug: music_to_fade.setVolume(2f); // did not exit right away, felt like it faded two times... moved to when we load Music, check volume.
     }
 
     private Music playMusic(boolean isLooping, String fullFilePath){

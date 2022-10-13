@@ -721,10 +721,10 @@ public class WorldContactListener implements ContactListener{
                 }
 
                 if (fixA.getFilterData().categoryBits == GameUtility.GAME_AI_OBJECT_BIT) {
-                    // spawn Boss marker
+
                     if (((AiObjectDef) fixA.getUserData()).getObjectIdentity().equals("AI_STEERING")) {
 
-                        //System.out.println("WorldContactListener fixA AI_STEERING TYPE " + ((GameAIObject) fixA.getUserData()).getMapMarkerType());
+                        System.out.println("WorldContactListener fixA AI_STEERING TYPE " + ((GameAIObject) fixA.getUserData()).getMapMarkerType());
                         if(((GameAIObject) fixA.getUserData()).getMapMarkerType().equals("Steering Stop")){
 
                             gameManagerAIInstance.setStopSteeringActivityFromContactWithAI(true);
@@ -740,7 +740,7 @@ public class WorldContactListener implements ContactListener{
                 if (fixB.getFilterData().categoryBits == GameUtility.GAME_AI_OBJECT_BIT) {
                     if (((AiObjectDef) fixB.getUserData()).getObjectIdentity().equals("AI_STEERING")) {
 
-                        //System.out.println("WorldContactListener fixB AI_STEERING TYPE " + ((GameAIObject) fixB.getUserData()).getMapMarkerType());
+                        System.out.println("WorldContactListener fixB AI_STEERING TYPE " + ((GameAIObject) fixB.getUserData()).getMapMarkerType());
 
                         if(((GameAIObject) fixB.getUserData()).getMapMarkerType().equals("Steering Stop")) {
                             gameManagerAIInstance.setStopSteeringActivityFromContactWithAI(true);

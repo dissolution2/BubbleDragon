@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android/BubbleDragon.android.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/android/BubbleDragon.android.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android/BubbleDragon.android.main.iml" filepath="$PROJECT_DIR$/.idea/modules/android/BubbleDragon.android.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android/BubbleDragon.android.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/android/BubbleDragon.android.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/BubbleDragon.core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core/BubbleDragon.core.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/BubbleDragon.core.test.iml" filepath="$PROJECT_DIR$/.idea/modules/core/BubbleDragon.core.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/desktop/BubbleDragon.desktop.main.iml" filepath="$PROJECT_DIR$/.idea/modules/desktop/BubbleDragon.desktop.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/desktop/BubbleDragon.desktop.test.iml" filepath="$PROJECT_DIR$/.idea/modules/desktop/BubbleDragon.desktop.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ios/BubbleDragon.ios.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ios/BubbleDragon.ios.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ios/BubbleDragon.ios.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ios/BubbleDragon.ios.test.iml" />
+    </modules>
+  </component>
+</project>

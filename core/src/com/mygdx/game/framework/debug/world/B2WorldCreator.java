@@ -165,7 +165,7 @@ public class B2WorldCreator {
            if(object.getName().equals("MAP_INFO")) {
 
                if(object.getProperties().containsKey("KEY")){
-                   System.out.println("Map key is: " + object.getProperties().get("KEY").toString() );
+                   System.out.println("BwWorldCreator Class \n- Map key is: " + object.getProperties().get("KEY").toString() );
                    gameManagerAssetsInstance.setCurrentWorld(object.getProperties().get("MAP INFO WORLD").toString());
                    gameManagerAssetsInstance.setCurrentLevel(object.getProperties().get("MAP INFO LEVEL").toString());
 
@@ -223,6 +223,7 @@ public class B2WorldCreator {
 
 
        /** Debug read out World Save Class Object */
+       System.out.println("BwWorldCreator Class - Debug System.out : readFromSaveGameWorld() ");
        gameManagerAssetsInstance.readFromSaveGameWorld();
 
 
@@ -285,7 +286,7 @@ public class B2WorldCreator {
 */
        }
 
-       /**  GRAPIHCS_ITEM_LAYER    */
+       /**  GRAPIHCS_ITEM_LAYER    */ // Works but taking this away for now!!
        for(MapObject object : map.getLayers().get("GRAPHICS_ITEM_LAYER").getObjects().getByType(RectangleMapObject.class)) {
            Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
@@ -294,10 +295,10 @@ public class B2WorldCreator {
                switch ( (String) object.getProperties().get("type")) {
 
                    case "FRONT":
-                       gameObjectGraphicsAnimationItemFront.addAll(new Grass(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object));
+                       //gameObjectGraphicsAnimationItemFront.addAll(new Grass(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object));
                        break;
                    case "BACK":
-                       gameObjectGraphicsAnimationItemBack.addAll(new Grass(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object));
+                       //gameObjectGraphicsAnimationItemBack.addAll(new Grass(screen, rect.getX() / GameUtility.PPM, rect.getY() / GameUtility.PPM, object));
                        break;
                }
            }

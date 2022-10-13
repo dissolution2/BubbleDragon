@@ -283,7 +283,7 @@ public class PlayScreen extends GameScreen {
     FPSLogger fpsLogger;
     private int testVar;
 
-
+    private int world_body_count;
 
 
     // if implement drawer fails - updateAllSpawnLifeFromEnemy making this super and invoke render etc in gameScreen to updateAllSpawnLifeFromEnemy with stage there!!!
@@ -479,6 +479,7 @@ public class PlayScreen extends GameScreen {
         /** creates the player in our game world */
         if(gameManagerAssetsInstance.gameManagerSaveFilePlayerExists()) {
 
+            /** Debug - lin out */
             gameManagerAssetsInstance.readFromSaveGamePlayer();
             // get fixed string on last named spawn location ?
             // here player died , so integer 1 = life to have.
@@ -842,8 +843,8 @@ public class PlayScreen extends GameScreen {
 
 
         }
-
-        gameManagerAssetsInstance.readFromSaveGamePlayer();
+        /** Debug line out */
+        //gameManagerAssetsInstance.readFromSaveGamePlayer();
 
 
         //create our game HUD for scores/timers/level info
@@ -1025,6 +1026,8 @@ public class PlayScreen extends GameScreen {
                 gamePort.getWorldHeight() );
 
          */
+        world_body_count = world.getBodyCount();
+        System.out.println("Start World Body's: " + world_body_count); //world.getBodyCount() );
     }
 
 
@@ -1155,10 +1158,20 @@ public class PlayScreen extends GameScreen {
         }
     }
 */
+    //ToDo: test world bodyCount if we need to scale the body count down!!
     public void update(float dt) {
+        //System.out.println("Start Var of WorldBodyCount is = " + this.world_body_count); // Fixed :)
 
         if(gameManagerAssetsInstance.getGameState() != GameManagerAssets.GameState.GAME_PAUSED ) {
             handleInput(dt);
+
+            /** prints out the world Body count when it increase or decrease in world */
+            if(this.world_body_count != this.world.getBodyCount() ){
+                System.out.println("update World Body's: " + world.getBodyCount() );
+                this.world_body_count = this.world.getBodyCount(); /** Reset the world body count to the check value*/
+            }
+
+
 /*
             System.out.println("PlayScreen Update ViewPort ScreenW: " +
                     gamePort.getScreenWidth() + " ScreenH: " +

@@ -5,26 +5,26 @@ import com.badlogic.gdx.ai.steer.behaviors.Arrive;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.framework.debug.NameGame;
-import com.mygdx.game.framework.debug.ai.steering.SteeringEntityEnemy;
+import com.mygdx.game.framework.debug.ai.steering.SteeringEntity;
 import com.mygdx.game.framework.debug.managers.GameSteeringStateManagerBoss;
 import com.mygdx.game.framework.debug.sprites.Enemies.BossEnemy.BossEnemyDef;
 import com.mygdx.game.framework.debug.world.gameAiObjects.GameAIObject;
 
 public class HomeStateBoss extends BaseStateBoss {
 
-    SteeringEntityEnemy aiEntity;
-    private SteeringEntityEnemy targetEntity;
+    SteeringEntity aiEntity;
+    private SteeringEntity targetEntity;
     float linearSpeed = 10f;
 
     public HomeStateBoss(NameGame app, GameSteeringStateManagerBoss gameSteeringStateManagerBoss,
                          Array<BossEnemyDef> enemyList, Array<GameAIObject> objects, float velocity, int radius, float acceleration, int bodyToUse ) {
         super(app, gameSteeringStateManagerBoss);
 
-        aiEntity = new SteeringEntityEnemy(enemyList.get(0).b2body, false, .5f);
+        aiEntity = new SteeringEntity(enemyList.get(0).b2body, false, .5f);
         aiEntity.setMaxLinearSpeed(velocity);
         aiEntity.setMaxLinearAcceleration(acceleration);
 
-        targetEntity = new SteeringEntityEnemy(objects.get(bodyToUse).getGameAIObjectB2Body(), false, .5f);
+        targetEntity = new SteeringEntity(objects.get(bodyToUse).getGameAIObjectB2Body(), false, .5f);
         //markAsSensor(targetEntity);
 
         final Arrive<Vector2> arriveSB = new Arrive<Vector2>(aiEntity, targetEntity)

@@ -20,6 +20,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.framework.debug.SaveGamePlayerDataHolderClass;
 import com.mygdx.game.framework.debug.SaveGameWorldDataHolderClass;
+import com.mygdx.game.framework.debug.audio.AudioManager;
 import com.mygdx.game.framework.debug.controllers.Button;
 import com.mygdx.game.framework.debug.sprites.BubblePlayer;
 import com.mygdx.game.framework.debug.util.GameUtility;
@@ -120,7 +121,7 @@ public class GameManagerAssets {
     private int foSaveRedPowerCrystal;
 
     private ArrayList<Button> main_action_bar_game_ui_list;
-
+    private static GameManagerAssets instance = null;
 
     private B2WorldCreator worldB2VarsCreate;
     private World world;
@@ -135,6 +136,15 @@ public class GameManagerAssets {
 
         return instance;
     }
+
+    public static GameManagerAssets getInstance() {
+        if (instance == null) {
+            instance = new GameManagerAssets();
+        }
+
+        return instance;
+    }
+
 
     public void init() { // String w, String l) {
 
@@ -292,7 +302,7 @@ public class GameManagerAssets {
        return this.main_action_bar_game_ui_list;
     }
 
-    //public GameManagerAssets getGameManagerAssetsInstance(){ return this.instance; }
+
 
     //working on
     /** set's and get's Used by GameManagerAI and B2WarsCreator */
@@ -374,9 +384,7 @@ public class GameManagerAssets {
       System.out.println("Player Power's: " );
 
       for(int a = 0; a < saveGamePlayerDataHolderClass.getPlayerPowerUpList().size(); a++ ){
-
-          System.out.println("\tName: " + saveGamePlayerDataHolderClass.getPlayerPowerUpList().get(a).getPowerName()
-                  );
+            System.out.println("\tName: " + saveGamePlayerDataHolderClass.getPlayerPowerUpList().get(a).getPowerName() );
       }
     }
 

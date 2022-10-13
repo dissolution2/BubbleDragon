@@ -28,8 +28,9 @@ public class NameGame extends Game {
 		initFonts();
 
 		//gameManagerAssetsInstance = new GameManagerAssets();
+
 		gameManagerAssetsInstance = GameManagerAssets.getInstance();
-		
+
 		System.out.println("[AssetManager Cleared]");
 		GameUtility.assetManager.clear();
 

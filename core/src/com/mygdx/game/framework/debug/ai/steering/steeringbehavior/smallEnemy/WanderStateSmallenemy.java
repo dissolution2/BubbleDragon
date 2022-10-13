@@ -4,7 +4,7 @@ import com.badlogic.gdx.ai.steer.behaviors.Wander;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.framework.debug.NameGame;
-import com.mygdx.game.framework.debug.ai.steering.SteeringEntityEnemy;
+import com.mygdx.game.framework.debug.ai.steering.SteeringEntity;
 import com.mygdx.game.framework.debug.managers.GameSteeringStateManagerEnemy;
 import com.mygdx.game.framework.debug.sprites.BubblePlayer;
 import com.mygdx.game.framework.debug.sprites.Enemies.SmallEnemyDef;
@@ -12,9 +12,9 @@ import com.mygdx.game.framework.debug.world.gameAiObjects.GameAIObject;
 
 public class WanderStateSmallenemy extends BaseStateEnemy {
 
-    private SteeringEntityEnemy targetEntity;
-    private SteeringEntityEnemy aiEntity;
-    private Array<SteeringEntityEnemy> aiEntityList = new Array<SteeringEntityEnemy>();
+    private SteeringEntity targetEntity;
+    private SteeringEntity aiEntity;
+    private Array<SteeringEntity> aiEntityList = new Array<SteeringEntity>();
     //private Array<BossEnemyDef> enemyListFromGameBoss = new Array<BossEnemyDef>();
     private Array<SmallEnemyDef> enemyListFromGameSmall = new Array<SmallEnemyDef>();
     private Array<GameAIObject> gameAIObjects = new Array<GameAIObject>();
@@ -29,12 +29,12 @@ public class WanderStateSmallenemy extends BaseStateEnemy {
 
         for(int i =0; i < enemyListFromGameSmall.size; i++) {
 
-            aiEntityList.add(new SteeringEntityEnemy(enemyListFromGameSmall.get(i).b2body, false, .5f));
+            aiEntityList.add(new SteeringEntity(enemyListFromGameSmall.get(i).b2body, false, .5f));
             aiEntityList.get(i).setMaxLinearSpeed(10);
             aiEntityList.get(i).setMaxLinearAcceleration(100);
         }
 
-        targetEntity = new SteeringEntityEnemy( gameAIObjects.get(0).b2body, false, .5f);
+        targetEntity = new SteeringEntity( gameAIObjects.get(0).b2body, false, .5f);
 
         for(int i =0; i < aiEntityList.size; i++) {
 

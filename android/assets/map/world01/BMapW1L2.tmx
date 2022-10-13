@@ -110,48 +110,6 @@
   </object>
   <object id="657" name="EnemyStalagmit" x="364.667" y="127" width="35" height="46"/>
   <object id="658" name="EnemyStalagmit" x="271.667" y="135" width="35" height="46"/>
-  <object id="677" name="EnemyB" x="1807" y="116.333" width="46" height="43.3333">
-   <properties>
-    <property name="Active" value="true"/>
-    <property name="SpawnType" value="EX_LIFE"/>
-   </properties>
-  </object>
-  <object id="678" name="EnemyB" x="1893.66" y="46.999" width="46" height="43.3333">
-   <properties>
-    <property name="Active" value="true"/>
-    <property name="SpawnType" value="EX_LIFE"/>
-   </properties>
-  </object>
-  <object id="681" name="EnemyB" x="1964.33" y="85.6657" width="46" height="43.3333">
-   <properties>
-    <property name="Active" value="true"/>
-    <property name="SpawnType" value="EX_LIFE"/>
-   </properties>
-  </object>
-  <object id="682" name="EnemyB" x="1956.33" y="482.999" width="46" height="43.3333">
-   <properties>
-    <property name="Active" value="true"/>
-    <property name="SpawnType" value="EX_LIFE"/>
-   </properties>
-  </object>
-  <object id="683" name="EnemyB" x="2233.66" y="469.333" width="46" height="43.3333">
-   <properties>
-    <property name="Active" value="true"/>
-    <property name="SpawnType" value="EX_LIFE"/>
-   </properties>
-  </object>
-  <object id="684" name="EnemyB" x="2113.66" y="452.332" width="46" height="43.3333">
-   <properties>
-    <property name="Active" value="true"/>
-    <property name="SpawnType" value="EX_LIFE"/>
-   </properties>
-  </object>
-  <object id="685" name="EnemyB" x="2043" y="413.666" width="46" height="43.3333">
-   <properties>
-    <property name="Active" value="true"/>
-    <property name="SpawnType" value="EX_LIFE"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup id="5" name="ENEMY_BOSS_LAYER"/>
  <objectgroup id="7" name="GAME_OBJECT_LAYER">
