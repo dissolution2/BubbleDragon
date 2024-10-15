@@ -1167,7 +1167,7 @@ public class PlayScreen extends GameScreen {
 
             /** prints out the world Body count when it increase or decrease in world */
             if(this.world_body_count != this.world.getBodyCount() ){
-                System.out.println("update World Body's: " + world.getBodyCount() );
+                System.out.println("update World Body's: " + this.world.getBodyCount() );
                 this.world_body_count = this.world.getBodyCount(); /** Reset the world body count to the check value*/
             }
 

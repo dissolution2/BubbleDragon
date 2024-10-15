@@ -786,7 +786,7 @@ public class WorldContactListener implements ContactListener{
                     if(fixB.getUserData().toString().contains("EnemyA")) {
                         if (((AiObjectDef) fixA.getUserData()).getObjectIdentity().equals("AI_BODY_CHANGE")) { // GAME_ENEMY_A_REVERS_V old
 
-                            System.out.println("MarkerType is " + ((GameAIObject) fixA.getUserData()).getMapMarkerType() );
+                            System.out.println("WorldContactListener EnemyA collide with -MarkerType is " + ((GameAIObject) fixA.getUserData()).getMapMarkerType() );
 
                             if( ((GameAIObject) fixA.getUserData()).getMapMarkerType().equals("Velocity") ) {
 
@@ -941,7 +941,7 @@ public class WorldContactListener implements ContactListener{
 
             /** Case fixB */
                 if (fixB.getFilterData().categoryBits == GameUtility.GAME_AI_OBJECT_BIT) {
-                    System.out.println("WorldContactListener Class : fixA : " + fixA.getUserData() + " fixB " + fixB.getUserData() );
+                    System.out.println("WorldContactListener Class -Case fixB: -fixA : " + fixA.getUserData() + " fixB " + fixB.getUserData() );
 
                     /** EnemyA */
                     if(fixA.getUserData().toString().contains("EnemyA")) {

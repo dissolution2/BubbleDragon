@@ -137,15 +137,6 @@ public class GameManagerAssets {
         return instance;
     }
 
-    public static GameManagerAssets getInstance() {
-        if (instance == null) {
-            instance = new GameManagerAssets();
-        }
-
-        return instance;
-    }
-
-
     public void init() { // String w, String l) {
 
         preGameState = gameState = GameState.GAME_LOADING_ASSETS;

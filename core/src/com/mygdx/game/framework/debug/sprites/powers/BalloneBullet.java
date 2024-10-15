@@ -37,6 +37,7 @@ public class BalloneBullet extends Sprite{
     boolean isPlayerOnBallon;
     Body b2body;
 
+    private String ballonColor = "Green";
     private String coolorBalloonPower;
     private float xBounds,yBounds;
 
@@ -73,6 +74,7 @@ public class BalloneBullet extends Sprite{
                     textureFrames.add(new TextureRegion( GameUtility.getTextureAtlas("spriteAtlas/player/powers/BubblePowerAtlas.atlas").findRegion("BulletA"), i * 64, 0, 64, 64));
                 }
                 balloneBulletAnimation = new Animation(0.2f, textureFrames);
+                ballonColor = "Green";
                 setBalloneBulletDamageColor("Green");
                 break;
             case 2:
@@ -81,6 +83,7 @@ public class BalloneBullet extends Sprite{
                     textureFrames.add(new TextureRegion( GameUtility.getTextureAtlas("spriteAtlas/player/powers/BubblePowerAtlas2.atlas").findRegion("BulletA"), i * 64, 0, 64, 64));
                 }
                 balloneBulletAnimation = new Animation(0.2f, textureFrames);
+                ballonColor = "Blue";
                 setBalloneBulletDamageColor("Blue");
                 break;
         }
@@ -88,7 +91,11 @@ public class BalloneBullet extends Sprite{
         //setBounds(x, y, 6 / Utility.PPM, 6 / Utility.PPM);
         setBounds(this.xBounds, this.yBounds, 40 / GameUtility.PPM, 40 / GameUtility.PPM);
         setRegion((TextureRegion) balloneBulletAnimation.getKeyFrame(0));
-        defineBallonBullet();
+        if(ballonColor.equals("Green")) {
+            defineBallonBulletGreen();
+        } else if (ballonColor.equals("Blue")){
+            defineBallonBulletBlue();
+        }
 
     }
 
@@ -114,7 +121,7 @@ public class BalloneBullet extends Sprite{
      *
      * Else we use categoryBits on Player also and use then WorldContactListener but might need to change State also then !!??
      */
-    private void defineBallonBullet() {
+    private void defineBallonBulletGreen() {
         BodyDef bdef = new BodyDef();
         //bdef.position.set(fireRight ? getX() + 20 / Utility.PPM : getX() - 20 / Utility.PPM, getY()); // 12 / -12 Started to shoot to close to the player ???
         bdef.position.set(fireRight ? getX() + 22 / GameUtility.PPM : getX() - 22 / GameUtility.PPM, getY()); // 12 / -12 Started to shoot to close to the player ???
@@ -185,8 +192,78 @@ public class BalloneBullet extends Sprite{
         //b2body.setLinearVelocity(new Vector2(fireRight ? 1.03f : -1.03f, 0f )); // ? 2 : -2 2.5f));
         b2body.setLinearVelocity(new Vector2(fireRight ? 2.03f : -2.03f, 0f )); // ? 2 : -2 2.5f));
     }
+    /** longer bullet and more damage */
+    private void defineBallonBulletBlue(){
+        BodyDef bdef = new BodyDef();
+        //bdef.position.set(fireRight ? getX() + 20 / Utility.PPM : getX() - 20 / Utility.PPM, getY()); // 12 / -12 Started to shoot to close to the player ???
+        bdef.position.set(fireRight ? getX() + 22 / GameUtility.PPM : getX() - 22 / GameUtility.PPM, getY()); // 12 / -12 Started to shoot to close to the player ???
+        bdef.type = BodyDef.BodyType.DynamicBody;
+        if(!world.isLocked())
+            b2body = world.createBody(bdef);
+
+        FixtureDef fdef = new FixtureDef();
+        CircleShape shape = new CircleShape();
+        shape.setRadius(8 / GameUtility.PPM); // change to a Square if we want to jump on it or make a sensor on topp !!!
+        // testing to take this one out to see if we still get stuck on ballon
+        fdef.filter.categoryBits = GameUtility.PLAYER_POWER_BIT;
 
 
+        fdef.filter.groupIndex = GameUtility.PLAYER_POWER_BIT;
+
+
+        fdef.filter.maskBits = GameUtility.GROUND_BIT |
+                GameUtility.WALL_AND_SEALING_BIT |
+                GameUtility.GAME_OBJECT_BIT |
+                GameUtility.WALL_JUMPING_BIT |
+                GameUtility.ENEMY_LEGS_BIT   |
+                GameUtility.ENEMY_BIT;
+
+        fdef.shape = shape;
+        fdef.isSensor = true;
+        //fdef.restitution = 1; // makes it bounds from the height its shoot from
+        //fdef.friction = 0.7f;
+        b2body.createFixture(fdef).setUserData(this);
+/*
+        EdgeShape head = new EdgeShape();
+        head.set(new Vector2(-2 / Utility.PPM, 6 / Utility.PPM), new Vector2(2 / Utility.PPM, 6 / Utility.PPM));
+        fdef.filter.categoryBits = Utility.BALLONE_HEAD_BIT; //Change to Bubble bit
+        fdef.shape = head;
+        fdef.isSensor = true;
+*/
+/*
+      //Create the Head here:
+        PolygonShape head = new PolygonShape();
+        Vector2[] vertice = new Vector2[4]; //try increase with 2
+        vertice[0] = new Vector2(-12, 15).scl(1 / Utility.PPM);
+        vertice[1] = new Vector2(12, 15).scl(1 / Utility.PPM);
+        vertice[2] = new Vector2(-7, 7).scl(1 / Utility.PPM);
+        vertice[3] = new Vector2(7, 7).scl(1 / Utility.PPM);
+        head.set(vertice);
+
+        fdef.shape = head;
+        //fdef.restitution = 0.5f;
+        fdef.filter.categoryBits = Utility.BALLONE_HEAD_BIT; //.GROUND_BIT;
+
+        //fdef.isSensor = true;
+        b2body.createFixture(fdef).setUserData(this);
+*/
+
+/*
+        EdgeShape head = new EdgeShape();
+        //head.set(new Vector2(-4 / Utility.PPM, 12 / Utility.PPM), new Vector2( 4 / Utility.PPM, 12 / Utility.PPM));
+        head.set(new Vector2(-4 / 32f, 12 / GameUtility.PPM), new Vector2( 4 / 32f, 12 / GameUtility.PPM));
+        fdef.filter.categoryBits = GameUtility.BALLONE_HEAD_BIT;//.PLAYER_POWER_BIT;
+        fdef.shape = head;
+        fdef.friction = 2f;
+*/
+//        fdef.isSensor = true;
+
+        //b2body.createFixture(fdef).setUserData(this);
+
+        b2body.setGravityScale(0);
+        //b2body.setLinearVelocity(new Vector2(fireRight ? 1.03f : -1.03f, 0f )); // ? 2 : -2 2.5f));
+        b2body.setLinearVelocity(new Vector2(fireRight ? 4.03f : -2.03f, 0f )); // ? 2 : -2 2.5f));
+    }
 
     public void update(float dt){
         stateTime += dt;
